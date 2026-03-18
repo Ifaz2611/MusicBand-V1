@@ -31,21 +31,31 @@ public class loginController {
     }
 
     @FXML
-    public void onSignInButtonClick() throws Exception {
-        String userId = UserIdTextField.getText();
-        String userType = UserTypeComboBox.getValue();
+    public void onSignInButtonClick() {
+        try {
+            String userId = UserIdTextField.getText();
+            String userType = UserTypeComboBox.getValue();
 
-        if (userId.isEmpty()) {
-            showAlert("Error", "Please enter User ID!", AlertType.ERROR);
-        } else if (userType == null) {
-            showAlert("Error", "Please select User Type!", AlertType.ERROR);
-        } else {
+            if (userId.isEmpty()) {
+                showAlert("Error", "Please enter User ID!", AlertType.ERROR);
+                return;
+            }
+
+            if (userType == null) {
+                showAlert("Error", "Please select User Type!", AlertType.ERROR);
+                return;
+            }
+
             // Switch to Dashboard Scene
             Stage stage = (Stage) SignInButtonOnAction.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace(); // for debugging
+            showAlert("Error", "Something went wrong while loading dashboard!", AlertType.ERROR);
         }
     }
 

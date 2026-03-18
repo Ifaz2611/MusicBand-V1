@@ -32,13 +32,6 @@
          </font>
       </Text>
       <TextField fx:id="UserPasswordTextField" layoutX="291.0" layoutY="337.0" prefHeight="35.0" prefWidth="152.0" />
-       <Button fx:id="SignInButtonOnAction"
-               layoutX="284.0"
-               layoutY="433.0"
-               mnemonicParsing="false"
-               prefHeight="53.0"
-               prefWidth="91.0"
-               text="Sign In "
-               onAction="#onSignInButtonClick" />
+       <Button fx:id="SignInButtonOnAction" layoutX="284.0" layoutY="433.0" mnemonicParsing="false" onAction="#onSignInButtonClick" prefHeight="53.0" prefWidth="91.0" text="Sign In " />
    </children>
 </AnchorPane>
