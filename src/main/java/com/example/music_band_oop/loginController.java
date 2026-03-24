@@ -54,7 +54,7 @@ public class loginController {
             } else if (userType.equals("Sound Engineer")) {
                 fxmlFile = "DashboardOfUsers/SoundEngineerDashbroad.fxml";
             } else {
-                showAlert("Error", "Dashboard not available for this user type yet!", AlertType.WARNING);
+                showAlert("Error", "Make Your dashbroad First ", AlertType.WARNING);
                 return;
             }
 
