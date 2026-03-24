@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="510.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.SoundEngineerDashbroadController">
    <children>
       <Label fx:id="SoundEngineerDashboardFxId" alignment="CENTER" layoutX="192.0" layoutY="43.0" prefHeight="47.0" prefWidth="240.0" style="-fx-background-color: cyan;" text="Sound Engineer Dashboard">

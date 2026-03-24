@@ -46,16 +46,32 @@ public class loginController {
                 return;
             }
 
-            // Switch to Dashboard Scene
+            // Determine which FXML to load based on user type
+            String fxmlFile = "";
+
+            if (userType.equals("Event Coordinator")) {
+                fxmlFile = "DashboardOfUsers/EventCoordinatorDashbroad.fxml";
+            } else if (userType.equals("Sound Engineer")) {
+                fxmlFile = "DashboardOfUsers/SoundEngineerDashbroad.fxml";
+            } else {
+                showAlert("Error", "Dashboard not available for this user type yet!", AlertType.WARNING);
+                return;
+            }
+
+            // Debug: Check if resource exists
+            System.out.println("Looking for: " + fxmlFile);
+            System.out.println("Resource URL: " + getClass().getResource(fxmlFile));
+
+            // Switch to the appropriate Dashboard Scene
             Stage stage = (Stage) SignInButtonOnAction.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace(); // for debugging
-            showAlert("Error", "Something went wrong while loading dashboard!", AlertType.ERROR);
+            e.printStackTrace();
+            showAlert("Error", "Something went wrong: " + e.getMessage(), AlertType.ERROR);
         }
     }
 
