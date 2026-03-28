@@ -22,6 +22,7 @@ public class loginController {
     @FXML
     private ComboBox<String> UserTypeComboBox;
 
+
     @FXML
     public void initialize() {
         // Populate the ComboBox with all possible user roles.
@@ -37,6 +38,7 @@ public class loginController {
         try {
             String userId = UserIdTextField.getText();
             String userType = UserTypeComboBox.getValue();
+            String userPass = UserPasswordTextField.getText();
 
             // Basic validation
             if (userId.isEmpty()) {
@@ -45,6 +47,10 @@ public class loginController {
             }
             if (userType.isEmpty()) {
                 showAlert("Error", "Please select User Type!", AlertType.ERROR);
+                return;
+            }
+            if (userPass.isEmpty()) {
+                showAlert("Error", "Please select User Password!", AlertType.ERROR);
                 return;
             }
 
