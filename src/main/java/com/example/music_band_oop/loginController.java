@@ -24,6 +24,8 @@ public class loginController {
 
     @FXML
     public void initialize() {
+        // Populate the ComboBox with all possible user roles.
+        // These can be extended later if new roles are added.
         UserTypeComboBox.getItems().addAll(
                 "Sound Engineer", "Event Coordinator", "Lead Guitarist",
                 "Drummer", "Bassist", "Keyboardist", "Band Manager", "Lead Vocalist"
@@ -36,33 +38,34 @@ public class loginController {
             String userId = UserIdTextField.getText();
             String userType = UserTypeComboBox.getValue();
 
+            // Basic validation
             if (userId.isEmpty()) {
                 showAlert("Error", "Please enter User ID!", AlertType.ERROR);
                 return;
             }
-
-            if (userType == null) {
+            if (userType.isEmpty()) {
                 showAlert("Error", "Please select User Type!", AlertType.ERROR);
                 return;
             }
 
-            // Determine which FXML to load based on user type
-            String fxmlFile = "";
+            // Determine which dashboard to load based on the user type.
+            // This logic can be easily extended by adding new cases.
+            String fxmlFile = getDashboardFileForUserType(userType);
 
-            if (userType.equals("Event Coordinator")) {
-                fxmlFile = "DashboardOfUsers/EventCoordinatorDashbroad.fxml";
-            } else if (userType.equals("Sound Engineer")) {
-                fxmlFile = "DashboardOfUsers/SoundEngineerDashbroad.fxml";
-            } else {
-                showAlert("Error", "Make Your dashbroad First ", AlertType.WARNING);
+            if (fxmlFile == null) {
+                // No dashboard yet for this role – show a friendly message
+                showAlert("Not Implemented",
+                        "The dashboard for '" + userType + "' is not yet available.\n" +
+                                "Please check back later or select a different role.",
+                        AlertType.WARNING);
                 return;
             }
 
-            // Debug: Check if resource exists
+            // Debug output (optional, can be removed)
             System.out.println("Looking for: " + fxmlFile);
             System.out.println("Resource URL: " + getClass().getResource(fxmlFile));
 
-            // Switch to the appropriate Dashboard Scene
+            // Switch to the dashboard scene
             Stage stage = (Stage) SignInButtonOnAction.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(root);
@@ -72,6 +75,27 @@ public class loginController {
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Error", "Something went wrong: " + e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+    /**
+     * Returns the FXML file path for a given user type, or null if not implemented.
+     * Add new user types here as dashboards become available.
+     */
+
+    private String getDashboardFileForUserType(String userType) {
+        switch (userType) {
+            case "Event Coordinator":
+                return "DashboardOfUsers/EventCoordinatorDashbroad.fxml";
+            case "Sound Engineer":
+                return "DashboardOfUsers/SoundEngineerDashbroad.fxml";
+            // Future user types can be added below:
+            // case "Band Manager":
+            //     return "DashboardOfUsers/BandManagerDashboard.fxml";
+            // case "Lead Vocalist":
+            //     return "DashboardOfUsers/LeadVocalistDashboard.fxml";
+            default:
+                return null; // Dashboard not implemented yet
         }
     }
 
