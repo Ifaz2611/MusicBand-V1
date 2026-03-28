@@ -1,10 +1,7 @@
 package com.example.music_band_oop;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -21,6 +18,8 @@ public class loginController {
     private TextField UserPasswordTextField;
     @FXML
     private ComboBox<String> UserTypeComboBox;
+    @FXML
+    private Label labelHeadeing;
 
 
     @FXML
