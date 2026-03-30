@@ -10,22 +10,15 @@ import javafx.fxml.FXMLLoader;
 
 public class loginController {
 
-    @FXML
-    private Button SignInButtonOnAction;
-    @FXML
-    private TextField UserIdTextField;
-    @FXML
-    private TextField UserPasswordTextField;
-    @FXML
-    private ComboBox<String> UserTypeComboBox;
-    @FXML
-    private Label labelHeadeing;
+    @FXML private Button SignInButtonOnAction;
+    @FXML private TextField UserIdTextField;
+    @FXML private TextField UserPasswordTextField;
+    @FXML private ComboBox<String> UserTypeComboBox;
+    @FXML private Label labelHeadeing;
 
 
     @FXML
     public void initialize() {
-        // Populate the ComboBox with all possible user roles.
-        // These can be extended later if new roles are added.
         UserTypeComboBox.getItems().addAll(
                 "Sound Engineer", "Event Coordinator", "Lead Guitarist",
                 "Drummer", "Bassist", "Keyboardist", "Band Manager", "Lead Vocalist"
@@ -38,18 +31,16 @@ public class loginController {
             String userId = UserIdTextField.getText();
             String userType = UserTypeComboBox.getValue();
             String userPass = UserPasswordTextField.getText();
-
-            // Basic validation
             if (userId.isEmpty()) {
-                showAlert("Error", "Please enter User ID!", AlertType.ERROR);
+                showAlert("Error", "Please enter User ID", AlertType.ERROR);
                 return;
             }
             if (userType.isEmpty()) {
-                showAlert("Error", "Please select User Type!", AlertType.ERROR);
+                showAlert("Error", "Please select User Type", AlertType.ERROR);
                 return;
             }
             if (userPass.isEmpty()) {
-                showAlert("Error", "Please select User Password!", AlertType.ERROR);
+                showAlert("Error", "Please select User Password", AlertType.ERROR);
                 return;
             }
 
