@@ -32,7 +32,12 @@ public class SE_Goal2_ViewController {
     @FXML private Label issueLabel, statusLabel;
     @FXML private Button saveLogsBtn, applyBtn;
 
-    private ObservableList<ChannelData> channelList;
+    private final ObservableList<ChannelData> channelList = FXCollections.observableArrayList(
+            new ChannelData("Kick",   -3.0, "OK"),
+            new ChannelData("Snare",  -2.5, "OK"),
+            new ChannelData("Vocal",   0.5, "Distortion"),
+            new ChannelData("Guitar", -6.0, "OK")
+    );
 
     @FXML
     public void initialize() {
@@ -40,12 +45,6 @@ public class SE_Goal2_ViewController {
         LevelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
         StatusCloumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        channelList = FXCollections.observableArrayList(
-                new ChannelData("Kick",   -3.0, "OK"),
-                new ChannelData("Snare",  -2.5, "OK"),
-                new ChannelData("Vocal",   0.5, "Distortion"),
-                new ChannelData("Guitar", -6.0, "OK")
-        );
         channelTable.setItems(channelList);
 
         AdjustChannelCombo.setItems(FXCollections.observableArrayList("Kick", "Snare", "Vocal", "Guitar"));
@@ -61,9 +60,9 @@ public class SE_Goal2_ViewController {
     }
 
     private void detectIssues() {
-        boolean hasDistortion = channelList.stream().anyMatch(ch -> ch.getLevel() > 0);
-        issueLabel.setText(hasDistortion ? "Distortion detected" : "No issues");
-        issueLabel.setStyle(hasDistortion ? "-fx-text-fill: red;" : "-fx-text-fill: green;");
+        boolean distortion = channelList.stream().anyMatch(ch -> ch.getLevel() > 0);
+        issueLabel.setText(distortion ? "Distortion detected" : "No issues");
+        issueLabel.setStyle("-fx-text-fill: " + (distortion ? "red" : "green") + ";");
     }
 
     @FXML
@@ -90,17 +89,17 @@ public class SE_Goal2_ViewController {
         }
     }
 
-    @FXML
-    public void HandleSaveLogsButtonOnAction(ActionEvent event) {
-        try (PrintWriter out = new PrintWriter(new FileWriter("sound_logs.txt", true))) {
-            out.println(LocalDateTime.now());
-            channelList.forEach(ch -> out.println(ch.getName() + " | " + ch.getLevel() + " dB | " + ch.getStatus()));
-            out.println("-------------------");
-            statusLabel.setText("Logs saved to sound_logs.txt");
-        } catch (IOException e) {
-            statusLabel.setText("Error saving logs.");
-        }
-    }
+//    @FXML
+//    public void HandleSaveLogsButtonOnAction(ActionEvent event) {
+//        try (PrintWriter out = new PrintWriter(new FileWriter("sound_logs.txt", true))) {
+//            out.println(LocalDateTime.now());
+//            channelList.forEach(ch -> out.println(ch.getName() + " | " + ch.getLevel() + " dB | " + ch.getStatus()));
+//            out.println("-------------------");
+//            statusLabel.setText("Logs saved to sound_logs.txt");
+//        } catch (IOException e) {
+//            statusLabel.setText("Error saving logs.");
+//        }
+//    }
 
     @FXML
     public void DashboardButtonOnAction(ActionEvent event) {
