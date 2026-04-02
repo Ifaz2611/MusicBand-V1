@@ -6,7 +6,6 @@ module com.example.music_band_oop {
     opens com.example.music_band_oop to javafx.fxml;
     exports com.example.music_band_oop;
 
-
     opens com.example.music_band_oop.Controller to javafx.fxml;
     exports com.example.music_band_oop.Controller;
 
@@ -15,4 +14,7 @@ module com.example.music_band_oop {
 
     opens com.example.music_band_oop.Controller.FXMLControllerForUser2 to javafx.fxml;
     exports com.example.music_band_oop.Controller.FXMLControllerForUser2;
+
+    opens com.example.music_band_oop.Controller.mainuser to javafx.base, javafx.fxml;
+    exports com.example.music_band_oop.Controller.mainuser;
 }
