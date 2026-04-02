@@ -1,6 +1,7 @@
 module com.example.music_band_oop {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
 
     // Main package
     opens com.example.music_band_oop to javafx.fxml;

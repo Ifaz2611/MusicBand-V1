@@ -62,6 +62,26 @@ public class SoundEngineerDashbroadController
 
     @javafx.fxml.FXML
     public void liveMonitoringButtonOnAction(ActionEvent actionEvent) {
+        try {
+
+                                    // Always remembar to double check name of fxml file
+
+            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal2_SoundEngineerMonitorLiveSound.fxml";
+            java.net.URL resourceUrl = getClass().getResource(resourcePath);
+            if (resourceUrl == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML not found.");
+                alert.showAndWait();
+                return;
+            }
+            Parent root = FXMLLoader.load(resourceUrl);
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Live Sound Monitor - Goal 2");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Live Monitoring view.\n" + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
