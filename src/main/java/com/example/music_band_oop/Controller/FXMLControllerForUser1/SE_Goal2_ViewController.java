@@ -89,8 +89,8 @@ public class SE_Goal2_ViewController {
         }
     }
 
-//    @FXML
-//    public void HandleSaveLogsButtonOnAction(ActionEvent event) {
+    @FXML
+    public void HandleSaveLogsButtonOnAction(ActionEvent event) {
 //        try (PrintWriter out = new PrintWriter(new FileWriter("sound_logs.txt", true))) {
 //            out.println(LocalDateTime.now());
 //            channelList.forEach(ch -> out.println(ch.getName() + " | " + ch.getLevel() + " dB | " + ch.getStatus()));
@@ -99,7 +99,7 @@ public class SE_Goal2_ViewController {
 //        } catch (IOException e) {
 //            statusLabel.setText("Error saving logs.");
 //        }
-//    }
+    }
 
     @FXML
     public void DashboardButtonOnAction(ActionEvent event) {
