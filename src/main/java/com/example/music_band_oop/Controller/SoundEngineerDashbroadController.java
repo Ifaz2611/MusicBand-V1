@@ -20,6 +20,23 @@ public class SoundEngineerDashbroadController
     @javafx.fxml.FXML
     public void soundCheckButtonOnAction(ActionEvent actionEvent) {
 
+        try {
+            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal3_SoundEngineerSoundCheck.fxml";
+            java.net.URL resourceUrl = getClass().getResource(resourcePath);
+            if (resourceUrl == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found: " + resourcePath);
+                alert.showAndWait();
+                return;
+            }
+            Parent root = FXMLLoader.load(resourceUrl);
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Sound Check - Goal 3");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Sound Check view.\n" + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -63,7 +80,6 @@ public class SoundEngineerDashbroadController
     @javafx.fxml.FXML
     public void liveMonitoringButtonOnAction(ActionEvent actionEvent) {
         try {
-
                                     // Always remembar to double check name of fxml file
 
             String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal2_SoundEngineerMonitorLiveSound.fxml";

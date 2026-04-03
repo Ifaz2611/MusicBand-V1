@@ -20,8 +20,8 @@ public class loginController {
     @FXML
     public void initialize() {
         UserTypeComboBox.getItems().addAll(
-                "Sound Engineer", "Event Coordinator", "Lead Guitarist",
-                "Drummer", "Bassist", "Keyboardist", "Band Manager", "Lead Vocalist"
+                "Sound Engineer", "Event Coordinator", "Lead Guitarist", "Drummer", "Bassist", "Keyboardist"
+                // Delect two user for one of Group Member Withdraw the course
         );
     }
 
