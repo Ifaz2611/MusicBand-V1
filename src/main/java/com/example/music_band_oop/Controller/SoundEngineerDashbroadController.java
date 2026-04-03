@@ -41,6 +41,24 @@ public class SoundEngineerDashbroadController
 
     @javafx.fxml.FXML
     public void postShowButtonOnAction(ActionEvent actionEvent) {
+        try {
+            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal5_SoundEngineerPostShowClosing.fxml";
+            java.net.URL resourceUrl = getClass().getResource(resourcePath);
+            if (resourceUrl == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found: " + resourcePath);
+                alert.showAndWait();
+                return;
+            }
+            Parent root = FXMLLoader.load(resourceUrl);
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Audio Problem Resolution - Goal 4");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Audio Problem view.\n" + e.getMessage());
+            alert.showAndWait();
+        }
+
     }
 
     @javafx.fxml.FXML
