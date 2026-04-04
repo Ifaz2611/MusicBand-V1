@@ -64,7 +64,6 @@ public class SE_Goal2_ViewController {
         issueLabel.setText(distortion ? "Distortion detected" : "No issues");
         issueLabel.setStyle("-fx-text-fill: " + (distortion ? "red" : "green") + ";");
     }
-
     @FXML
     public void HandleApplyAdjustmentButtonOnAction(ActionEvent event) {
         String selected = AdjustChannelCombo.getValue();

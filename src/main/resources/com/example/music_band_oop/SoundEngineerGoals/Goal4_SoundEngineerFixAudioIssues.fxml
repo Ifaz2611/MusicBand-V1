@@ -10,25 +10,17 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="674.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal4_ViewController">
-
-    <!-- Labels -->
     <Label layoutX="20.0" layoutY="145.0" text="Affected Channel:" />
     <TextField fx:id="AffectedChannelTextField" layoutX="150.0" layoutY="141.0" prefWidth="150" />
-
     <Label layoutX="20.0" layoutY="185.0" text="Problem Type:" />
     <ComboBox fx:id="ProblemTypeComboBox" layoutX="150.0" layoutY="181.0" prefWidth="150" />
-
     <Label layoutX="20.0" layoutY="225.0" text="Action Taken:" />
     <ComboBox fx:id="ActionComboBox" layoutX="150.0" layoutY="221.0" prefWidth="150" />
-
-    <!-- Buttons -->
     <Button layoutX="20.0" layoutY="275.0" onAction="#detectProblemOnAction" text="Detect Problem" />
     <Button layoutX="150.0" layoutY="275.0" onAction="#adjustSettingsOnAction" text="Adjust Settings" />
     <Button layoutX="270.0" layoutY="275.0" onAction="#replaceEquipmentOnAction" text="Replace Equipment" />
     <Button layoutX="410.0" layoutY="275.0" onAction="#verifyResolutionOnAction" text="Verify Resolution" />
     <Button layoutX="540.0" layoutY="275.0" onAction="#saveLogbuttonOnAction" text="Save Issue Log" />
-
-    <!-- TableView to show issue logs -->
     <Label layoutX="24.0" layoutY="337.0" text="Issue Log History" />
     <TableView fx:id="logTableView" layoutX="20.0" layoutY="374.0" prefHeight="200" prefWidth="660">
         <columns>
@@ -39,10 +31,10 @@
             <TableColumn fx:id="statusCol" prefWidth="100" text="Status" />
         </columns>
     </TableView>
-   <Label layoutX="31.0" layoutY="37.0" prefHeight="64.0" prefWidth="430.0" text="Fix Audio Issue ">
+   <Label alignment="CENTER" layoutX="96.0" layoutY="38.0" prefHeight="64.0" prefWidth="481.0" style="-fx-background-color: cyan;" text="Fix Audio Issue Dashboard">
       <font>
-         <Font name="System Bold" size="30.0" />
+         <Font name="System Bold Italic" size="24.0" />
       </font>
    </Label>
-   <Button layoutX="597.0" layoutY="619.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="DashBoard" />
+   <Button layoutX="597.0" layoutY="619.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
 </AnchorPane>

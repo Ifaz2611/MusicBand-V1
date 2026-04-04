@@ -36,11 +36,9 @@ public class SE_Goal4_ViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        ProblemTypeComboBox.setItems(FXCollections.observableArrayList(
-                "Feedback", "Noise", "Dead mic", "Distortion"));
+        ProblemTypeComboBox.setItems(FXCollections.observableArrayList("Feedback", "Noise", "Dead mic", "Distortion"));
 
-        ActionComboBox.setItems(FXCollections.observableArrayList(
-                "Adjust gain/EQ", "Replace cable", "Swap mic", "Mute frequency"));
+        ActionComboBox.setItems(FXCollections.observableArrayList("Adjust gain/EQ", "Replace cable", "Swap mic", "Mute frequency"));
 
         timestampCol.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         channelCol.setCellValueFactory(new PropertyValueFactory<>("channel"));
@@ -111,7 +109,6 @@ public class SE_Goal4_ViewController implements Initializable {
 
         showAlert("Saved", "Issue log saved.");
     }
-
     @FXML
     public void DashboardButtonOnAction(ActionEvent event) {
         try {

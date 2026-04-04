@@ -9,12 +9,8 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="591.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal5_ViewController">
-
-    <!-- Select event (event-3) -->
     <Label layoutX="20.0" layoutY="150.0" text="Select completed event:" />
     <ComboBox fx:id="EventComboBox" layoutX="180.0" layoutY="145.0" prefWidth="200" />
-
-    <!-- Equipment TableView -->
     <Label layoutX="20.0" layoutY="200.0" style="-fx-font-weight: bold;" text="Equipment Inventory" />
     <TableView fx:id="equipmentTable" layoutX="20.0" layoutY="225.0" prefHeight="200" prefWidth="660">
         <columns>
@@ -23,20 +19,16 @@
             <TableColumn fx:id="NotesCol" prefWidth="300" text="Notes" />
         </columns>
     </TableView>
-
-    <!-- Action Buttons -->
     <Button layoutX="20.0" layoutY="450.0" onAction="#packButtonOnAction" prefWidth="150" text="1. Disconnect Pack" />
     <Button layoutX="190.0" layoutY="450.0" onAction="#verifyButtonOnAction" prefWidth="150" text="2. Verify with List" />
     <Button layoutX="360.0" layoutY="450.0" onAction="#ClearButtonOnAction" prefWidth="160" text="3. Confirm Venue Cleared" />
     <Button layoutX="540.0" layoutY="450.0" onAction="#CloseButtonOnAction" prefWidth="140" text="4. Mark Event Closed" />
-
-    <!-- Warning & Info labels -->
     <Label fx:id="warningLabelAlert" layoutX="428.0" layoutY="109.0" prefHeight="41.0" prefWidth="243.0" style="-fx-text-fill: red;" />
-   <Label layoutX="37.0" layoutY="58.0" prefHeight="34.0" prefWidth="401.0" text="Post‑Show Closing">
+   <Label alignment="CENTER" layoutX="136.0" layoutY="46.0" prefHeight="41.0" prefWidth="408.0" style="-fx-background-color: cyan;" text="Post‑Show Closing Dashboard">
       <font>
-         <Font name="System Bold" size="22.0" />
+         <Font name="System Bold Italic" size="23.0" />
       </font>
    </Label>
-   <Button layoutX="597.0" layoutY="534.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashborad" />
+   <Button layoutX="597.0" layoutY="534.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
 
 </AnchorPane>
