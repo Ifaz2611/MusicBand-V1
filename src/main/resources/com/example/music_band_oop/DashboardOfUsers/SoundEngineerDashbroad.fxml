@@ -12,14 +12,14 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="113.0" layoutY="147.0" mnemonicParsing="false" onAction="#soundSetupButtonOnAction" prefHeight="31.0" prefWidth="91.0" text="Sound Setup" />
+      <Button layoutX="116.0" layoutY="147.0" mnemonicParsing="false" onAction="#soundSetupButtonOnAction" prefHeight="31.0" prefWidth="91.0" text="Sound Setup" />
       <Button layoutX="315.0" layoutY="147.0" mnemonicParsing="false" onAction="#liveMonitoringButtonOnAction" prefHeight="31.0" prefWidth="108.0" text="Live Monitoring" />
       <Button layoutX="519.0" layoutY="147.0" mnemonicParsing="false" onAction="#soundCheckButtonOnAction" prefHeight="31.0" prefWidth="91.0" text="Sound Check" />
-      <Button layoutX="113.0" layoutY="274.0" mnemonicParsing="false" onAction="#audioProblemButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Audio Problem" />
-      <Button layoutX="321.0" layoutY="274.0" mnemonicParsing="false" onAction="#postShowButtonOnAction" prefHeight="31.0" prefWidth="81.0" text="Post-Show" />
+      <Button layoutX="112.0" layoutY="274.0" mnemonicParsing="false" onAction="#audioProblemButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Audio Problem" />
+      <Button layoutX="327.0" layoutY="274.0" mnemonicParsing="false" onAction="#postShowButtonOnAction" prefHeight="31.0" prefWidth="81.0" text="Post-Show" />
       <Button layoutX="519.0" layoutY="274.0" mnemonicParsing="false" onAction="#maintenanceButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Maintenance" />
-      <Button layoutX="144.0" layoutY="375.0" mnemonicParsing="false" onAction="#monitorControlButtonOnAction" prefHeight="31.0" prefWidth="120.0" text="Monitor Control" />
-      <Button layoutX="431.0" layoutY="375.0" mnemonicParsing="false" onAction="#recordingFeedbackButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Recording" />
+      <Button layoutX="114.0" layoutY="375.0" mnemonicParsing="false" onAction="#monitorControlButtonOnAction" prefHeight="31.0" prefWidth="120.0" text="Monitor Control" />
+      <Button layoutX="518.0" layoutY="375.0" mnemonicParsing="false" onAction="#recordingFeedbackButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Recording" />
       <Button layoutX="565.0" layoutY="492.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: black;" text="Logout" textFill="WHITE" />
    </children>
 </AnchorPane>
