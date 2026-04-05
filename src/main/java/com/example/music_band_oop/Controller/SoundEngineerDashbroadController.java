@@ -2,9 +2,9 @@ package com.example.music_band_oop.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -18,204 +18,119 @@ public class SoundEngineerDashbroadController
     }
 
     @javafx.fxml.FXML
-    public void soundCheckButtonOnAction(ActionEvent actionEvent) {
-
+    public void soundSetupButtonOnAction(ActionEvent actionEvent) {
         try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal3_SoundEngineerSoundCheck.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found: " + resourcePath);
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Check - Goal 3");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal1_SoundEngineerSetupManagement.fxml"));
+            Scene goal1Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal1Scene);
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Sound Check view.\n" + e.getMessage());
-            alert.showAndWait();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void liveMonitoringButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal2_SoundEngineerMonitorLiveSound.fxml"));
+            Scene goal2Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal2Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void soundCheckButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal3_SoundEngineerSoundCheck.fxml"));
+            Scene goal3Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal3Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void audioProblemButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal4_SoundEngineerFixAudioIssues.fxml"));
+            Scene goal4Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal4Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     @javafx.fxml.FXML
     public void postShowButtonOnAction(ActionEvent actionEvent) {
         try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal5_SoundEngineerPostShowClosing.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found: " + resourcePath);
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Post Show - Goal 5");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal5_SoundEngineerPostShowClosing.fxml"));
+            Scene goal5Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal5Scene);
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Audio Problem view.\n" + e.getMessage());
-            alert.showAndWait();
+            throw new RuntimeException(e);
         }
-
-    }
-
-    @javafx.fxml.FXML
-    public void audioProblemButtonOnAction(ActionEvent actionEvent) {
-        try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal4_SoundEngineerFixAudioIssues.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found: " + resourcePath);
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Audio Problem Resolution - Goal 4");
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Audio Problem view.\n" + e.getMessage());
-            alert.showAndWait();
-        }
-
-    }
-
-    @javafx.fxml.FXML
-    public void logoutButtonOnAction(ActionEvent actionEvent) {
-
-        try {
-            // Load the login FXML
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/login.fxml"));
-
-            // Get the current stage
-            Stage stage = (Stage) SoundEngineerDashboardFxId.getScene().getWindow();
-
-            // Create new scene with login page
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading login: " + e.getMessage());
-        }
-
-    }
-
-    @javafx.fxml.FXML
-    public void monitorControlButtonOnAction(ActionEvent actionEvent) {
-
-        try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal7_SoundEngineerAdjustMonitorLevels.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML not found.");
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Monitor level - Goal 7");
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Live Monitoring view.\n" + e.getMessage());
-            alert.showAndWait();
-        }
-
     }
 
     @javafx.fxml.FXML
     public void maintenanceButtonOnAction(ActionEvent actionEvent) {
-
         try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal6_SoundEngineerTrackMaintenance.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML not found.");
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Track Maintenance - Goal 6");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal6_SoundEngineerTrackMaintenance.fxml"));
+            Scene goal6Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal6Scene);
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Live Monitoring view.\n" + e.getMessage());
-            alert.showAndWait();
-        }
-
-    }
-
-    @javafx.fxml.FXML
-    public void liveMonitoringButtonOnAction(ActionEvent actionEvent) {
-        try {
-                                    // Always remembar to double check name of fxml file
-
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal2_SoundEngineerMonitorLiveSound.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML not found.");
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Live Sound Monitor - Goal 2");
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Live Monitoring view.\n" + e.getMessage());
-            alert.showAndWait();
+            throw new RuntimeException(e);
         }
     }
 
     @javafx.fxml.FXML
-    public void soundSetupButtonOnAction(ActionEvent actionEvent) {
+    public void monitorControlButtonOnAction(ActionEvent actionEvent) {
         try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal1_SoundEngineerSetupManagement.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                System.err.println("Resource not found: " + resourcePath);
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found.");
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Setup - Goal 1");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal7_SoundEngineerAdjustMonitorLevels.fxml"));
+            Scene goal7Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal7Scene);
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Sound Setup view.\n" + e.getMessage());
-            alert.showAndWait();
+            throw new RuntimeException(e);
         }
     }
 
     @javafx.fxml.FXML
     public void recordingFeedbackButtonOnAction(ActionEvent actionEvent) {
         try {
-            String resourcePath = "/com/example/music_band_oop/SoundEngineerGoals/Goal8_SoundEngineerReviewAudio.fxml";
-            java.net.URL resourceUrl = getClass().getResource(resourcePath);
-            if (resourceUrl == null) {
-                System.err.println("Resource not found: " + resourcePath);
-                Alert alert = new Alert(Alert.AlertType.ERROR, "FXML file not found.");
-                alert.showAndWait();
-                return;
-            }
-            Parent root = FXMLLoader.load(resourceUrl);
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Feedback - Goal 8");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/SoundEngineerGoals/Goal8_SoundEngineerReviewAudio.fxml"));
+            Scene goal8Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal8Scene);
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load Sound Setup view.\n" + e.getMessage());
-            alert.showAndWait();
+            throw new RuntimeException(e);
         }
+    }
 
+    @javafx.fxml.FXML
+    public void logoutButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/login.fxml"));
+            Scene loginScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) SoundEngineerDashboardFxId.getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

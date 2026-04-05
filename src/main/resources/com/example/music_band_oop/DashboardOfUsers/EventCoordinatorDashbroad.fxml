@@ -13,13 +13,13 @@
          </font>
       </Label>
       <Button layoutX="66.0" layoutY="168.0" mnemonicParsing="false" onAction="#createEventButtonOnAction" prefWidth="100.0" text="Create Event" />
-      <Button layoutX="45.0" layoutY="269.0" mnemonicParsing="false" onAction="#communicationButtonOnAction" prefHeight="25.0" prefWidth="141.0" text="Communication Panel" />
-      <Button layoutX="457.0" layoutY="269.0" mnemonicParsing="false" onAction="#entryFeedbackButtonOnAction" prefHeight="25.0" prefWidth="122.0" text="Entry &amp; Feedback" />
-      <Button layoutX="247.0" layoutY="269.0" mnemonicParsing="false" onAction="#eventDayButtonOnAction" prefHeight="25.0" prefWidth="152.0" text="Event Day Monitoring" />
+      <Button layoutX="44.0" layoutY="269.0" mnemonicParsing="false" onAction="#communicationButtonOnAction" prefHeight="25.0" prefWidth="141.0" text="Communication Panel" />
+      <Button layoutX="470.0" layoutY="269.0" mnemonicParsing="false" onAction="#entryFeedbackButtonOnAction" prefHeight="25.0" prefWidth="122.0" text="Entry &amp; Feedback" />
+      <Button layoutX="246.0" layoutY="269.0" mnemonicParsing="false" onAction="#eventDayButtonOnAction" prefHeight="25.0" prefWidth="152.0" text="Event Day Monitoring" />
       <Button layoutX="273.0" layoutY="168.0" mnemonicParsing="false" onAction="#eventLogisticsButtonOnAction" prefWidth="100.0" text="Event Logistics" />
       <Button layoutX="457.0" layoutY="168.0" mnemonicParsing="false" onAction="#budgetManagementButtonOnAction" prefHeight="25.0" prefWidth="141.0" text="Budget Management" />
-      <Button layoutX="365.0" layoutY="362.0" mnemonicParsing="false" onAction="#eventClosingButtonOnAction" prefWidth="100.0" text="Event Closing" />
-      <Button layoutX="147.0" layoutY="362.0" mnemonicParsing="false" onAction="#vendorManagementButtonOnAction" prefHeight="25.0" prefWidth="132.0" text="Vendor Management" />
+      <Button layoutX="376.0" layoutY="362.0" mnemonicParsing="false" onAction="#eventClosingButtonOnAction" prefWidth="100.0" text="Event Closing" />
+      <Button layoutX="144.0" layoutY="362.0" mnemonicParsing="false" onAction="#vendorManagementButtonOnAction" prefHeight="25.0" prefWidth="132.0" text="Vendor Management" />
       <Button layoutX="517.0" layoutY="500.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefWidth="100.0" style="-fx-background-color: black;" text="Logout" textFill="WHITE" />
    </children>
 </AnchorPane>
