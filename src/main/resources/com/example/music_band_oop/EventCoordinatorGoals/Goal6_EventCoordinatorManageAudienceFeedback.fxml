@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser2.EC_Goal6_ViewController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="675.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser2.EC_Goal6_ViewController">
+    <Label layoutX="20.0" layoutY="151.0" text="Select Event:" />
+    <ComboBox fx:id="EventComboBox" layoutX="120.0" layoutY="146.0" prefWidth="200.0" />
+    <Label layoutX="24.0" layoutY="201.0" style="-fx-font-weight: bold;" text="Audience Entry Management" />
+    <TableView fx:id="AudienceTableView" layoutX="20.0" layoutY="226.0" prefHeight="250.0" prefWidth="429.0">
+        <columns>
+            <TableColumn fx:id="NameCol" prefWidth="107.0" text="Name" />
+            <TableColumn fx:id="TicketIdCol" prefWidth="113.0" text="Ticket ID" />
+            <TableColumn fx:id="StatusCol" prefWidth="116.0" text="Status" />
+            <TableColumn fx:id="ActionCol" prefWidth="92.0" text="Action" />
+        </columns>
+    </TableView>
+    <TextField fx:id="ticketIdField" layoutX="20.0" layoutY="491.0" prefWidth="200.0" promptText="Enter Ticket ID" />
+    <Button layoutX="235.0" layoutY="489.0" onAction="#VerifyTicketButtonOnAction" text="Verify Ticket" />
+    <Button layoutX="340.0" layoutY="489.0" onAction="#AllowEntryButtonOnAction" text="Allow Entry" />
+    <Label layoutX="463.0" layoutY="201.0" style="-fx-font-weight: bold;" text="Audience Feedback (after event)" />
+    <TableView fx:id="FeedbackTableView" layoutX="460.0" layoutY="226.0" prefHeight="250.0" prefWidth="400.0">
+        <columns>
+            <TableColumn fx:id="FeedbackNameCol" prefWidth="100.0" text="Name" />
+            <TableColumn fx:id="RatingCol" text="Rating (1-5)" />
+            <TableColumn fx:id="ReviewCol" prefWidth="219.0" text="Review" />
+        </columns>
+    </TableView>
+    <TextField fx:id="FeedbackNameField" layoutX="460.0" layoutY="491.0" prefWidth="150.0" promptText="Name" />
+    <ComboBox fx:id="RatingComboBox" layoutX="620.0" layoutY="489.0" prefWidth="80.0" promptText="Rating" />
+    <TextField fx:id="CommentTextField" layoutX="460.0" layoutY="526.0" prefWidth="240.0" promptText="Comment" />
+    <Button layoutX="710.0" layoutY="524.0" onAction="#CollectFeedbackButtonOnAction" text="Collect Feedback" />
+    <Button layoutX="460.0" layoutY="561.0" onAction="#SaveFeedbackButtonOnAction" text="Save Feedback Records" />
+    <Button layoutX="630.0" layoutY="561.0" onAction="#GenerateReportButtonOnAction" text="Generate Summary Report" />
+    <Label fx:id="statusLabel" layoutX="653.0" layoutY="93.0" prefHeight="43.0" prefWidth="220.0" />
+    <Button layoutX="799.0" layoutY="629.0" onAction="#DashboardButtonOnAction" text="Dashboard" />
+   <Label alignment="CENTER" layoutX="184.0" layoutY="27.0" prefHeight="43.0" prefWidth="564.0" style="-fx-background-color: cyan;" text="Audience Entry &amp; Feedback Dashboard">
+      <font>
+         <Font name="System Bold Italic" size="23.0" />
+      </font>
+   </Label>
 
 </AnchorPane>

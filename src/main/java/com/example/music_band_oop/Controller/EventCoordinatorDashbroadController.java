@@ -32,6 +32,15 @@ public class EventCoordinatorDashbroadController
 
     @javafx.fxml.FXML
     public void vendorManagementButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/EventCoordinatorGoals/Goal7_EventCoordinatorTrackVendorContracts.fxml"));
+            Scene goal7Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal7Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @javafx.fxml.FXML
@@ -51,13 +60,8 @@ public class EventCoordinatorDashbroadController
     @javafx.fxml.FXML
     public void logoutButtonOnAction(ActionEvent actionEvent) {
         try {
-            // Load the login FXML
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/login.fxml"));
-
-            // Get the current stage
             Stage stage = (Stage) EventCordinatorDashboradFxId.getScene().getWindow();
-
-            // Create new scene with login page
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -70,6 +74,16 @@ public class EventCoordinatorDashbroadController
 
     @javafx.fxml.FXML
     public void entryFeedbackButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/EventCoordinatorGoals/Goal6_EventCoordinatorManageAudienceFeedback.fxml"));
+            Scene goal6Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal6Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @javafx.fxml.FXML
@@ -87,10 +101,28 @@ public class EventCoordinatorDashbroadController
 
     @javafx.fxml.FXML
     public void eventClosingButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/EventCoordinatorGoals/Goal8_EventCoordinatorEventClosing.fxml"));
+            Scene goal8Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal8Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @javafx.fxml.FXML
     public void eventDayButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/EventCoordinatorGoals/Goal5_EventCoordinatorMonitorEventDay.fxml"));
+            Scene goal5Scene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(goal5Scene);
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @javafx.fxml.FXML
