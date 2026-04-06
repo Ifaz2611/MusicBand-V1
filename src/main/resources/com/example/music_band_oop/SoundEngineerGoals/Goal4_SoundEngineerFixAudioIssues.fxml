@@ -16,11 +16,11 @@
     <ComboBox fx:id="ProblemTypeComboBox" layoutX="150.0" layoutY="181.0" prefWidth="150" />
     <Label layoutX="20.0" layoutY="225.0" text="Action Taken:" />
     <ComboBox fx:id="ActionComboBox" layoutX="150.0" layoutY="221.0" prefWidth="150" />
-    <Button layoutX="20.0" layoutY="275.0" onAction="#detectProblemOnAction" text="Detect Problem" />
-    <Button layoutX="150.0" layoutY="275.0" onAction="#adjustSettingsOnAction" text="Adjust Settings" />
-    <Button layoutX="270.0" layoutY="275.0" onAction="#replaceEquipmentOnAction" text="Replace Equipment" />
-    <Button layoutX="410.0" layoutY="275.0" onAction="#verifyResolutionOnAction" text="Verify Resolution" />
-    <Button layoutX="540.0" layoutY="275.0" onAction="#saveLogbuttonOnAction" text="Save Issue Log" />
+    <Button layoutX="75.0" layoutY="293.0" onAction="#detectProblemOnAction" text="Detect Problem" />
+    <Button layoutX="205.0" layoutY="293.0" onAction="#adjustSettingsOnAction" text="Adjust Settings" />
+    <Button layoutX="325.0" layoutY="293.0" onAction="#replaceEquipmentOnAction" text="Replace Equipment" />
+    <Button layoutX="465.0" layoutY="293.0" onAction="#verifyResolutionOnAction" text="Verify Resolution" />
+    <Button layoutX="376.0" layoutY="181.0" onAction="#saveLogbuttonOnAction" text="Save Issue Log" />
     <Label layoutX="24.0" layoutY="337.0" text="Issue Log History" />
     <TableView fx:id="logTableView" layoutX="20.0" layoutY="374.0" prefHeight="200" prefWidth="660">
         <columns>

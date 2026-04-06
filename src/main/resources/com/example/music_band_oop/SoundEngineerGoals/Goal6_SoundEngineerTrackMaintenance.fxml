@@ -16,7 +16,7 @@
       <font>
          <Font size="18.0" />
       </font></Label>
-    <Label fx:id="selectedEquipmentLabel" layoutX="488.0" layoutY="66.0" prefHeight="44.0" prefWidth="192.0" />
+    <Label fx:id="selectedEquipmentLabel" layoutX="482.0" layoutY="110.0" prefHeight="44.0" prefWidth="192.0" />
     <Label layoutX="20.0" layoutY="173.0" text="Maintenance Due Date:" />
     <DatePicker fx:id="MaintenanceDueDatePicker" layoutX="160.0" layoutY="168.0" prefWidth="150" />
     <Label layoutX="20.0" layoutY="208.0" text="Repair Status:" />
