@@ -1,7 +1,6 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.ShowRecording;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,7 +33,6 @@ public class SE_Goal8_ViewController {
                 new ShowRecording("Jazz Night",          "2025-07-20", "recordings/jazz_night.mp3",     ""),
                 new ShowRecording("Rock Festival",       "2025-08-10", "recordings/rock_festival.mp3",  "")
         );
-
         RecordingTableView.setItems(recordingList);
         RecordingTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }

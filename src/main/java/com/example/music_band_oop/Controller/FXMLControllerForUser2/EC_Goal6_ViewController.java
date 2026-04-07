@@ -42,12 +42,10 @@ public class EC_Goal6_ViewController implements Initializable {
                             (a.isAllowedEntry() ? "Entered" : "Waiting")
             );
         });
-
         ActionCol.setCellValueFactory(c -> new SimpleStringProperty(""));
         FeedbackNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         RatingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
         ReviewCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
-
         RatingComboBox.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5));
         loadDummyData();
         EventComboBox.setItems(FXCollections.observableArrayList(eventAudienceMap.keySet()));

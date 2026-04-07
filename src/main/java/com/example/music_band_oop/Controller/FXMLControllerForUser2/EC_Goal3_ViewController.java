@@ -112,7 +112,7 @@ public class EC_Goal3_ViewController {
         log("All payments processed successfully.");
     }
 
-    //File read and write --------------------------------------------------------------------------------------
+    //-----------------File read and write -------------------------------------------------------
 
 
     @FXML

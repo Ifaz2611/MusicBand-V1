@@ -1,8 +1,6 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.MonitorChannel;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

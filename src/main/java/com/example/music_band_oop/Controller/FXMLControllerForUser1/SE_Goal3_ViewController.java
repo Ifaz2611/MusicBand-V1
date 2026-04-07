@@ -106,7 +106,6 @@ public class SE_Goal3_ViewController {
             return;
         }
 
-        // Prevent duplicate entries
         boolean exists = deviceList.stream()
                 .anyMatch(d -> d.getName().equalsIgnoreCase(eventName));
 
@@ -140,15 +139,14 @@ public class SE_Goal3_ViewController {
     @FXML
     public void DashboardButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(
-                    getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml")
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml")
             );
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Sound Engineer Dashboard");
         } catch (Exception e) {
             showAlert("Navigation Error", "Failed to load dashboard.");
-            e.printStackTrace(); // helpful for debugging
+            e.printStackTrace();
         }
     }
 

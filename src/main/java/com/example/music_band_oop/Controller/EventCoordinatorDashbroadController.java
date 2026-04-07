@@ -3,7 +3,6 @@ package com.example.music_band_oop.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -60,15 +59,13 @@ public class EventCoordinatorDashbroadController
     @javafx.fxml.FXML
     public void logoutButtonOnAction(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/login.fxml"));
-            Stage stage = (Stage) EventCordinatorDashboradFxId.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/login.fxml"));
+            Scene loginScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) EventCordinatorDashboradFxId.getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error loading login: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

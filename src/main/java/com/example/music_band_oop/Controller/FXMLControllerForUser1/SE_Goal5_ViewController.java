@@ -84,7 +84,7 @@ public class SE_Goal5_ViewController {
 
         setMessage(hasDamage
                 ? "Missing or damaged equipment!"
-                : "✓ Verified. Status updated.");
+                : "Verified. Status updated.");
     }
 
     @FXML

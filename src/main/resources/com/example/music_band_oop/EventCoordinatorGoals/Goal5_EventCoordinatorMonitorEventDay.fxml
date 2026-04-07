@@ -29,8 +29,8 @@
         <columns>
             <TableColumn fx:id="NameCol" prefWidth="100" text="Name" />
             <TableColumn fx:id="RoleCol" prefWidth="100" text="Role" />
-            <TableColumn fx:id="ArrivedCol" prefWidth="80" text="Arrived?" />
-            <TableColumn fx:id="ReadyCol" prefWidth="80" text="Ready?" />
+            <TableColumn fx:id="ArrivedCol" text="Arrived?" />
+            <TableColumn fx:id="ReadyCol" text="Ready?" />
         </columns>
     </TableView>
     <Button layoutX="422.0" layoutY="479.0" onAction="#VerifyButtonOnAction" text="Verify Readiness" />

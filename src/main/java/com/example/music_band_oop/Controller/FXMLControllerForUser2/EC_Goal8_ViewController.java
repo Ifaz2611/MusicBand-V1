@@ -1,9 +1,6 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
 import com.example.music_band_oop.Controller.mainuser.Payment;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +26,7 @@ public class EC_Goal8_ViewController {
 
     @FXML
     public void initialize() {
-        EventComboBox.setItems(FXCollections.observableArrayList(
-                "Annual Conference 2025", "Summer Music Fest", "Corporate Gala Night"));
+        EventComboBox.setItems(FXCollections.observableArrayList("Annual Conference 2025", "Summer Music Fest", "Corporate Gala Night"));
         VendorNameCol.setCellValueFactory(new PropertyValueFactory<>("vendorName"));
         ExpenseTypeCol.setCellValueFactory(new PropertyValueFactory<>("expenseType"));
         AmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -95,6 +91,8 @@ public class EC_Goal8_ViewController {
 
     @FXML
     public void GenerateReportButtonOnAction(ActionEvent e) {
+
+
 //        String event = getSelectedEvent(); if (event == null) return;
 //        StringBuilder report = new StringBuilder("Event Closing Report for: ").append(event).append("\n\nPayment Summary:\n");
 //        double total = 0;

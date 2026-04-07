@@ -139,6 +139,8 @@ public class EC_Goal1_ViewController implements Initializable {
         alert.showAndWait();
     }
 
+
+    //---------------------------ReUseable Code -----------------------------
 //    @FXML
 //    public void DashboardButtonOnAction(ActionEvent event) {
 //        try {

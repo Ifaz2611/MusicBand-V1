@@ -21,7 +21,6 @@ public class loginController {
     public void initialize() {
         UserTypeComboBox.getItems().addAll(
                 "Sound Engineer", "Event Coordinator", "Lead Guitarist", "Drummer", "Bassist", "Keyboardist"
-                // Delect two user for one of Group Member Withdraw the course
         );
     }
 
