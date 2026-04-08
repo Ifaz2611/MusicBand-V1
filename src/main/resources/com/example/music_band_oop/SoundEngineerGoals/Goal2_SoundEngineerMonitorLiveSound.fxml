@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="481.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal2_ViewController">
+<AnchorPane prefHeight="555.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal2_ViewController">
     <Label alignment="CENTER" layoutX="100.0" layoutY="37.0" prefHeight="48.0" prefWidth="420.0" style="-fx-background-color: Cyan; -fx-font-weight: bold;" text="Live Sound Monitor Dashboard">
       <font>
          <Font name="System Italic" size="20.0" />
@@ -21,15 +21,16 @@
             <TableColumn fx:id="StatusCloumn" prefWidth="150" text="Status" />
         </columns>
     </TableView>
-    <Label layoutX="400.0" layoutY="124.0" text="Detected Issues:" />
-    <Label fx:id="issueLabel" layoutX="400.0" layoutY="144.0" text="None" textFill="green" />
-    <Label layoutX="400.0" layoutY="174.0" text="Adjust Channel:" />
-    <ComboBox fx:id="AdjustChannelCombo" layoutX="400.0" layoutY="204.0" prefWidth="120" />
-    <Label layoutX="400.0" layoutY="234.0" text="New Level (dB):" />
-    <TextField fx:id="levelTextField" layoutX="400.0" layoutY="254.0" prefWidth="80" promptText="-10.0" />
-    <Button fx:id="applyBtn" layoutX="388.0" layoutY="315.0" onAction="#HandleApplyAdjustmentButtonOnAction" text="Apply Adjustment" />
-    <Button fx:id="saveLogsBtn" layoutX="544.0" layoutY="315.0" onAction="#HandleSaveLogsButtonOnAction" text="Save Logs" />
-    <Label fx:id="statusLabel" layoutX="30.0" layoutY="348.0" prefHeight="39.0" prefWidth="213.0" style="-fx-text-fill: gray;" />
-   <Button layoutX="539.0" layoutY="425.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
+    <Label layoutX="477.0" layoutY="119.0" text="Detected Issues:" />
+    <Label layoutX="40.0" layoutY="359.0" text="Adjust Channel:" />
+    <ComboBox fx:id="AdjustChannelCombo" layoutX="40.0" layoutY="387.0" prefWidth="120" />
+    <Label layoutX="202.0" layoutY="359.0" text="New Level (dB):" />
+    <TextField fx:id="levelTextField" layoutX="203.0" layoutY="387.0" prefWidth="80" />
+    <Button fx:id="applyBtn" layoutX="119.0" layoutY="438.0" onAction="#HandleApplyAdjustmentButtonOnAction" text="Apply Adjustment" />
+    <Button fx:id="saveLogsBtn" layoutX="140.0" layoutY="492.0" onAction="#HandleSaveLogsButtonOnAction" text="Save Logs" />
+    <Label fx:id="statusLabel" layoutX="477.0" layoutY="162.0" prefHeight="39.0" prefWidth="132.0" style="-fx-text-fill: gray;" />
+   <Button layoutX="553.0" layoutY="505.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
+   <Label layoutX="314.0" layoutY="359.0" text="Status" />
+   <ComboBox fx:id="StatusComboBox" layoutX="314.0" layoutY="387.0" prefHeight="25.0" prefWidth="101.0" />
 
 </AnchorPane>

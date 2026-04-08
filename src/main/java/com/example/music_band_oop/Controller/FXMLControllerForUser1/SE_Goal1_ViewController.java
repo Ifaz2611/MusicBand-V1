@@ -1,19 +1,16 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
-import com.example.music_band_oop.Controller.mainuser.SoundConfiguration;
 import com.example.music_band_oop.Controller.mainuser.SoundSetupRecord;
-import com.example.music_band_oop.Controller.mainuser.event;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+
 
 public class SE_Goal1_ViewController {
     @FXML private TextField EventNameTextField;
@@ -25,16 +22,15 @@ public class SE_Goal1_ViewController {
     @FXML private TextField EffectsLevelTextField;
 
     @FXML private TableView<SoundSetupRecord> equipmentTable;
-    @FXML private TableColumn<SoundSetupRecord, String>  EventNameTableColumn;
-    @FXML private TableColumn<SoundSetupRecord, String>  VenueTableColumn;
+    @FXML private TableColumn<SoundSetupRecord, String> EventNameTableColumn;
+    @FXML private TableColumn<SoundSetupRecord, String> VenueTableColumn;
     @FXML private TableColumn<SoundSetupRecord, Integer> MicTableColumn;
     @FXML private TableColumn<SoundSetupRecord, Integer> SpeakerBalanceTableColumn;
-    @FXML private TableColumn<SoundSetupRecord, String>  EffectTableColumn;
-
+    @FXML private TableColumn<SoundSetupRecord, String> EffectTableColumn;
     @FXML private Label AlertSoundSetupLabel;
-    @FXML private Label equipmentStatusLabel;
 
-    private ObservableList<SoundSetupRecord> recordList = FXCollections.observableArrayList();
+
+    private ArrayList<SoundSetupRecord> recordList = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -43,57 +39,45 @@ public class SE_Goal1_ViewController {
         MicTableColumn.setCellValueFactory(new PropertyValueFactory<>("micLevel"));
         SpeakerBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<>("speakerBalance"));
         EffectTableColumn.setCellValueFactory(new PropertyValueFactory<>("effect"));
-
-        equipmentTable.setItems(recordList);
     }
 
     @FXML
     public void SoundSetupButtonOnAction(ActionEvent actionEvent) {
 
-        String eventName   = EventNameTextField.getText().trim();
-        String venue       = VenueNameTextField.getText().trim();
-        String bandMembers = BandMembersTextField.getText().trim();
-        String micText     = MicLevelTextField.getText().trim();
-        String speakerText = SpeakerBalanceTextField.getText().trim();
-        String monitorText = MonitorLevelTextField.getText().trim();
-        String effects     = EffectsLevelTextField.getText().trim();
+        String eventName = EventNameTextField.getText();
+        String venue = VenueNameTextField.getText();
+        String bandMembers = BandMembersTextField.getText();
+        String micText = MicLevelTextField.getText();
+        String speakerText = SpeakerBalanceTextField.getText();
+        String monitorText = MonitorLevelTextField.getText();
+        String effects = EffectsLevelTextField.getText();
         if (eventName.isEmpty() || venue.isEmpty() || bandMembers.isEmpty() ||
                 micText.isEmpty() || speakerText.isEmpty() ||
                 monitorText.isEmpty() || effects.isEmpty()) {
 
             AlertSoundSetupLabel.setText("FAILED — All fields are required.");
-            AlertSoundSetupLabel.setStyle("-fx-text-fill: red;");
             return;
         }
-        int micLevel, speakerBalance, monitorLevel;
-        try {
-            micLevel       = Integer.parseInt(micText);
-            speakerBalance = Integer.parseInt(speakerText);
-            monitorLevel   = Integer.parseInt(monitorText);
-        } catch (NumberFormatException e) {
-            AlertSoundSetupLabel.setText("FAILED — Mic, Speaker, Monitor must be numbers.");
-            AlertSoundSetupLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
-        event eventObj           = new event(eventName, venue, bandMembers);
-        SoundConfiguration config = new SoundConfiguration(micLevel, speakerBalance, monitorLevel, effects);
 
+        int micLevel, speakerBalance;
+        try {
+            micLevel = Integer.parseInt(micText);
+            speakerBalance = Integer.parseInt(speakerText);
+        } catch (NumberFormatException e) {
+            AlertSoundSetupLabel.setText("FAILED — Numeric values required.");
+            return;
+        }
         SoundSetupRecord record = new SoundSetupRecord(
-                eventObj.getEventName(),
-                eventObj.getVenue(),
-                config.getMicLevel(),
-                config.getSpeakerBalance(),
-                config.getEffects()
+                eventName,
+                venue,
+                micLevel,
+                speakerBalance,
+                effects
         );
 
         recordList.add(record);
-        equipmentTable.refresh();
+        equipmentTable.getItems().setAll(recordList);
         AlertSoundSetupLabel.setText("PASSED");
-        AlertSoundSetupLabel.setStyle("-fx-text-fill: green;");
-        System.out.println(eventObj);
-        System.out.println(config);
-        System.out.println(record);
-
         clearFields();
     }
 
@@ -110,12 +94,14 @@ public class SE_Goal1_ViewController {
     @FXML
     public void DashboardButtonOnAction(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Engineer Dashboard");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Sound Engineer Dashboard");
+            currentStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
