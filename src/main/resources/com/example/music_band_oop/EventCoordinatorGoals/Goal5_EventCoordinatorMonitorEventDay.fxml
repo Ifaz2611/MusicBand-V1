@@ -5,42 +5,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="626.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser2.EC_Goal5_ViewController">
     <Label layoutX="20.0" layoutY="188.0" text="Select Event:" />
-    <ComboBox fx:id="EventComboBox" layoutX="120.0" layoutY="183.0" prefWidth="200" />
-    <Button layoutX="350.0" layoutY="183.0" onAction="#EmergencyButtonOnAction" text="Emergency Contact List" />
-    <Button layoutX="523.0" layoutY="183.0" onAction="#NotifyTeamButtonOnAction" text="Notify Team" />
-    <Label layoutX="20.0" layoutY="238.0" text="Run-of-Show Schedule" />
-    <TableView fx:id="ScheduleTableView" layoutX="20.0" layoutY="263.0" prefHeight="200" prefWidth="360">
+    <ComboBox fx:id="EventComboBox" layoutX="120.0" layoutY="183.0" prefHeight="25.0" prefWidth="160.0" />
+    <Button layoutX="323.0" layoutY="576.0" onAction="#EmergencyButtonOnAction" prefHeight="25.0" prefWidth="124.0" text="Emergency Contact " />
+    <Button layoutX="306.0" layoutY="313.0" onAction="#UpdateButtonOnAction" text="Update Schedule" />
+    <TableView fx:id="TeamTableView" layoutX="95.0" layoutY="362.0" prefHeight="200" prefWidth="549.0">
         <columns>
-            <TableColumn fx:id="TimeCol" prefWidth="100" text="Time" />
-            <TableColumn fx:id="ActivityCol" prefWidth="143.0" text="Activity" />
-            <TableColumn fx:id="StatusCol" prefWidth="117.0" text="Status" />
+            <TableColumn fx:id="EventCol" prefWidth="142.0" text="Event" maxWidth="1420.0" minWidth="30.0"/>
+            <TableColumn fx:id="RoleCol" prefWidth="131.0" text="Role" maxWidth="1310.0" minWidth="30.0"/>
+            <TableColumn fx:id="ArrivedCol" prefWidth="141.0" text="Arrived" maxWidth="1410.0" minWidth="30.0"/>
+            <TableColumn fx:id="StatusCol" prefWidth="134.0" text="Ready" maxWidth="1340.0" minWidth="30.0"/>
         </columns>
     </TableView>
-    <TextField fx:id="UpdateTextField" layoutX="20.0" layoutY="478.0" prefWidth="260" />
-    <Button layoutX="300.0" layoutY="477.0" onAction="#UpdateScheduleButtonOnAction" text="Update Schedule" />
-    <Label layoutX="420.0" layoutY="238.0" text="Team Members - Arrival/Readiness" />
-    <TableView fx:id="TeamTableView" layoutX="420.0" layoutY="263.0" prefHeight="200" prefWidth="360">
-        <columns>
-            <TableColumn fx:id="NameCol" prefWidth="100" text="Name" />
-            <TableColumn fx:id="RoleCol" prefWidth="100" text="Role" />
-            <TableColumn fx:id="ArrivedCol" text="Arrived?" />
-            <TableColumn fx:id="ReadyCol" text="Ready?" />
-        </columns>
-    </TableView>
-    <Button layoutX="422.0" layoutY="479.0" onAction="#VerifyButtonOnAction" text="Verify Readiness" />
-    <Button layoutX="551.0" layoutY="480.0" onAction="#SaveUpdatesButtonOnAction" text="Save Updates" />
-    <Label fx:id="StatusLabel" layoutX="531.0" layoutY="68.0" prefHeight="53.0" prefWidth="243.0" />
+    <Label fx:id="StatusLabel" layoutX="531.0" layoutY="93.0" prefHeight="53.0" prefWidth="243.0" />
    <Label alignment="CENTER" layoutX="131.0" layoutY="14.0" prefHeight="43.0" prefWidth="507.0" style="-fx-background-color: cyan;" text="Event Day Monitoring Dashboard">
       <font>
          <Font name="System Bold Italic" size="23.0" />
       </font>
    </Label>
-   <Button layoutX="694.0" layoutY="563.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
+   <Button layoutX="700.0" layoutY="576.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
+   <Label layoutX="28.0" layoutY="238.0" text="Role:" />
+   <ComboBox fx:id="RoleComboBox" layoutX="120.0" layoutY="234.0" prefHeight="25.0" prefWidth="160.0" />
+   <Label layoutX="340.0" layoutY="188.0" text="Arrived" />
+   <ComboBox fx:id="ArrivedComboBox" layoutX="432.0" layoutY="183.0" prefHeight="25.0" prefWidth="160.0" />
+   <Label layoutX="340.0" layoutY="238.0" text="Status" />
+   <ComboBox fx:id="StatusComboBox" layoutX="432.0" layoutY="234.0" prefHeight="25.0" prefWidth="160.0" />
 
 </AnchorPane>
