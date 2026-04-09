@@ -1,8 +1,6 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
 import com.example.music_band_oop.Controller.mainuser.CommunicationRecord;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,30 +10,32 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EC_Goal4_ViewController {
 
     @FXML private ComboBox<String> EventComboBox;
     @FXML private TextField MessageTextField;
     @FXML private CheckBox BandCheckBox, SoundCheckBox, VenueCheckBox;
+    @FXML private TableColumn<CommunicationRecord, String> EventCol, MessageCol, RecipientsCol;
     @FXML private TableView<CommunicationRecord> HistoryTableViw;
-    @FXML private TableColumn<CommunicationRecord, String> EventCol, MessageCol, RecipientsCol, TimestampCol;
 
-    private final ObservableList<CommunicationRecord> recordList = FXCollections.observableArrayList();
+    private final List<CommunicationRecord> recordList = new ArrayList<>();
 
     @FXML
     public void initialize() {
-        EventComboBox.getItems().addAll("Summer Fest 2025", "Jazz Night", "Rock Concert", "Classical Evening");
+        EventComboBox.getItems().addAll("Summer Fest 2026", "Jazz Night", "Rock Concert", "Classical Evening","Rock n Roll", "Dhaka19A2");
+
         EventCol.setCellValueFactory(new PropertyValueFactory<>("event"));
         MessageCol.setCellValueFactory(new PropertyValueFactory<>("message"));
         RecipientsCol.setCellValueFactory(new PropertyValueFactory<>("recipients"));
-        TimestampCol.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
-        HistoryTableViw.setItems(recordList);
+        refreshTable();
     }
-
+    private void refreshTable() {
+        HistoryTableViw.getItems().clear();
+        HistoryTableViw.getItems().addAll(recordList);
+    }
     @FXML
     public void SendMessageButtonOnAction(ActionEvent actionEvent) {
         String selectedEvent = EventComboBox.getValue();
@@ -43,28 +43,19 @@ public class EC_Goal4_ViewController {
             showAlert("Validation Error", "Please select an event.");
             return;
         }
-
         String message = MessageTextField.getText().trim();
         if (message.isEmpty()) {
             showAlert("Validation Error", "Please write a message.");
             return;
         }
-
         String recipients = buildRecipients();
         if (recipients.isEmpty()) {
             showAlert("Validation Error", "Select at least one recipient.");
             return;
         }
-
-        if (!sendCommunication(selectedEvent, message, recipients)) {
-            showAlert("Error", "Failed to send message.");
-            return;
-        }
-
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        recordList.add(0, new CommunicationRecord(selectedEvent, message, recipients, timestamp));
+        recordList.add(new CommunicationRecord(selectedEvent, message, recipients));
+        refreshTable();
         clearForm();
-        showAlert("Success", "Message sent and saved to history.");
     }
 
     private String buildRecipients() {
@@ -74,7 +65,6 @@ public class EC_Goal4_ViewController {
         if (VenueCheckBox.isSelected()) sb.append("Venue Staff ");
         return sb.toString().trim();
     }
-
     private void clearForm() {
         MessageTextField.clear();
         BandCheckBox.setSelected(false);
@@ -83,22 +73,20 @@ public class EC_Goal4_ViewController {
         EventComboBox.setValue(null);
     }
 
-    private boolean sendCommunication(String event, String message, String recipients) {
-        System.out.println("SENDING -> Event: " + event + " | To: " + recipients + " | Msg: " + message);
-        return true;
-    }
-
     @FXML
-    public void DashboardButtonOnAction(ActionEvent event) {
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Event Coordinator Dashboard");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Event Coordinator Dashboard");
+            currentStage.show();
         } catch (Exception e) {
-            showAlert("Error", "Failed to load dashboard: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
+
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
