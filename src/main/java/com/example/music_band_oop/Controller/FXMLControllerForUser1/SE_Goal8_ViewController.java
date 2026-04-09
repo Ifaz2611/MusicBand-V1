@@ -1,93 +1,74 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.ShowRecording;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SE_Goal8_ViewController {
 
     @FXML private TableView<ShowRecording> RecordingTableView;
-    @FXML private TableColumn<ShowRecording, String> ShowTitleCol;
-    @FXML private TableColumn<ShowRecording, String> DateCol;
-    @FXML private TextField FeedbackTextField;
+    @FXML private TableColumn<ShowRecording, String> TitleCol;
+    @FXML private TableColumn<ShowRecording, String> FeedbackNotesCol;
+    @FXML private TextField TitleTextField;
+    @FXML private TextField FeedbackandNotesTextField;
     @FXML private Label StatusLabel;
 
-    private ObservableList<ShowRecording> recordingList;
+    private final List<ShowRecording> recordingList = new ArrayList<>();
 
     @FXML
     public void initialize() {
-        ShowTitleCol.setCellValueFactory(new PropertyValueFactory<>("showTitle"));
-        DateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-        recordingList = FXCollections.observableArrayList(
-                new ShowRecording("Summer Concert 2025", "2025-06-15", "recordings/summer_concert.mp3", ""),
-                new ShowRecording("Jazz Night",          "2025-07-20", "recordings/jazz_night.mp3",     ""),
-                new ShowRecording("Rock Festival",       "2025-08-10", "recordings/rock_festival.mp3",  "")
-        );
-        RecordingTableView.setItems(recordingList);
+        TitleCol.setCellValueFactory(new PropertyValueFactory<>("showTitle"));
+        FeedbackNotesCol.setCellValueFactory(new PropertyValueFactory<>("feedback"));
+        refreshTable();
         RecordingTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
-
-    private ShowRecording getSelected() {
-        return RecordingTableView.getSelectionModel().getSelectedItem();
+    private void refreshTable() {
+        RecordingTableView.getItems().clear();
+        RecordingTableView.getItems().addAll(recordingList);
     }
-
     @FXML
-    public void PlayRecordingButtonOnAction(ActionEvent event) {
-        ShowRecording selected = getSelected();
-        if (selected == null) { StatusLabel.setText("Please select a recorded show first."); return; }
-        StatusLabel.setText("Playing: " + selected.getShowTitle() + " from " + selected.getFilePath());
-    }
+    public void SaveToTableButtonOnAction(ActionEvent event) {
+        String title = TitleTextField.getText();
+        String notes = FeedbackandNotesTextField.getText();
 
-    @FXML
-    public void SaveFeedbackButtonOnAction(ActionEvent event) {
-        ShowRecording selected = getSelected();
-        if (selected == null) { StatusLabel.setText("Please select a show to save feedback for."); return; }
-
-        String feedback = FeedbackTextField.getText();
-        if (feedback == null || feedback.trim().isEmpty()) { StatusLabel.setText("Please write some feedback before saving."); return; }
-
-        selected.setFeedback(feedback);
-        StatusLabel.setText("Feedback saved for " + selected.getShowTitle() + ": " + feedback);
-        FeedbackTextField.clear();
-    }
-
-    @FXML
-    public void ShareFeedbackButtonOnAction(ActionEvent event) {
-        ShowRecording selected = getSelected();
-        if (selected == null) { StatusLabel.setText("Please select a show to share feedback for."); return; }
-
-        String feedback = selected.getFeedback();
-        if (feedback == null || feedback.isEmpty()) { StatusLabel.setText("No feedback saved yet. Write and save feedback first."); return; }
-
-        StatusLabel.setText("Feedback shared with team for " + selected.getShowTitle() + ": " + feedback);
-    }
-
-    @FXML
-    public void DashboardButtonOnAction(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Engineer Dashboard");
-        } catch (Exception e) {
-            showAlert("Error", "Failed to load dashboard.");
+        if (title.isEmpty()) {
+            StatusLabel.setText("Please enter a title.");
+            return;
         }
+        if (notes.isEmpty()) {
+            StatusLabel.setText("Please enter feedback/notes.");
+            return;
+        }
+
+        ShowRecording newRecording = new ShowRecording(title, notes);
+
+        recordingList.add(newRecording);
+        refreshTable();
+
+        TitleTextField.clear();
+        FeedbackandNotesTextField.clear();
+        StatusLabel.setText("Added: " + title);
     }
 
-    private void showAlert(String title, String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(msg);
-        alert.showAndWait();
+    @FXML
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Sound Engineer Dashboard");
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

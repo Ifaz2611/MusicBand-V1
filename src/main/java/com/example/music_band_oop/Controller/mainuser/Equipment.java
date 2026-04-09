@@ -27,14 +27,6 @@ public class Equipment {
         this.status = status;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     @Override
     public String toString() {
         return "Equipment{" +
