@@ -16,19 +16,13 @@
     <ComboBox fx:id="ProblemTypeComboBox" layoutX="150.0" layoutY="181.0" prefWidth="150" />
     <Label layoutX="20.0" layoutY="225.0" text="Action Taken:" />
     <ComboBox fx:id="ActionComboBox" layoutX="150.0" layoutY="221.0" prefWidth="150" />
-    <Button layoutX="75.0" layoutY="293.0" onAction="#detectProblemOnAction" text="Detect Problem" />
-    <Button layoutX="205.0" layoutY="293.0" onAction="#adjustSettingsOnAction" text="Adjust Settings" />
-    <Button layoutX="325.0" layoutY="293.0" onAction="#replaceEquipmentOnAction" text="Replace Equipment" />
-    <Button layoutX="465.0" layoutY="293.0" onAction="#verifyResolutionOnAction" text="Verify Resolution" />
     <Button layoutX="376.0" layoutY="181.0" onAction="#saveLogbuttonOnAction" text="Save Issue Log" />
-    <Label layoutX="24.0" layoutY="337.0" text="Issue Log History" />
-    <TableView fx:id="logTableView" layoutX="20.0" layoutY="374.0" prefHeight="200" prefWidth="660">
+    <Label layoutX="533.0" layoutY="129.0" prefHeight="32.0" prefWidth="132.0" />
+    <TableView fx:id="logTableView" layoutX="148.0" layoutY="317.0" prefHeight="200" prefWidth="404.0">
         <columns>
-            <TableColumn fx:id="timestampCol" prefWidth="150" text="Timestamp" />
             <TableColumn fx:id="channelCol" prefWidth="100" text="Channel" />
             <TableColumn fx:id="problemCol" prefWidth="120" text="Problem" />
             <TableColumn fx:id="actionCol" prefWidth="180" text="Action" />
-            <TableColumn fx:id="statusCol" prefWidth="100" text="Status" />
         </columns>
     </TableView>
    <Label alignment="CENTER" layoutX="96.0" layoutY="38.0" prefHeight="64.0" prefWidth="481.0" style="-fx-background-color: cyan;" text="Fix Audio Issue Dashboard">
