@@ -1,159 +1,110 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.DeviceModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SE_Goal3_ViewController {
 
     @FXML private TextField EventTextField;
-    @FXML private TextField NextLevelSoundCheckTextField;
     @FXML private CheckBox performerCheck;
     @FXML private CheckBox equipmentCheck;
-
     @FXML private TableView<DeviceModel> deviceTable;
     @FXML private TableColumn<DeviceModel, String> EventNameCol;
     @FXML private TableColumn<DeviceModel, String> TeststatusCol;
-    @FXML private TableColumn<DeviceModel, Integer> NewlevelCol;
-
+    @FXML private TableColumn<DeviceModel, Integer> SoundLevelCol;
     @FXML private Label confirmLabel;
-    @FXML private Button adjustBtn;
-    @FXML private Button testBtn;
+    @FXML private TextField NextLevelSoundCheckTextField;
 
-    private final ObservableList<DeviceModel> deviceList = FXCollections.observableArrayList();
+    private final List<DeviceModel> deviceList = new ArrayList<>();
 
     @FXML
     public void initialize() {
         EventNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         TeststatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        NewlevelCol.setCellValueFactory(new PropertyValueFactory<>("level"));
+        SoundLevelCol.setCellValueFactory(new PropertyValueFactory<>("level"));
 
-        deviceTable.setItems(deviceList);
+        deviceTable.getItems().clear();
     }
-
-    @FXML
-    public void testSelectedDevice() {
-        DeviceModel selected = getSelectedDevice();
-        if (selected == null) return;
-
-        if (!selected.getStatus().equalsIgnoreCase("Confirmed")) {
-            showAlert("Invalid Action", "Device must be confirmed before testing.");
-            return;
-        }
-
-        selected.setStatus("Tested OK");
-        deviceTable.refresh();
-        confirmLabel.setText(selected.getName() + " tested successfully.");
-    }
-
-    @FXML
-    public void adjustLevel() {
-        DeviceModel selected = getSelectedDevice();
-        if (selected == null) return;
-
-        if (!selected.getStatus().equalsIgnoreCase("Tested OK")) {
-            showAlert("Invalid Action", "Test device before adjusting level.");
-            return;
-        }
-
-        String text = NextLevelSoundCheckTextField.getText().trim();
-
-        if (text.isEmpty()) {
-            showAlert("Input Error", "Please enter a sound level.");
-            return;
-        }
-
-        try {
-            int level = Integer.parseInt(text);
-
-            if (level < 0 || level > 100) {
-                showAlert("Range Error", "Level must be between 0 and 100.");
-                return;
-            }
-
-            selected.setLevel(level);
-            deviceTable.refresh();
-
-            confirmLabel.setText("Level set to " + level + " for " + selected.getName());
-            NextLevelSoundCheckTextField.clear();
-
-        } catch (NumberFormatException e) {
-            showAlert("Format Error", "Enter a valid number.");
-        }
-    }
-
     @FXML
     public void ConfirmSoundCheckButtonOnAction() {
 
-        String eventName = EventTextField.getText().trim();
+        String eventName = EventTextField.getText();
+        String soundLevelText = NextLevelSoundCheckTextField.getText();
 
-        if (eventName.isEmpty()) {
+        if (eventName.equals("")) {
             confirmLabel.setText("Enter event name.");
-            return;
         }
-
-        if (!performerCheck.isSelected() || !equipmentCheck.isSelected()) {
+        else if (!performerCheck.isSelected() || !equipmentCheck.isSelected()) {
             confirmLabel.setText("Confirm both performer & equipment.");
-            return;
         }
+        else {
 
-        boolean exists = deviceList.stream()
-                .anyMatch(d -> d.getName().equalsIgnoreCase(eventName));
+            boolean exists = false;
+            for (int i = 0; i < deviceList.size(); i++) {
+                if (deviceList.get(i).getName().equalsIgnoreCase(eventName)) {
+                    exists = true;
+                    break;
+                }
+            }
 
-        if (exists) {
-            confirmLabel.setText("Event already exists.");
-            return;
+            if (exists) {
+                confirmLabel.setText("Event already exists.");
+            }
+            else {
+                int soundLevel;
+
+                try {
+                    soundLevel = Integer.parseInt(soundLevelText);
+
+                    if (soundLevel < 0 || soundLevel > 100) {
+                        confirmLabel.setText("Sound level must be between 0 and 100.");
+                    }
+                    else {
+                        deviceList.add(new DeviceModel(eventName, "Confirmed", soundLevel));
+                        refreshTable();
+                        confirmLabel.setText("Sound check ready");
+                        clearForm();
+                    }
+
+                } catch (Exception e) {
+                    confirmLabel.setText("Invalid sound level.");
+                }
+            }
         }
-
-        DeviceModel newEntry = new DeviceModel(eventName, "Confirmed", 0);
-        deviceList.add(newEntry);
-
-        confirmLabel.setText("Sound check ready for " + eventName);
-
-        clearForm();
     }
-    private DeviceModel getSelectedDevice() {
-        DeviceModel selected = deviceTable.getSelectionModel().getSelectedItem();
 
-        if (selected == null) {
-            showAlert("Selection Error", "Please select a device.");
-        }
-
-        return selected;
+    private void refreshTable() {
+        deviceTable.getItems().clear();
+        deviceTable.getItems().addAll(deviceList);
     }
+
     private void clearForm() {
         EventTextField.clear();
         performerCheck.setSelected(false);
         equipmentCheck.setSelected(false);
+        NextLevelSoundCheckTextField.clear();
     }
 
     @FXML
-    public void DashboardButtonOnAction(ActionEvent event) {
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml")
-            );
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Engineer Dashboard");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Sound Engineer Dashboard");
+            currentStage.show();
         } catch (Exception e) {
-            showAlert("Navigation Error", "Failed to load dashboard.");
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-    }
-
-    private void showAlert(String title, String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(msg);
-        alert.showAndWait();
     }
 }
