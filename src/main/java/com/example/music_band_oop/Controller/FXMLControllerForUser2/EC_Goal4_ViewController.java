@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,17 +24,20 @@ public class EC_Goal4_ViewController {
 
     @FXML
     public void initialize() {
-        EventComboBox.getItems().addAll("Summer Fest 2026", "Jazz Night", "Rock Concert", "Classical Evening","Rock n Roll", "Dhaka19A2");
+        EventComboBox.getItems().addAll("Summer Fest 2026", "Jazz Night", "Rock Concert", "Classical Evening", "Rock n Roll", "Dhaka19A2");
 
         EventCol.setCellValueFactory(new PropertyValueFactory<>("event"));
         MessageCol.setCellValueFactory(new PropertyValueFactory<>("message"));
         RecipientsCol.setCellValueFactory(new PropertyValueFactory<>("recipients"));
+
         refreshTable();
     }
+
     private void refreshTable() {
         HistoryTableViw.getItems().clear();
         HistoryTableViw.getItems().addAll(recordList);
     }
+
     @FXML
     public void SendMessageButtonOnAction(ActionEvent actionEvent) {
         String selectedEvent = EventComboBox.getValue();
@@ -43,34 +45,30 @@ public class EC_Goal4_ViewController {
             showAlert("Validation Error", "Please select an event.");
             return;
         }
+
         String message = MessageTextField.getText();
         if (message.isEmpty()) {
             showAlert("Validation Error", "Please write a message.");
             return;
         }
+
         String recipients = buildRecipients();
         if (recipients.isEmpty()) {
             showAlert("Validation Error", "Select at least one recipient.");
             return;
         }
+
         recordList.add(new CommunicationRecord(selectedEvent, message, recipients));
         refreshTable();
-        clearForm();
+
     }
 
     private String buildRecipients() {
         StringBuilder sb = new StringBuilder();
-        if (BandCheckBox.isSelected())  sb.append("Band ");
+        if (BandCheckBox.isSelected()) sb.append("Band ");
         if (SoundCheckBox.isSelected()) sb.append("Sound Engineer ");
         if (VenueCheckBox.isSelected()) sb.append("Venue Staff ");
         return sb.toString();
-    }
-    private void clearForm() {
-        MessageTextField.clear();
-        BandCheckBox.setSelected(false);
-        SoundCheckBox.setSelected(false);
-        VenueCheckBox.setSelected(false);
-        EventComboBox.setValue(null);
     }
 
     @FXML
@@ -86,7 +84,6 @@ public class EC_Goal4_ViewController {
             throw new RuntimeException(e);
         }
     }
-
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

@@ -64,15 +64,10 @@ public class SE_Goal1_ViewController {
             micLevel = Integer.parseInt(micText);
             speakerBalance = Integer.parseInt(speakerText);
         } catch (NumberFormatException e) {
-            AlertSoundSetupLabel.setText("FAILED — Numeric values required.");
+            AlertSoundSetupLabel.setText("FAILED — Number required.");
             return;
         }
-        SoundSetupRecord record = new SoundSetupRecord(
-                eventName,
-                venue,
-                micLevel,
-                speakerBalance,
-                effects
+        SoundSetupRecord record = new SoundSetupRecord(eventName, venue, micLevel, speakerBalance, effects
         );
 
         recordList.add(record);

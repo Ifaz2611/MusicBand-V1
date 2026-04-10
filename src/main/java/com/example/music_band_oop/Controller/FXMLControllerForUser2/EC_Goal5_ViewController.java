@@ -1,6 +1,7 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
 import com.example.music_band_oop.Controller.mainuser.TeamMemberEC;
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class EC_Goal5_ViewController {
     @FXML private Label StatusLabel;
 
     private final List<TeamMemberEC> teamList = new ArrayList<>();
+    private final List<TeamMemberEC> tempList = new ArrayList<>();
     @FXML
     private TableColumn EventCol;
 
@@ -44,6 +47,35 @@ public class EC_Goal5_ViewController {
         ArrivedComboBox.getItems().addAll(true, false);
         StatusComboBox.getItems().addAll("Ready", "Not Ready");
         refreshTable();
+
+
+
+        /// file read ---------------------------------
+
+        File file = new File("TeamInfo.bin");
+        if (!file.exists()) {
+            System.out.println("File not found, returning empty list.");
+            return;
+        }
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            while (true){
+                try {
+                    TeamMemberEC t1 = (TeamMemberEC) ois.readObject();
+                    tempList.add(t1);
+                } catch (EOFException e) {
+                    System.out.println("Bin file read!");
+                    break;
+                }
+            }
+        }
+        catch (Exception e) {
+            System.out.println("error");
+        }
+
+        TeamTableView.getItems().addAll(tempList);
+
     }
 
     private void refreshTable() {
@@ -65,10 +97,40 @@ public class EC_Goal5_ViewController {
         }
 
         boolean ready = statusText.equals("Ready");
-        String name = "Member " + (teamList);
-        TeamMemberEC newMember = new TeamMemberEC(eventName, name, role, arrived, ready);
-        teamList.add(newMember);
-        refreshTable();
+
+        TeamMemberEC newMember = new TeamMemberEC(eventName, role, arrived, ready);
+
+        TeamTableView.getItems().add(newMember);
+
+
+        /// file write ---------------
+
+        try {
+            File file = new File("TeamInfo.bin");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            if (file.exists()){
+                fos = new FileOutputStream(file, true);
+
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            }
+            else {
+                fos = new FileOutputStream(file);
+                System.out.println("new");
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(newMember);
+            oos.close();
+            System.out.println("Object saved");
+        } catch (Exception e) {
+            System.out.println("Not saved");;
+        }
+
+
+        ///  bin file need=--------------------        teamList.add(newMember);
+//        refreshTable();
 
         RoleComboBox.setValue(null);
         ArrivedComboBox.setValue(null);

@@ -1,6 +1,8 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class Feedback {
+import java.io.Serializable;
+
+public class Feedback implements Serializable {
     private String name;
     private int rating;
     private String comment;

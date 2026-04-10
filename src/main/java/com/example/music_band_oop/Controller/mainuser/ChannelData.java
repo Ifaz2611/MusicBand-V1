@@ -1,6 +1,8 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class ChannelData {
+import java.io.Serializable;
+
+public class ChannelData implements Serializable {
     private String name;
     private double level;
     private String status;

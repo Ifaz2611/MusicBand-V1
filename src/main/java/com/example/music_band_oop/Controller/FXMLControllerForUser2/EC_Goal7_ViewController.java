@@ -44,9 +44,9 @@ public class EC_Goal7_ViewController {
     @FXML
     public void LoadVendorButtonOnAction(ActionEvent e) {
 
-        String name = VendorNameTextField.getText().trim();
+        String name = VendorNameTextField.getText();
         String type = TypeComboBox.getValue();
-        String contract = ContractStatusTextField.getText().trim();
+        String contract = ContractStatusTextField.getText();
         String delivery = DeliveryStatusComboBox.getValue();
 
         if (name.isEmpty() || type == null || contract.isEmpty() || delivery == null) {

@@ -29,12 +29,7 @@ public class SE_Goal5_ViewController {
         StatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
         NotesCol.setCellValueFactory(new PropertyValueFactory<>("notes"));
 
-        EventComboBox.getItems().addAll(
-                "Rock Concert",
-                "Jazz Night",
-                "Rock n Roll",
-                "BanglaBhag"
-        );
+        EventComboBox.getItems().addAll("Rock Concert", "Jazz Night", "Rock n Roll", "BanglaBhag");
 
         EventComboBox.setOnAction(e -> loadEquipment());
 

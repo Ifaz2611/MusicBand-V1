@@ -1,6 +1,7 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.ChannelData;
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +26,8 @@ public class SE_Goal2_ViewController {
     @FXML private ComboBox<String> StatusComboBox;
     @FXML private TextField levelTextField;
     @FXML private Label statusLabel;
-    @FXML private Button saveLogsBtn;
 
     private final List<ChannelData> channelList = new ArrayList<>();
-    @FXML private Button applyBtn;
 
     @FXML
     public void initialize() {
@@ -67,12 +68,38 @@ public class SE_Goal2_ViewController {
         channelTable.getItems().addAll(channelList);
 
         levelTextField.clear();
-        statusLabel.setText("Added: " + channelName + " | " + level + " dB | " + status);
+        statusLabel.setText("Added");
     }
+
+    /// File Write---------------------------------------
 
     @FXML
     public void HandleSaveLogsButtonOnAction(ActionEvent event) {
-        statusLabel.setText("Save logs disabled – simple add-only mode");
+
+        try {
+            File file = new File("MonitorLevelLog.bin");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            if (file.exists()){
+                fos = new FileOutputStream(file, true);
+
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            }
+            else {
+                fos = new FileOutputStream(file);
+                System.out.println("new");
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(channelList);
+            oos.close();
+            System.out.println("Object saved");
+        } catch (Exception e) {
+            System.out.println("Not saved");;
+        }
+        statusLabel.setText("Log Saved");
+
     }
 
     @FXML

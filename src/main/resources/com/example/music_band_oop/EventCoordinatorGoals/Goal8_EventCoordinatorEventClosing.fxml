@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="550.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser2.EC_Goal8_ViewController">
     <Label layoutX="72.0" layoutY="99.0" prefHeight="17.0" prefWidth="112.0" text="Vendor/Recipient" />
     <ComboBox fx:id="ExpenseTypeComboBox" layoutX="193.0" layoutY="146.0" prefHeight="25.0" prefWidth="145.0" />
-    <Button layoutX="453.0" layoutY="200.0" onAction="#LoadPaymentButtonOnAction" text="Load Payments" />
+    <Button layoutX="431.0" layoutY="200.0" onAction="#LoadPaymentButtonOnAction" text="Load Payments" />
     <TableView fx:id="PaymentTableView" layoutX="28.0" layoutY="297.0" prefHeight="200.0" prefWidth="740.0">
         <columns>
             <TableColumn fx:id="VendorRecipientCol" prefWidth="180.0" text="Vendor/Recipient" />
@@ -22,7 +22,6 @@
             <TableColumn fx:id="VerifiedCol" prefWidth="159.0" text="Verified" />
         </columns>
     </TableView>
-    <Button layoutX="660.0" layoutY="230.0" onAction="#GenerateReportButtonOnAction" text="Generate Report" />
     <Button layoutX="673.0" layoutY="511.0" onAction="#DashboardButtonOnAction" text=" Dashboard" />
    <Label alignment="CENTER" layoutX="144.0" layoutY="14.0" prefHeight="39.0" prefWidth="497.0" style="-fx-background-color: cyan;" text="Event Closing Dashboard">
       <font>

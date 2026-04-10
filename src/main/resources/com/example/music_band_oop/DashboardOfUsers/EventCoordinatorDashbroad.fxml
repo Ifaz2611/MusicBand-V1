@@ -14,7 +14,7 @@
       </Label>
       <Button layoutX="66.0" layoutY="168.0" mnemonicParsing="false" onAction="#createEventButtonOnAction" prefWidth="100.0" text="Create Event" />
       <Button layoutX="44.0" layoutY="269.0" mnemonicParsing="false" onAction="#communicationButtonOnAction" prefHeight="25.0" prefWidth="141.0" text="Communication Panel" />
-      <Button layoutX="470.0" layoutY="269.0" mnemonicParsing="false" onAction="#entryFeedbackButtonOnAction" prefHeight="25.0" prefWidth="122.0" text="Entry &amp; Feedback" />
+      <Button layoutX="470.0" layoutY="269.0" mnemonicParsing="false" onAction="#entryFeedbackButtonOnAction" prefHeight="25.0" prefWidth="122.0" text=" Feedback" />
       <Button layoutX="246.0" layoutY="269.0" mnemonicParsing="false" onAction="#eventDayButtonOnAction" prefHeight="25.0" prefWidth="152.0" text="Event Day Monitoring" />
       <Button layoutX="273.0" layoutY="168.0" mnemonicParsing="false" onAction="#eventLogisticsButtonOnAction" prefWidth="100.0" text="Event Logistics" />
       <Button layoutX="457.0" layoutY="168.0" mnemonicParsing="false" onAction="#budgetManagementButtonOnAction" prefHeight="25.0" prefWidth="141.0" text="Budget Management" />

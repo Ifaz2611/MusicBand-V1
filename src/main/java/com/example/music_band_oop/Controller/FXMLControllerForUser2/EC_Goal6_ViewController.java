@@ -1,5 +1,6 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import com.example.music_band_oop.Controller.mainuser.Feedback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 public class EC_Goal6_ViewController {
 
@@ -24,6 +26,7 @@ public class EC_Goal6_ViewController {
     @FXML private Label statusLabel;
 
     private final List<Feedback> feedbackList = new ArrayList<>();
+    private final List<Feedback> tempList = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -32,6 +35,33 @@ public class EC_Goal6_ViewController {
         CommentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
 
         RatingComboBox.getItems().addAll(1, 2, 3, 4, 5);
+
+        /// FILE READ --------------------------------
+
+        File file = new File("FeedbackLog.bin");
+        if (!file.exists()) {
+            System.out.println("File not found");
+        } else {
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                while (true) {
+                    try {
+                        Feedback f = (Feedback) ois.readObject();
+                        tempList.add(f);
+                    } catch (EOFException e) {
+                        System.out.println("Bin file read!");
+                        break;
+                    }
+                }
+                ois.close();
+            } catch (Exception e) {
+                System.out.println("error");
+            }
+        }
+
+        feedbackList.addAll(tempList);
         refreshTable();
     }
 
@@ -51,19 +81,43 @@ public class EC_Goal6_ViewController {
             statusLabel.setText("Please fill all fields.");
             return;
         }
+
         Feedback newFeedback = new Feedback(name, rating, comment);
+
         feedbackList.add(newFeedback);
         refreshTable();
+
+        /// FILE WRITE -----------------------
+        try {
+            File file = new File("FeedbackLog.bin");
+            FileOutputStream fos;
+            ObjectOutputStream oos;
+
+            if (file.exists()) {
+                fos = new FileOutputStream(file, true);
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            } else {
+                fos = new FileOutputStream(file);
+                oos = new ObjectOutputStream(fos);
+                System.out.println("new");
+            }
+
+            oos.writeObject(newFeedback);
+            oos.close();
+
+            System.out.println("Object saved");
+
+        } catch (Exception e) {
+            System.out.println("Not saved");
+        }
+
         statusLabel.setText("Feedback added successfully.");
+
         NameTextField.clear();
         CommentTextField.clear();
         RatingComboBox.setValue(null);
-    }
 
-    @FXML
-    public void GenerateReportButtonOnAction(ActionEvent event) {
-        //Deal with it later
-        statusLabel.setText("Report generation not implemented.");
     }
 
     @FXML

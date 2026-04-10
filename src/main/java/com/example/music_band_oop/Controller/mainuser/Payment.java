@@ -1,6 +1,8 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class Payment {
+import java.io.Serializable;
+
+public class Payment implements Serializable {
 
     private String vendorName;
     private String expenseType;

@@ -1,6 +1,7 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
 import com.example.music_band_oop.Controller.mainuser.BudgetItem;
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,10 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,8 +77,33 @@ public class EC_Goal3_ViewController {
 
     @FXML
     public void GenerateReportButtonOnAction(ActionEvent event) {
-        showAlert("Info", "Report generation is disabled.");
-        //I will deal with it later
+
+        /// file write--------------
+        try {
+            File file = new File("BudgetLog.bin");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            if (file.exists()){
+                fos = new FileOutputStream(file, true);
+
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            }
+            else {
+                fos = new FileOutputStream(file);
+                System.out.println("new");
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(budgetList);
+            oos.close();
+            System.out.println("Object saved");
+        } catch (Exception e) {
+            System.out.println("Not saved");;
+        }
+
+        showAlert("Info", "Log Saved.");
+
     }
 
     @FXML

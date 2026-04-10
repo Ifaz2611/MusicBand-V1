@@ -1,5 +1,6 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import com.example.music_band_oop.Controller.mainuser.Payment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class EC_Goal8_ViewController {
     @FXML private ComboBox<Boolean> VerifiedComboBox;
 
     private final List<Payment> paymentList = new ArrayList<>();
+    private final List<Payment> tempList3 = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -40,6 +42,34 @@ public class EC_Goal8_ViewController {
         ExpenseTypeComboBox.getItems().addAll("Food", "Security", "Equipment", "Venue");
         PaymentStatusComboBox.getItems().addAll("Pending", "Paid");
         VerifiedComboBox.getItems().addAll(true, false);
+
+        /// FILE READ --------------------
+
+        File file = new File("PaymentLog.bin");
+        if (!file.exists()) {
+            System.out.println("File not found");
+        } else {
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                while (true) {
+                    try {
+                        Payment p = (Payment) ois.readObject();
+                        tempList3.add(p);
+                    } catch (EOFException e) {
+                        System.out.println("Bin file read!");
+                        break;
+                    }
+                }
+                ois.close();
+            } catch (Exception e) {
+                System.out.println("error");
+            }
+        }
+
+        paymentList.addAll(tempList3);
+        refreshTable();
     }
 
     private void refreshTable() {
@@ -71,23 +101,41 @@ public class EC_Goal8_ViewController {
         }
 
         Payment payment = new Payment(vendor, expense, amount, status, verified);
-        paymentList.add(payment);
 
+        paymentList.add(payment);
         refreshTable();
+
+        /// FILE WRITE ------------------------
+
+        try {
+            File file = new File("PaymentLog.bin");
+            FileOutputStream fos;
+            ObjectOutputStream oos;
+
+            if (file.exists()) {
+                fos = new FileOutputStream(file, true);
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            } else {
+                fos = new FileOutputStream(file);
+                oos = new ObjectOutputStream(fos);
+                System.out.println("new");
+            }
+
+            oos.writeObject(payment);
+            oos.close();
+
+            System.out.println("Object saved");
+
+        } catch (Exception ex) {
+            System.out.println("Not saved");
+        }
 
         VendorTextField.clear();
         AmountTextField.clear();
         ExpenseTypeComboBox.setValue(null);
         PaymentStatusComboBox.setValue(null);
         VerifiedComboBox.setValue(null);
-    }
-
-    @FXML
-    public void GenerateReportButtonOnAction(ActionEvent e) {
-
-        // work on it today
-
-        showAlert("Report", "Report generation not implemented yet.");
     }
 
     @FXML
@@ -105,6 +153,7 @@ public class EC_Goal8_ViewController {
     }
 
     private void showAlert(String title, String msg) {
+
         new Alert(Alert.AlertType.INFORMATION, msg).showAndWait();
     }
 }

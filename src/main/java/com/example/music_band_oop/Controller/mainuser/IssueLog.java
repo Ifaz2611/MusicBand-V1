@@ -1,6 +1,8 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class IssueLog {
+import java.io.Serializable;
+
+public class IssueLog implements Serializable {
     private String channel;
     private String problem;
     private String action;

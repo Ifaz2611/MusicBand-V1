@@ -1,6 +1,7 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.MonitorChannel;
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,9 +75,34 @@ public class SE_Goal7_ViewController {
 
     @FXML
     public void SaveLogButtonOnAction(ActionEvent event) {
-        // Placeholder – implement later if needed
-        //deal with it later
-        feedbackLabel.setText("Save Log – not implemented yet.");
+
+
+        /// file write--------------
+        try {
+            File file = new File("MonitorControlLog.bin");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            if (file.exists()){
+                fos = new FileOutputStream(file, true);
+
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            }
+            else {
+                fos = new FileOutputStream(file);
+                System.out.println("new");
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(channelList);
+            oos.close();
+            System.out.println("Object saved");
+        } catch (Exception e) {
+            System.out.println("Not saved");;
+        }
+
+
+        feedbackLabel.setText("Saved Log.");
     }
 
     @FXML

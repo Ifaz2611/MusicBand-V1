@@ -1,8 +1,9 @@
 package com.example.music_band_oop.Controller.mainuser;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class EquipmentTrack {
+public class EquipmentTrack implements Serializable {
 
     private int id;
     private String name;
