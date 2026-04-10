@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="501.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.SoundcheckController">
+   <children>
+      <Label layoutX="37.0" layoutY="29.0" text="Sound Check" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="79.0" text="Select Event" textFill="#dd2e2e" />
+      <ComboBox fx:id="select_event_com" layoutX="118.0" layoutY="75.0" onAction="#select_event_comboBox" prefHeight="25.0" prefWidth="168.0" />
+      <Label layoutX="37.0" layoutY="134.0" text="Sound Engineer" textFill="#dd2e2e" />
+      <Label fx:id="sound_eng_label" layoutX="37.0" layoutY="158.0" text="- Not Selected - " />
+      <Label layoutX="289.0" layoutY="131.0" text="Current Status" textFill="#dd2e2e" />
+      <Label fx:id="curr_status_label" layoutX="289.0" layoutY="155.0" text="- Not Selected - " />
+      <Label layoutX="39.0" layoutY="213.0" text="Equipement Readiness" textFill="#dd2e2e" />
+      <Button layoutX="38.0" layoutY="237.0" mnemonicParsing="false" onAction="#confirm_equip_btn" prefHeight="25.0" prefWidth="155.0" text="Confirm Equipment" />
+      <Label layoutX="286.0" layoutY="213.0" text="Live Sound Check" textFill="#dd2e2e" />
+      <Button layoutX="286.0" layoutY="237.0" mnemonicParsing="false" onAction="#confirm_sound_check_btn" prefHeight="25.0" prefWidth="155.0" text="Confirm Sound Check" />
+      <Label layoutX="38.0" layoutY="293.0" text="Report Any issue " />
+      <TextArea fx:id="issue_text_area" layoutX="37.0" layoutY="316.0" prefHeight="64.0" prefWidth="702.0" promptText="Discribe Issue" />
+      <Label layoutX="40.0" layoutY="441.0" text="1. Select event → 2. Confirm equipment → 3. Sound check → 4. Confirm" />
+      <Label fx:id="success_msg_label" layoutX="40.0" layoutY="399.0" text="Confirmation Message will be shown" />
+   </children>
+</AnchorPane>

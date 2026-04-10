@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="570.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.KeyGoal8FeedbackController">
+
+    <children>
+        <!-- Title -->
+        <Label layoutX="33.0" layoutY="31.0" text="Feedback &amp; Reviews" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- Table of past events with feedback -->
+        <Label layoutX="33.0" layoutY="91.0" text="Past Events Feedback" textFill="#ab5050d5">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+
+        <!-- Filter for table -->
+        <Label layoutX="441.0" layoutY="94.0" text="Filter by event:" textFill="#ab4f4f" />
+        <TextField fx:id="filterTextField" layoutX="527.0" layoutY="90.0" prefHeight="25.0" prefWidth="179.0" promptText="Search event name" />
+        <Button layoutX="712.0" layoutY="90.0" onAction="#filterButton" text="Filter" textFill="#ab4f4f" />
+        <Button layoutX="766.0" layoutY="90.0" onAction="#resetFilterButton" text="Reset" textFill="#ab4f4f" />
+
+        <TableView fx:id="feedbackTable" layoutX="31.0" layoutY="124.0" prefHeight="200.0" prefWidth="780.0">
+            <columns>
+                <TableColumn fx:id="colEvent" prefWidth="200" text="Event Name" />
+                <TableColumn fx:id="colDate" prefWidth="151.0" text="Date" />
+                <TableColumn fx:id="colStatus" prefWidth="183.0" text="Acknowledged" />
+                <TableColumn fx:id="colTimestamp" prefWidth="245.0" text="Acknowledge Timestamp" />
+            </columns>
+        </TableView>
+
+        <!-- Improvement suggestions section -->
+        <Label layoutX="33.0" layoutY="350.0" text="Improvement Suggestions (select an event)" textFill="#ab5050d1">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+
+        <Label layoutX="31.0" layoutY="387.0" text="Timing:" textFill="#ab4f4f" />
+        <TextArea fx:id="timingArea" editable="false" layoutX="139.0" layoutY="382.0" prefHeight="40.0" prefWidth="355.0" wrapText="true" />
+
+        <Label layoutX="31.0" layoutY="437.0" text="Sound Choice:" textFill="#ab4f4f" />
+        <TextArea fx:id="soundArea" editable="false" layoutX="139.0" layoutY="432.0" prefHeight="40.0" prefWidth="355.0" wrapText="true" />
+
+        <Label layoutX="31.0" layoutY="487.0" text="Stage Presence:" textFill="#ab4f4f" />
+        <TextArea fx:id="stageArea" editable="false" layoutX="140.0" layoutY="482.0" prefHeight="40.0" prefWidth="355.0" wrapText="true" />
+
+        <!-- Acknowledge button -->
+        <Button layoutX="505.0" layoutY="383.0" onAction="#acknowledgeBtn" prefHeight="136.0" prefWidth="250" text="Acknowledge Receipt of Feedback" textFill="#ab4f4f" />
+
+        <!-- Message label -->
+        <Label fx:id="messageLabel" layoutX="347.0" layoutY="334.0" prefHeight="40.0" prefWidth="457.0" text="" />
+    </children>
+</AnchorPane>
