@@ -35,7 +35,7 @@ public class SE_Goal4_ViewController{
 
     @FXML
     public void saveLogbuttonOnAction(ActionEvent event) {
-        String channel = AffectedChannelTextField.getText().trim();
+        String channel = AffectedChannelTextField.getText();
         String problem = ProblemTypeComboBox.getValue();
 
         if (channel.isEmpty() || problem == null) {

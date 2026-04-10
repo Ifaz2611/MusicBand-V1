@@ -43,8 +43,8 @@ public class EC_Goal2_ViewController {
     @FXML
     public void UpdateValueButtonOnAction(ActionEvent actionEvent) {
 
-        String aspect = LogisticsAspectTextField.getText().trim();
-        String value = CurrentValueTextField.getText().trim();
+        String aspect = LogisticsAspectTextField.getText();
+        String value = CurrentValueTextField.getText();
         String status = StatusComboBox.getValue();
 
         if (aspect.isEmpty()) {

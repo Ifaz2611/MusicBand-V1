@@ -43,7 +43,7 @@ public class EC_Goal4_ViewController {
             showAlert("Validation Error", "Please select an event.");
             return;
         }
-        String message = MessageTextField.getText().trim();
+        String message = MessageTextField.getText();
         if (message.isEmpty()) {
             showAlert("Validation Error", "Please write a message.");
             return;
@@ -63,7 +63,7 @@ public class EC_Goal4_ViewController {
         if (BandCheckBox.isSelected())  sb.append("Band ");
         if (SoundCheckBox.isSelected()) sb.append("Sound Engineer ");
         if (VenueCheckBox.isSelected()) sb.append("Venue Staff ");
-        return sb.toString().trim();
+        return sb.toString();
     }
     private void clearForm() {
         MessageTextField.clear();
