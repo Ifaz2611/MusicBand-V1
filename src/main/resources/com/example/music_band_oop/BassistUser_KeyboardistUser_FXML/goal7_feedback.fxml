@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="605.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.FeedbackController">
+
+    <children>
+        <!-- Title -->
+        <Label fx:id="titleLabel" layoutX="34.0" layoutY="31.0" text="My Performance Feedback" textFill="#dd2e2e">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- Feedback TableView -->
+        <Label layoutX="34.0" layoutY="72.0" text="Feedback from Band Manager:" textFill="#ab4f4f" />
+        <TableView fx:id="feedbackTableView" layoutX="34.0" layoutY="98.0" prefHeight="293.0" prefWidth="780.0">
+            <columns>
+                <TableColumn fx:id="colEvent" prefWidth="150" text="Event" />
+                <TableColumn fx:id="colDate" prefWidth="100" text="Date" />
+                <TableColumn fx:id="colComments" prefWidth="310.0" text="Comments / Feedback" />
+                <TableColumn fx:id="colStatus" prefWidth="99.0" text="Status" />
+                <TableColumn fx:id="colReadCheck" prefWidth="121.0" text="Mark as Read" />
+            </columns>
+        </TableView>
+
+        <!-- Selected feedback details -->
+        <Label layoutX="34.0" layoutY="406.0" text="Selected Feedback Details:" textFill="#ab4f4f" />
+        <TextArea fx:id="feedbackDetailsTextArea" editable="false" layoutX="34.0" layoutY="430.0" prefHeight="100.0" prefWidth="655.0" wrapText="true" />
+
+        <!-- Mark as Read button (alternative to CheckBox inside table) -->
+        <Button layoutX="699.0" layoutY="430.0" onAction="#markReadBtn" prefHeight="100.0" prefWidth="116.0" text="Selected as Read" textFill="#ab4f4f" />
+
+        <!-- Message label -->
+        <Label fx:id="messageLabel" layoutX="34.0" layoutY="545.0" prefHeight="26.0" prefWidth="340.0" text="" />
+    </children>
+
+</AnchorPane>

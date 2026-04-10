@@ -89,7 +89,14 @@ public class loginController {
             //     return "DashboardOfUsers/BandManagerDashboard.fxml";
             // case "Lead Vocalist":
             //     return "DashboardOfUsers/LeadVocalistDashboard.fxml";
-            default:
+
+            case "Bassist":
+                return "BassistUser_KeyboardistUser_FXML/bassist_dashboard.fxml";
+
+            case "Keyboardist":
+                return "BassistUser_KeyboardistUser_FXML/keyboardist_dashboard.fxml";
+
+                default:
                 return null; // Dashboard not implemented yet
         }
     }

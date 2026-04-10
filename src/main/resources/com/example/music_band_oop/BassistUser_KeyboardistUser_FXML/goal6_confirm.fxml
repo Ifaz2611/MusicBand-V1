@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="605.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.ConfirmController">
+
+    <children>
+        <!-- Title -->
+        <Label fx:id="titleLabel" layoutX="28.0" layoutY="28.0" text="Confirm Event Participation" textFill="#dd2e2e">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- Event selection -->
+        <Label fx:id="eventLabel" layoutX="31.0" layoutY="82.0" text="Select Event:" textFill="#ab4f4f" />
+        <ComboBox fx:id="eventComboBox" layoutX="131.0" layoutY="78.0" onAction="#selected_eventComboBox" prefWidth="250.0" promptText="Choose an event" />
+
+        <!-- Event details -->
+        <Label fx:id="dateLabel" layoutX="31.0" layoutY="120.0" text="Date:" textFill="#ab4f4f" />
+        <Label fx:id="dateValueLabel" layoutX="80.0" layoutY="120.0" text="-" />
+
+        <Label fx:id="venueLabel" layoutX="31.0" layoutY="150.0" text="Venue:" textFill="#ab4f4f" />
+        <Label fx:id="venueValueLabel" layoutX="80.0" layoutY="150.0" text="-" />
+
+        <Label fx:id="timeLabel" layoutX="31.0" layoutY="180.0" text="Time:" textFill="#ab4f4f" />
+        <Label fx:id="timeValueLabel" layoutX="80.0" layoutY="180.0" text="-" />
+
+        <!-- Separator -->
+        <Separator layoutX="20.0" layoutY="210.0" prefHeight="3.0" prefWidth="780.0" />
+
+        <!-- Confirmation radio buttons -->
+        <Label layoutX="510.0" layoutY="82.0" text="Your confirmation:" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+        <RadioButton fx:id="confirmRadio" layoutX="510.0" layoutY="109.0" text="Confirm Attendance" textFill="#ab4f4f" />
+        <RadioButton fx:id="cannotRadio" layoutX="510.0" layoutY="138.0" text="Cannot Attend" textFill="#ab4f4f" />
+        <RadioButton fx:id="tentativeRadio" layoutX="511.0" layoutY="165.0" text="Tentative (will update later)" textFill="#ab4f4f" />
+
+        <!-- Additional notes -->
+        <Label layoutX="31.0" layoutY="261.0" text="Additional notes (optional):" textFill="#ab4f4f" />
+        <TextArea fx:id="notesTextArea" layoutX="199.0" layoutY="239.0" prefHeight="60.0" prefWidth="452.0" promptText="Any comments or special requests..." />
+
+        <!-- Submit button -->
+        <Button layoutX="658.0" layoutY="239.0" onAction="#submitBtn" prefHeight="60.0" prefWidth="145.0" text="Submit Confirmation" textFill="#ab4f4f">
+         <font>
+            <Font size="13.0" />
+         </font></Button>
+
+        <!-- Message label -->
+        <Label fx:id="messageLabel" layoutX="658.0" layoutY="218.0" prefHeight="17.0" prefWidth="145.0" text="" />
+
+        <!-- Separator -->
+        <Separator layoutX="28.0" layoutY="319.0" prefWidth="780.0" />
+
+        <!-- Confirmation history table -->
+        <Label fx:id="historyLabel" layoutX="38.0" layoutY="353.0" text="My Confirmation History" textFill="#ab4f4f">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+        <TableView fx:id="historyTableView" layoutX="38.0" layoutY="384.0" prefHeight="180.0" prefWidth="780.0">
+            <columns>
+                <TableColumn fx:id="colEvent" prefWidth="200" text="Event" />
+                <TableColumn fx:id="colDate" prefWidth="120" text="Date" />
+                <TableColumn fx:id="colConfirmation" prefWidth="150" text="Confirmation" />
+                <TableColumn fx:id="colNotes" prefWidth="310" text="Notes" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

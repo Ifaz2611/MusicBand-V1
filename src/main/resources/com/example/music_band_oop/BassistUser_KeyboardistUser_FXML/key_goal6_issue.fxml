@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="630.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.KeyGoal6IssueController">
+
+    <children>
+        <!-- Title -->
+        <Label layoutX="27.0" layoutY="20.0" text="Report Software / Hardware Issue" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- Issue Type -->
+        <Label layoutX="27.0" layoutY="70.0" text="Issue Type:" textFill="#ab4f4f" />
+        <ComboBox fx:id="issueTypeCombo" layoutX="120.0" layoutY="66.0" prefWidth="200.0" promptText="Select type" />
+
+        <!-- Equipment / Software Name -->
+        <Label layoutX="27.0" layoutY="110.0" text="Equipment / Software Name:" textFill="#ab4f4f" />
+        <TextField fx:id="nameTextField" layoutX="200.0" layoutY="106.0" prefWidth="300.0" promptText="e.g., Keyboard, VST plugin, MIDI cable" />
+
+        <!-- Issue Description -->
+        <Label layoutX="27.0" layoutY="150.0" text="Issue Description:" textFill="#ab4f4f" />
+        <TextArea fx:id="descriptionArea" layoutX="27.0" layoutY="170.0" prefHeight="100.0" prefWidth="500.0" promptText="Describe the problem (e.g., VST crash, key sticking, cable fault)" />
+
+        <!-- Priority Level -->
+        <Label layoutX="27.0" layoutY="290.0" text="Priority Level:" textFill="#ab4f4f" />
+        <ComboBox fx:id="priorityCombo" layoutX="120.0" layoutY="286.0" prefWidth="150.0" promptText="Select priority" />
+
+        <!-- Submit Button -->
+        <Button layoutX="340.0" layoutY="286.0" onAction="#submitBtn" prefWidth="180" text="Submit Issue Report" textFill="#ab4f4f" />
+
+        <!-- Message Label -->
+        <Label fx:id="messageLabel" layoutX="162.0" layoutY="351.0" prefHeight="17.0" prefWidth="564.0" text="" />
+
+        <!-- Past Issues Table with Filter and Sort -->
+        <Label layoutX="27.0" layoutY="350.0" text="My Reported Issues" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+
+        <!-- Filter and Sort controls -->
+        <Label layoutX="27.0" layoutY="382.0" text="Filter by keyword:" textFill="#ab4f4f" />
+        <TextField fx:id="filterTextField" layoutX="127.0" layoutY="378.0" prefWidth="200.0" promptText="search in description / type" />
+        <Button layoutX="336.0" layoutY="378.0" onAction="#filterButton" text="Filter" textFill="#ab4f4f" />
+        <Button layoutX="388.0" layoutY="378.0" onAction="#resetFilterButton" text="Reset" textFill="#ab4f4f" />
+        <Button layoutX="444.0" layoutY="378.0" onAction="#sortByDateBtn" text="Sort by Date (newest first)" textFill="#ab4f4f" />
+
+        <TableView fx:id="issueTable" layoutX="27.0" layoutY="412.0" prefHeight="180.0" prefWidth="780.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+                <TableColumn fx:id="colDate" prefWidth="100" text="Date" />
+                <TableColumn fx:id="colType" prefWidth="100" text="Type" />
+                <TableColumn fx:id="colName" prefWidth="150" text="Equipment/Software" />
+                <TableColumn fx:id="colPriority" prefWidth="80" text="Priority" />
+                <TableColumn fx:id="colStatus" prefWidth="100" text="Status" />
+                <TableColumn fx:id="colDescription" prefWidth="190" text="Description" />
+            </columns>
+        </TableView>
+      <Separator layoutX="27.0" layoutY="333.0" prefHeight="0.0" prefWidth="780.0" />
+    </children>
+</AnchorPane>

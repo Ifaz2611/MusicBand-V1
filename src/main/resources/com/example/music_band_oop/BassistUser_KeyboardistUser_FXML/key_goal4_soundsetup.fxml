@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="649.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.KeyGoal4SoundSetupController">
+
+    <children>
+        <!-- Title -->
+        <Label layoutX="25.0" layoutY="23.0" text="Sound Setup Coordination (Keyboardist)" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- Event Selection -->
+        <Label layoutX="28.0" layoutY="85.0" text="Select Event:" textFill="#ab4f4f" />
+        <ComboBox fx:id="eventComboBox" layoutX="128.0" layoutY="81.0" onAction="#OnSelected_eventComboBox" prefWidth="250.0" promptText="Choose an event" />
+
+        <!-- Sound Engineer Info -->
+        <Label fx:id="soundEngineerLabel" layoutX="28.0" layoutY="125.0" text="Assigned Sound Engineer:" textFill="#ab4f4f" />
+        <Label fx:id="soundEngineerValueLabel" layoutX="188.0" layoutY="125.0" text="-" />
+
+        <!-- Current Output Levels & Channel Assignments Table -->
+        <Label layoutX="29.0" layoutY="180.0" text="Current Output Levels &amp; Channel Assignments:" textFill="#ab4f4f" />
+
+        <!-- Filter for the table -->
+        <Label fx:id="filterLabel" layoutX="494.0" layoutY="159.0" text="Filter by Channel/Effect:" textFill="#ab4f4f" />
+        <TextField fx:id="filterTextField" layoutX="494.0" layoutY="176.0" prefWidth="200.0" promptText="e.g., Left, Reverb" />
+        <Button layoutX="703.0" layoutY="176.0" onAction="#filterButton" text="Filter" textFill="#ab4f4f" />
+        <Button layoutX="755.0" layoutY="176.0" onAction="#resetFilterButton" text="Reset" textFill="#ab4f4f" />
+
+        <TableView fx:id="channelTable" layoutX="28.0" layoutY="210.0" prefHeight="200.0" prefWidth="780.0">
+            <columns>
+                <TableColumn fx:id="colChannel" prefWidth="100" text="Channel" />
+                <TableColumn fx:id="colOutputLevel" prefWidth="185.0" text="Output Level (dB)" />
+                <TableColumn fx:id="colEffects" prefWidth="153.0" text="Effects" />
+                <TableColumn fx:id="colPan" prefWidth="142.0" text="Pan" />
+                <TableColumn fx:id="colMute" prefWidth="196.0" text="Mute" />
+            </columns>
+        </TableView>
+
+        <!-- Test Controls -->
+        <Label layoutX="28.0" layoutY="430.0" text="Perform Sound Test:" textFill="#ab4f4f" />
+        <Button layoutX="160.0" layoutY="426.0" onAction="#testVolumeBtn" text="Test Volume" textFill="#ab4f4f" />
+        <Button layoutX="280.0" layoutY="426.0" onAction="#testEffectsBtn" text="Test Effects" textFill="#ab4f4f" />
+        <Slider fx:id="volumeSlider" layoutX="160.0" layoutY="460.0" max="100.0" min="0.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" value="70.0" />
+        <Label fx:id="vol_label" layoutX="370.0" layoutY="460.0" text="Volume: 70%" textFill="#ab5050c9" />
+
+        <!-- Verify Balance Button -->
+        <Button layoutX="28.0" layoutY="500.0" onAction="#verifyBalanceBtn" prefWidth="250" text="Verify Sound Balance with Sound Engineer" textFill="#ab4f4f" />
+
+        <!-- Save Configuration Button -->
+        <Button layoutX="300.0" layoutY="500.0" onAction="#saveConfigBtn" prefWidth="200.0" text="Save Final Configuration" textFill="#ab4f4f" />
+
+        <!-- Status Message -->
+        <Label fx:id="statusLabel" layoutX="28.0" layoutY="550.0" text="Status: Waiting for event selection" textFill="#571616" />
+
+        <!-- Confirmation Message -->
+        <Label fx:id="messageLabel" layoutX="20.0" layoutY="580.0" prefHeight="38.0" prefWidth="780.0" text="" />
+    </children>
+</AnchorPane>
