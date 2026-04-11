@@ -1,4 +1,4 @@
-package com.example.music_band_oop.DashboardOfUsers3
+package com.example.music_band_oop.DashboardOfUsers3;
 
 import javafx.event.ActionEvent;
 
