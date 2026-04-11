@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.music_band_oop.LeadGuitaristGoals.Lg_goal6Controller">
+   <children>
+      <Label layoutX="237.0" layoutY="14.0" text="Confirm Event Participation" />
+      <ComboBox fx:id="cmbConcert" layoutX="39.0" layoutY="54.0" prefWidth="150.0" />
+      <Button layoutX="39.0" layoutY="98.0" mnemonicParsing="false" onAction="#confirmOnAction" text="Confirm" />
+      <Button layoutX="39.0" layoutY="167.0" mnemonicParsing="false" onAction="#declineOnAction" text="Decline" />
+      <Button layoutX="39.0" layoutY="221.0" mnemonicParsing="false" onAction="#backOnAction" text="Back" />
+   </children>
+</AnchorPane>

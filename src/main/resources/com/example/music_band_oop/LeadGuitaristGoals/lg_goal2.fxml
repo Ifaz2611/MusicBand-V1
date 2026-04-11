@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="389.0" prefWidth="510.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.music_band_oop.LeadGuitaristGoals.Lg_goal2Controller">
+   <children>
+      <Label layoutX="164.0" layoutY="14.0" text="Lead Guitarist - Event Setlist" />
+      <ComboBox layoutX="14.0" layoutY="48.0" prefWidth="150.0" />
+      <TextArea fx:id="txtSetlist" layoutX="107.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="29.0" layoutY="295.0" mnemonicParsing="false" onAction="#loadSetlistOnAction" text="Load Setlist" />
+      <Button layoutX="35.0" layoutY="325.0" mnemonicParsing="false" onAction="#markasPreparedOnAction" text="Mark as Prepared" />
+      <Button layoutX="42.0" layoutY="351.0" mnemonicParsing="false" onAction="#backOnAction" text="Back" />
+   </children>
+</AnchorPane>

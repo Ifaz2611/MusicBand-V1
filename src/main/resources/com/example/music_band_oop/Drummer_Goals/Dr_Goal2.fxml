@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.music_band_oop.Drummer_Goals.Dr_goal2Controller"
+            prefWidth="600.0" prefHeight="400.0">
+</AnchorPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="369.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.music_band_oop.DashboardOfUsers3,4.Drummer_dashboardController">
+   <children>
+      <Label layoutX="138.0" layoutY="23.0" prefHeight="18.0" prefWidth="167.0" text="Drummer Dashboard" />
+      <Button layoutX="31.0" layoutY="57.0" mnemonicParsing="false" onAction="#rehearsalScheduleOnAction" text="Rehearsal Schedule" />
+      <Button layoutX="31.0" layoutY="89.0" mnemonicParsing="false" onAction="#drumSetupOnAction" text="Drum Setup &amp; Sound Check" />
+      <Button layoutX="31.0" layoutY="123.0" mnemonicParsing="false" onAction="#uploadPracticeRecordingOnAction" text="Upload Practice Recording" />
+      <Button layoutX="31.0" layoutY="215.0" mnemonicParsing="false" onAction="#confirmShowParticipationOnAction" text="Confirm Show Participation" />
+      <Button layoutX="31.0" layoutY="181.0" mnemonicParsing="false" onAction="#viewEventSetlistOnAction" text="View Event Setlist" />
+      <Button layoutX="31.0" layoutY="148.0" mnemonicParsing="false" onAction="#requestDrumMaintenanceOnAction" text="Request Drum Maintenance" />
+      <Button layoutX="31.0" layoutY="250.0" mnemonicParsing="false" onAction="#updateAvailabilityLeaveOnAction" text="Update Availability / Leave" />
+      <Button layoutX="31.0" layoutY="286.0" mnemonicParsing="false" onAction="#reviewFeedbackOnAction" text="Review Feedback" />
+   </children>
+</AnchorPane>

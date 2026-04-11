@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="270.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.nasim.LoginController">
+   <children>
+      <Label layoutX="157.0" layoutY="29.0" prefHeight="18.0" prefWidth="217.0" text="Music Band Management System" />
+      <TextField fx:id="txtUserId" layoutX="68.0" layoutY="108.0" promptText="Enter User Id" />
+      <TextField fx:id="txtPassword" layoutX="67.0" layoutY="142.0" promptText="Enter Password" />
+      <ComboBox fx:id="cmbRole" layoutX="67.0" layoutY="65.0" prefWidth="150.0" promptText="Select Role" />
+      <Button layoutX="67.0" layoutY="177.0" mnemonicParsing="false" onAction="#onActionLogin" text="Login" />
+      <Label layoutX="67.0" layoutY="223.0" />
+      <Label layoutX="68.0" layoutY="223.0" prefHeight="18.0" prefWidth="173.0" textFill="#000000f7" />
+   </children>
+</AnchorPane>

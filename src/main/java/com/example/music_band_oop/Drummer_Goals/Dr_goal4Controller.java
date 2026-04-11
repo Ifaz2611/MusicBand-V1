@@ -1,0 +1,7 @@
+package com.example.music_band_oop.Drummer_Goals;
+
+public class Dr_goal4Controller
+{
+    @javafx.fxml.FXML
+    public void initialize() {
+    }}
