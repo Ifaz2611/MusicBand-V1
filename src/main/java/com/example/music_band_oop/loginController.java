@@ -14,14 +14,12 @@ public class loginController {
     @FXML private TextField UserIdTextField;
     @FXML private TextField UserPasswordTextField;
     @FXML private ComboBox<String> UserTypeComboBox;
-    @FXML private Label labelHeadeing;
 
 
     @FXML
     public void initialize() {
         UserTypeComboBox.getItems().addAll(
-                "Sound Engineer", "Event Coordinator", "Lead Guitarist", "Drummer", "Bassist", "Keyboardist"
-        );
+                "Sound Engineer", "Event Coordinator", "Bassist", "Keyboardist","Lead Guitarist", "Drummer");
     }
 
     @FXML
@@ -43,12 +41,9 @@ public class loginController {
                 return;
             }
 
-            // Determine which dashboard to load based on the user type.
-            // This logic can be easily extended by adding new cases.
             String fxmlFile = getDashboardFileForUserType(userType);
 
             if (fxmlFile == null) {
-                // No dashboard yet for this role – show a friendly message
                 showAlert("Not Implemented",
                         "The dashboard for '" + userType + "' is not yet available.\n" +
                                 "Please check back later or select a different role.",
@@ -56,11 +51,9 @@ public class loginController {
                 return;
             }
 
-            // Debug output (optional, can be removed)
             System.out.println("Looking for: " + fxmlFile);
             System.out.println("Resource URL: " + getClass().getResource(fxmlFile));
 
-            // Switch to the dashboard scene
             Stage stage = (Stage) SignInButtonOnAction.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(root);
@@ -73,10 +66,6 @@ public class loginController {
         }
     }
 
-    /**
-     * Returns the FXML file path for a given user type, or null if not implemented.
-     * Add new user types here as dashboards become available.
-     */
 
     private String getDashboardFileForUserType(String userType) {
         switch (userType) {
@@ -84,12 +73,6 @@ public class loginController {
                 return "DashboardOfUsers/EventCoordinatorDashbroad.fxml";
             case "Sound Engineer":
                 return "DashboardOfUsers/SoundEngineerDashbroad.fxml";
-            // Future user types can be added below:
-            // case "Band Manager":
-            //     return "DashboardOfUsers/BandManagerDashboard.fxml";
-            // case "Lead Vocalist":
-            //     return "DashboardOfUsers/LeadVocalistDashboard.fxml";
-
             case "Bassist":
                 return "BassistUser_KeyboardistUser_FXML/bassist_dashboard.fxml";
 
@@ -97,7 +80,7 @@ public class loginController {
                 return "BassistUser_KeyboardistUser_FXML/keyboardist_dashboard.fxml";
 
                 default:
-                return null; // Dashboard not implemented yet
+                return null;
         }
     }
 
