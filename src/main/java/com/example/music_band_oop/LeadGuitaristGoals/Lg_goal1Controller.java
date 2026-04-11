@@ -1,5 +1,8 @@
 package com.example.music_band_oop.LeadGuitaristGoals;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.TableColumn;
+
 public class Lg_goal1Controller
 {
     @javafx.fxml.FXML

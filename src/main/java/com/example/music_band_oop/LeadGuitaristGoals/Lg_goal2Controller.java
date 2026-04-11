@@ -1,5 +1,7 @@
 package com.example.music_band_oop.LeadGuitaristGoals;
 
+import javafx.event.ActionEvent;
+
 public class Lg_goal2Controller
 {
     @javafx.fxml.FXML
@@ -19,5 +21,8 @@ public class Lg_goal2Controller
 
     @javafx.fxml.FXML
     public void markasPreparedOnAction(ActionEvent actionEvent) {
+    }
+
+    public void loadSetlistOnAction(ActionEvent actionEvent) {
     }
 }

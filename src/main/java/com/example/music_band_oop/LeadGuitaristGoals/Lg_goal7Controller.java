@@ -1,5 +1,9 @@
 package com.example.music_band_oop.LeadGuitaristGoals;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+
 public class Lg_goal7Controller
 {
     @javafx.fxml.FXML

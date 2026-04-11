@@ -1,5 +1,10 @@
 package com.example.music_band_oop.LeadGuitaristGoals;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+
 public class Lg_goal4Controller
 {
     @javafx.fxml.FXML
