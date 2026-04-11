@@ -5,13 +5,11 @@ public class CommunicationRecord {
     private String event;
     private String message;
     private String recipients;
-    private String timestamp;
 
-    public CommunicationRecord(String event, String message, String recipients, String timestamp) {
+    public CommunicationRecord(String event, String message, String recipients) {
         this.event = event;
         this.message = message;
         this.recipients = recipients;
-        this.timestamp = timestamp;
     }
 
     public String getEvent() {
@@ -24,10 +22,6 @@ public class CommunicationRecord {
 
     public String getRecipients() {
         return recipients;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
     }
 
     public void setEvent(String event) {
@@ -43,7 +37,6 @@ public class CommunicationRecord {
     }
 
     public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
     }
 
     @Override
@@ -51,8 +44,7 @@ public class CommunicationRecord {
         return "CommunicationRecord{" +
                 "event='" + event + '\'' +
                 ", message='" + message + '\'' +
-                ", recipients='" + recipients + '\'' +
-                ", timestamp='" + timestamp + '\'' +
+                ", recipients='" + recipients + '\'' + +
                 '}';
     }
 }

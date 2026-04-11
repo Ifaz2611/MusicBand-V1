@@ -1,87 +1,121 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.MonitorChannel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SE_Goal7_ViewController {
 
-    @FXML private TableView<MonitorChannel> monitorTableView;
-    @FXML private TableColumn<MonitorChannel, String> PerformerCol;
-    @FXML private TableColumn<MonitorChannel, Double> LevelCol;
-    @FXML private TextField levelTextField;
+    @FXML private TableView<MonitorChannel> MonitorTableView;
+    @FXML private TableColumn<MonitorChannel, String> MonitorChannelCol;
+    @FXML private TableColumn<MonitorChannel, Double> CurrentLevelCol;
+
+    @FXML private TextField MonitorChannelTextField;
+    @FXML private TextField CurrentLevelTextField;
     @FXML private Label feedbackLabel;
 
-    private ObservableList<MonitorChannel> channelList;
+    private final List<MonitorChannel> channelList = new ArrayList<>();
 
     @FXML
     public void initialize() {
+        MonitorChannelCol.setCellValueFactory(new PropertyValueFactory<>("performerName"));
+        CurrentLevelCol.setCellValueFactory(new PropertyValueFactory<>("currentLevel"));
+        refreshTable();
 
-        PerformerCol.setCellValueFactory(new PropertyValueFactory<>("performerName"));
-        LevelCol.setCellValueFactory(new PropertyValueFactory<>("currentLevel"));
+        MonitorTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
 
-        channelList = FXCollections.observableArrayList(
-                new MonitorChannel("Lead Vocal", 0.0),
-                new MonitorChannel("Guitar",     0.0),
-                new MonitorChannel("Bass",       0.0),
-                new MonitorChannel("Drums",      0.0),
-                new MonitorChannel("Keyboard",   0.0)
-        );
 
-        monitorTableView.setItems(channelList);
-        monitorTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    private void refreshTable() {
+        MonitorTableView.getItems().clear();
+        MonitorTableView.getItems().addAll(channelList);
     }
 
     @FXML
-    public void AdjustButtonOnAction(ActionEvent event) {
-        MonitorChannel selected = monitorTableView.getSelectionModel().getSelectedItem();
-        if (selected == null) { feedbackLabel.setText("Please select a performer/monitor channel first."); return; }
+    public void AddToTheTableButtonOnAction(ActionEvent event) {
+        String channelName = MonitorChannelTextField.getText();
+        String levelText = CurrentLevelTextField.getText();
 
-        String levelText = levelTextField.getText();
-        if (levelText == null || levelText.trim().isEmpty()) { feedbackLabel.setText("Enter a valid level (numeric value)."); return; }
-
-        try {
-            double newLevel = Double.parseDouble(levelText);
-            selected.setCurrentLevel(newLevel);
-            monitorTableView.refresh();
-            feedbackLabel.setText("Adjusted " + selected.getPerformerName() + " to " + newLevel + " dB.");
-        } catch (NumberFormatException e) {
-            feedbackLabel.setText("Invalid number. Please enter a numeric level.");
+        if (channelName.isEmpty()) {
+            feedbackLabel.setText("Please enter a monitor channel name.");
+            return;
         }
-    }
+        if (levelText.isEmpty()) {
+            feedbackLabel.setText("Please enter a current level (dB).");
+            return;
+        }
+        double level;
+        try {
+            level = Double.parseDouble(levelText);
+        } catch (NumberFormatException e) {
+            feedbackLabel.setText("Invalid level – enter a number");
+            return;
+        }
 
-    @FXML
-    public void VerifyButtonOnAction(ActionEvent event) {
-        feedbackLabel.setText("Balance verified on stage. All monitors are set correctly.");
+        MonitorChannel newChannel = new MonitorChannel(channelName, level);
+        channelList.add(newChannel);
+        refreshTable();
+
+        MonitorChannelTextField.clear();
+        CurrentLevelTextField.clear();
+        feedbackLabel.setText("Added");
     }
 
     @FXML
     public void SaveLogButtonOnAction(ActionEvent event) {
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        System.out.print("[" + timestamp + "] Monitor adjustments saved.\n");
-        feedbackLabel.setText("Adjustment log saved at " + timestamp);
+
+
+        /// file write--------------
+        try {
+            File file = new File("MonitorControlLog.bin");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            if (file.exists()){
+                fos = new FileOutputStream(file, true);
+
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            }
+            else {
+                fos = new FileOutputStream(file);
+                System.out.println("new");
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(channelList);
+            oos.close();
+            System.out.println("Object saved");
+        } catch (Exception e) {
+            System.out.println("Not saved");;
+        }
+
+
+        feedbackLabel.setText("Saved Log.");
     }
 
     @FXML
-    public void DashboardButtonOnAction(ActionEvent event) {
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Engineer Dashboard");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Sound Engineer Dashboard");
+            currentStage.show();
         } catch (Exception e) {
-            showAlert("Error", "Failed to load dashboard.");
+            throw new RuntimeException(e);
         }
     }
 

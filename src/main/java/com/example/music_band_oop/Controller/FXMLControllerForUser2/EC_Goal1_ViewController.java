@@ -1,24 +1,19 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
 import com.example.music_band_oop.Controller.mainuser.NewEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.List;
 
-public class EC_Goal1_ViewController implements Initializable {
+public class EC_Goal1_ViewController {
 
     @FXML private DatePicker DateDtatePicker;
     @FXML private TableView<NewEvent> EventTableView;
@@ -28,86 +23,53 @@ public class EC_Goal1_ViewController implements Initializable {
     @FXML private TableColumn<NewEvent, LocalDate> DateCol;
     @FXML private Label messageLabel;
 
-    private final ObservableList<NewEvent> eventList = FXCollections.observableArrayList();
+    private final List<NewEvent> eventList = new ArrayList<>();
     private boolean availabilityVerified = false;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void initialize() {
         EventNameCol.setCellValueFactory(new PropertyValueFactory<>("eventName"));
         DateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         VenueCol.setCellValueFactory(new PropertyValueFactory<>("venue"));
         BandCol.setCellValueFactory(new PropertyValueFactory<>("bandName"));
         AudienceCol.setCellValueFactory(new PropertyValueFactory<>("audienceSize"));
+        refreshTable();
+    }
+
+    private void refreshTable() {
+        EventTableView.getItems().setAll(eventList);
     }
 
     @FXML
     public void VerifyButtonOnAction(ActionEvent actionEvent) {
-        if (!areFieldsFilled()) {
-            setMessage("Please fill all fields.", "red");
-            availabilityVerified = false;
-            return;
-        }
-
-        String venue = VenueFieldTextField.getText().trim();
-        String band = BandNameTextField.getText().trim();
-        LocalDate date = DateDtatePicker.getValue();
-
-        boolean allAvailable = checkVenueAvailability(venue, date)
-                && checkBandAvailability(band, date)
-                && checkEquipmentAvailability(venue, date);
-
-        if (allAvailable) {
-            setMessage("All available! You can now save.", "green");
-            availabilityVerified = true;
-        } else {
-            setMessage("Conflict: Venue/Band/Equipment not available.", "red");
-            availabilityVerified = false;
-        }
+        availabilityVerified = true;
+        setMessage("All available! You can now save.");
     }
-
     @FXML
     public void HandleSaveButtonOnAction(ActionEvent actionEvent) {
         if (!availabilityVerified) {
-            setMessage("Please verify availability first.", "red");
+            setMessage("Please verify availability first.");
             return;
         }
         try {
+            int audienceSize = 0;
+            if (!AudienceSizeTextField.getText().isEmpty()) {
+                audienceSize = Integer.parseInt(AudienceSizeTextField.getText());
+            }
             NewEvent newEvent = new NewEvent(
-                    EventNameTextField.getText().trim(),
+                    EventNameTextField.getText(),
                     DateDtatePicker.getValue(),
-                    VenueFieldTextField.getText().trim(),
-                    BandNameTextField.getText().trim(),
-                    Integer.parseInt(AudienceSizeTextField.getText().trim())
+                    VenueFieldTextField.getText(),
+                    BandNameTextField.getText(),
+                    audienceSize
             );
-            EventTableView.getItems().add(newEvent);
+            eventList.add(newEvent);
+            refreshTable();
             clearForm();
-            setMessage("Event saved successfully!", "green");
-            assignRolesAndNotify(newEvent);
-            EventTableView.refresh();
-
+            setMessage("Event saved successfully!");
         } catch (NumberFormatException e) {
-            setMessage("Audience size must be a number.", "red");
+            setMessage("Audience size must be a number.");
         }
-    }
-
-    @FXML
-    public void DashboardButtonOnAction(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Event Coordinator Dashboard");
-        } catch (Exception e) {
-            showAlert("Error", "Failed to load dashboard.");
-        }
-    }
-
-    private boolean areFieldsFilled() {
-        return !EventNameTextField.getText().trim().isEmpty()
-                && !VenueFieldTextField.getText().trim().isEmpty()
-                && !BandNameTextField.getText().trim().isEmpty()
-                && !AudienceSizeTextField.getText().trim().isEmpty()
-                && DateDtatePicker.getValue() != null;
     }
 
     private void clearForm() {
@@ -119,44 +81,21 @@ public class EC_Goal1_ViewController implements Initializable {
         availabilityVerified = false;
     }
 
-    private void setMessage(String msg, String color) {
+    private void setMessage(String msg) {
         messageLabel.setText(msg);
-        messageLabel.setStyle("-fx-text-fill: " + color + ";");
     }
 
-    private boolean checkVenueAvailability(String venue, LocalDate date)     { return true; }
-    private boolean checkBandAvailability(String band, LocalDate date)       { return true; }
-    private boolean checkEquipmentAvailability(String venue, LocalDate date) { return true; }
-
-    private void assignRolesAndNotify(NewEvent event) {
-        System.out.println("Roles assigned and notification sent for: " + event.getEventName());
+    @FXML
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Event Coordinator Dashboard");
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
-
-    private void showAlert(String title, String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(msg);
-        alert.showAndWait();
-    }
-
-
-    //---------------------------ReUseable Code -----------------------------
-//    @FXML
-//    public void DashboardButtonOnAction(ActionEvent event) {
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(new Scene(root));
-//            stage.setTitle("Event Coordinator Dashboard");
-//        } catch (Exception e) {
-//            showAlert("Error", "Failed to load dashboard.");
-//        }
-//    }
-//    private void showAlert(String title, String msg) {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle(title);
-//        alert.setContentText(msg);
-//        alert.showAndWait();
-//    }
-
 }

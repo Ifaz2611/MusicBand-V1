@@ -11,35 +11,29 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="712.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal6_ViewController">
-
-    <Label layoutX="24.0" layoutY="118.0" prefHeight="25.0" prefWidth="167.0" text="Selected Equipment:">
-      <font>
-         <Font size="18.0" />
-      </font></Label>
-    <Label fx:id="selectedEquipmentLabel" layoutX="482.0" layoutY="110.0" prefHeight="44.0" prefWidth="192.0" />
-    <Label layoutX="20.0" layoutY="173.0" text="Maintenance Due Date:" />
-    <DatePicker fx:id="MaintenanceDueDatePicker" layoutX="160.0" layoutY="168.0" prefWidth="150" />
-    <Label layoutX="20.0" layoutY="208.0" text="Repair Status:" />
-    <ComboBox fx:id="RepairStatusComboBox" layoutX="160.0" layoutY="203.0" prefWidth="150" />
-    <Label layoutX="20.0" layoutY="243.0" text="Notes / Record:" />
-    <TextField fx:id="RecordNotesTextField" layoutX="160.0" layoutY="238.0" prefWidth="300" />
-    <Button layoutX="28.0" layoutY="298.0" onAction="#HandleScheduleMaintenanceButtonOnAction" text="Schedule Maintenance" />
-    <Button layoutX="188.0" layoutY="298.0" onAction="#HandleUpdateRepairStatusButtonOnAction" text="Update Repair Status" />
-    <Button layoutX="348.0" layoutY="298.0" onAction="#HandleSaveRecordButtonOnAction" text="Save Maintenance Record" />
-    <Button layoutX="528.0" layoutY="298.0" onAction="#HandleConfirmUpdateButtonOnAction" text="Confirm Update" />
-   <Button layoutX="594.0" layoutY="655.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
+    <Label fx:id="msgLabel" layoutX="482.0" layoutY="110.0" prefHeight="44.0" prefWidth="192.0" />
+    <Label layoutX="20.0" layoutY="205.0" text="Maintenance Due Date:" />
+    <DatePicker fx:id="MaintenanceDueDatePicker" layoutX="160.0" layoutY="200.0" prefWidth="150" />
+    <Label layoutX="20.0" layoutY="240.0" text="Repair Status:" />
+    <ComboBox fx:id="RepairStatusComboBox" layoutX="160.0" layoutY="235.0" prefWidth="150" />
+    <Label layoutX="20.0" layoutY="275.0" text="Notes / Record:" />
+    <TextField fx:id="RecordNotesTextField" layoutX="160.0" layoutY="270.0" prefWidth="300" />
+    <Button layoutX="537.0" layoutY="356.0" onAction="#SaveRecordFileButtonOnAction" text="Save Record" />
+    <Button layoutX="185.0" layoutY="331.0" onAction="#ConfirmUpdateButtonOnAction" text="Confirm Update" />
+   <Button layoutX="612.0" layoutY="673.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
    <Label alignment="CENTER" layoutX="119.0" layoutY="25.0" prefHeight="57.0" prefWidth="434.0" style="-fx-background-color: cyan;" text="Equipment Dashboard">
       <font>
          <Font name="System Bold Italic" size="26.0" />
       </font></Label>
-    <TableView fx:id="equipmentTableView" layoutX="50.0" layoutY="358.0" prefHeight="250" prefWidth="602.0">
+    <TableView fx:id="equipmentTableView" layoutX="35.0" layoutY="404.0" prefHeight="250" prefWidth="602.0">
         <columns>
-            <TableColumn fx:id="IdCol" prefWidth="50" text="ID" />
             <TableColumn fx:id="NameCol" prefWidth="150" text="Name" />
-            <TableColumn fx:id="TypeCol" prefWidth="100" text="Type" />
-            <TableColumn fx:id="DueDateCol" prefWidth="150" text="Maintenance Due Date" />
-            <TableColumn fx:id="RepairStatusCol" prefWidth="150" text="Repair Status" />
+            <TableColumn fx:id="NotesCol" prefWidth="100" text="Notes" />
+            <TableColumn fx:id="MaintenanceDueDateCol" prefWidth="150" text="Maintenance Due Date" />
+            <TableColumn fx:id="RepairStatusCol" prefWidth="201.0" text="Repair Status" />
         </columns>
     </TableView>
+   <Label layoutX="24.0" layoutY="165.0" text="Name" />
+   <TextField fx:id="NameTextField" layoutX="161.0" layoutY="161.0" />
 
 </AnchorPane>

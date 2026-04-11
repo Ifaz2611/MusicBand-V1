@@ -1,6 +1,8 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class BudgetItem {
+import java.io.Serializable;
+
+public class BudgetItem implements Serializable {
     private String costType;
     private double amount;
     private boolean paid;

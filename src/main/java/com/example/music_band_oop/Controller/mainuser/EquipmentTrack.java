@@ -1,8 +1,10 @@
 package com.example.music_band_oop.Controller.mainuser;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class EquipmentTrack {
+public class EquipmentTrack implements Serializable {
+
     private int id;
     private String name;
     private String type;
@@ -10,7 +12,10 @@ public class EquipmentTrack {
     private String repairStatus;
     private String notes;
 
-    public EquipmentTrack(int id, String name, String type, LocalDate maintenanceDueDate, String repairStatus, String notes) {
+    public EquipmentTrack(int id, String name, String type,
+                          LocalDate maintenanceDueDate,
+                          String repairStatus,
+                          String notes) {
         this.id = id;
         this.name = name;
         this.type = type;

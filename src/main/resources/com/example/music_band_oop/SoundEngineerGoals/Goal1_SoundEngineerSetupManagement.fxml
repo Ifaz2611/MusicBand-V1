@@ -30,7 +30,7 @@
          <TableColumn fx:id="EffectTableColumn" maxWidth="1670.0" minWidth="30.0" prefWidth="167.0" text="Effect" />
         </columns>
     </TableView>
-    <Label fx:id="equipmentStatusLabel" layoutX="20.0" layoutY="340.0" textFill="red" />
+    <Label fx:id="equipmentStatusLabel" layoutX="20.0" layoutY="340.0" />
     <Label layoutX="529.0" layoutY="172.0" prefHeight="25.0" prefWidth="94.0" text="Sound Settings">
       <font>
          <Font name="System Bold" size="12.0" />

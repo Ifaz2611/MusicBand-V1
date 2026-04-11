@@ -1,139 +1,159 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser2;
 
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import com.example.music_band_oop.Controller.mainuser.Payment;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EC_Goal8_ViewController {
 
-    @FXML private ComboBox<String> EventComboBox;
     @FXML private TableView<Payment> PaymentTableView;
-    @FXML private TableColumn<Payment, String> VendorNameCol, ExpenseTypeCol, PaymentCol;
+    @FXML private TableColumn<Payment, String> VendorRecipientCol;
+    @FXML private TableColumn<Payment, String> ExpenseTypeCol;
     @FXML private TableColumn<Payment, Double> AmountCol;
+    @FXML private TableColumn<Payment, String> PaymentStatusCol;
     @FXML private TableColumn<Payment, Boolean> VerifiedCol;
-    @FXML private TextArea NotesTextArea;
+    @FXML private TextField VendorTextField;
+    @FXML private TextField AmountTextField;
+    @FXML private ComboBox<String> ExpenseTypeComboBox;
+    @FXML private ComboBox<String> PaymentStatusComboBox;
+    @FXML private ComboBox<Boolean> VerifiedComboBox;
 
-    private final ObservableList<Payment> paymentList = FXCollections.observableArrayList();
+    private final List<Payment> paymentList = new ArrayList<>();
+    private final List<Payment> tempList3 = new ArrayList<>();
 
     @FXML
     public void initialize() {
-        EventComboBox.setItems(FXCollections.observableArrayList("Annual Conference 2025", "Summer Music Fest", "Corporate Gala Night"));
-        VendorNameCol.setCellValueFactory(new PropertyValueFactory<>("vendorName"));
+
+        VendorRecipientCol.setCellValueFactory(new PropertyValueFactory<>("vendorName"));
         ExpenseTypeCol.setCellValueFactory(new PropertyValueFactory<>("expenseType"));
         AmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        PaymentCol.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
+        PaymentStatusCol.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
         VerifiedCol.setCellValueFactory(new PropertyValueFactory<>("verified"));
-        VerifiedCol.setCellFactory(col -> new TableCell<>() {
-            @Override
-            protected void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? "" : (item ? "Yes" : "No"));
+
+        ExpenseTypeComboBox.getItems().addAll("Food", "Security", "Equipment", "Venue");
+        PaymentStatusComboBox.getItems().addAll("Pending", "Paid");
+        VerifiedComboBox.getItems().addAll(true, false);
+
+        /// FILE READ --------------------
+
+        File file = new File("PaymentLog.bin");
+        if (!file.exists()) {
+            System.out.println("File not found");
+        } else {
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                while (true) {
+                    try {
+                        Payment p = (Payment) ois.readObject();
+                        tempList3.add(p);
+                    } catch (EOFException e) {
+                        System.out.println("Bin file read!");
+                        break;
+                    }
+                }
+                ois.close();
+            } catch (Exception e) {
+                System.out.println("error");
             }
-        });
-        PaymentTableView.setItems(paymentList);
+        }
+
+        paymentList.addAll(tempList3);
+        refreshTable();
+    }
+
+    private void refreshTable() {
+        PaymentTableView.getItems().clear();
+        PaymentTableView.getItems().addAll(paymentList);
     }
 
     @FXML
     public void LoadPaymentButtonOnAction(ActionEvent e) {
-        String event = getSelectedEvent(); if (event == null) return;
-        paymentList.setAll(
-                new Payment("ABC Catering",     "Food & Beverage", 2500.00, "Pending", false),
-                new Payment("SecureGuard",      "Security",        1200.00, "Paid",    false),
-                new Payment("Pro AV Equipment", "A/V Rental",       800.00, "Pending", false),
-                new Payment("Venue Hall",       "Venue Rental",    3000.00, "Paid",    false)
-        );
-        showAlert("Payments Loaded", "Loaded payment records for " + event);
-    }
 
-    @FXML
-    public void VerifyPaymentButtonOnAction(ActionEvent e) {
-        Payment p = getSelectedPayment(); if (p == null) return;
-        p.setVerified(true);
-        PaymentTableView.refresh();
-        showAlert("Verified", "Payment for " + p.getVendorName() + " has been verified.");
-    }
+        String vendor = VendorTextField.getText();
+        String expense = ExpenseTypeComboBox.getValue();
+        String amountText = AmountTextField.getText();
+        String status = PaymentStatusComboBox.getValue();
+        Boolean verified = VerifiedComboBox.getValue();
 
-    @FXML
-    public void UpdatePaymentRecordButtonOnAction(ActionEvent e) {
-        Payment p = getSelectedPayment(); if (p == null) return;
-        ChoiceDialog<String> dialog = new ChoiceDialog<>(p.getPaymentStatus(), "Pending", "Paid", "Verified");
-        dialog.setTitle("Update Payment Status");
-        dialog.setHeaderText("Update status for " + p.getVendorName());
-        dialog.setContentText("New status:");
-        dialog.showAndWait().ifPresent(status -> {
-            p.setPaymentStatus(status);
-            PaymentTableView.refresh();
-            showAlert("Updated", "Payment status changed to " + status);
-        });
-    }
+        if (vendor.isEmpty() || expense == null || amountText.isEmpty() || status == null || verified == null) {
+            showAlert("Missing Info", "Please fill all fields.");
+            return;
+        }
 
-    @FXML
-    public void WriteEventNotesButtonOnAction(ActionEvent e) {
-        if (NotesTextArea.getText().trim().isEmpty())
-            showAlert("No Notes", "Please write some notes or lessons learned.");
-        else
-            showAlert("Notes Saved", "Event notes saved successfully.");
-    }
+        double amount;
 
-    @FXML
-    public void SendThankYouMessagesButtonOnAction(ActionEvent e) {
-        showAlert("Thank-You Messages", "Thank-you messages sent to all team members and vendors.");
-    }
-
-    @FXML
-    public void GenerateReportButtonOnAction(ActionEvent e) {
-
-
-//        String event = getSelectedEvent(); if (event == null) return;
-//        StringBuilder report = new StringBuilder("Event Closing Report for: ").append(event).append("\n\nPayment Summary:\n");
-//        double total = 0;
-//        for (Payment p : paymentList) {
-//            report.append("- ").append(p.getVendorName()).append(": $").append(p.getAmount())
-//                    .append(" (").append(p.getPaymentStatus()).append(")\n");
-//            total += p.getAmount();
-//        }
-//        report.append("\nTotal Expenses: $").append(total)
-//                .append("\n\nNotes: ").append(NotesTextArea.getText().isEmpty() ? "None" : NotesTextArea.getText());
-//        showAlert("Event Closing Report", report.toString());
-    }
-
-    public void DashboardButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Event Coordinator Dashboard");
+            amount = Double.parseDouble(amountText);
+        } catch (NumberFormatException ex) {
+            showAlert("Invalid Input", "Amount must be a number.");
+            return;
+        }
+
+        Payment payment = new Payment(vendor, expense, amount, status, verified);
+
+        paymentList.add(payment);
+        refreshTable();
+
+        /// FILE WRITE ------------------------
+
+        try {
+            File file = new File("PaymentLog.bin");
+            FileOutputStream fos;
+            ObjectOutputStream oos;
+
+            if (file.exists()) {
+                fos = new FileOutputStream(file, true);
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            } else {
+                fos = new FileOutputStream(file);
+                oos = new ObjectOutputStream(fos);
+                System.out.println("new");
+            }
+
+            oos.writeObject(payment);
+            oos.close();
+
+            System.out.println("Object saved");
+
+        } catch (Exception ex) {
+            System.out.println("Not saved");
+        }
+
+        VendorTextField.clear();
+        AmountTextField.clear();
+        ExpenseTypeComboBox.setValue(null);
+        PaymentStatusComboBox.setValue(null);
+        VerifiedComboBox.setValue(null);
+    }
+
+    @FXML
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/EventCoordinatorDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Event Coordinator Dashboard");
+            currentStage.show();
         } catch (Exception e) {
-            showAlert("Error", "Failed to load dashboard.");
+            throw new RuntimeException(e);
         }
     }
+
     private void showAlert(String title, String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
-        alert.showAndWait();
-    }
 
-    private String getSelectedEvent() {
-        String event = EventComboBox.getValue();
-        if (event == null || event.isEmpty()) { showAlert("No Event", "Please select a completed event."); return null; }
-        return event;
+        new Alert(Alert.AlertType.INFORMATION, msg).showAndWait();
     }
-
-    private Payment getSelectedPayment() {
-        Payment p = PaymentTableView.getSelectionModel().getSelectedItem();
-        if (p == null) showAlert("No Selection", "Select a payment record first.");
-        return p;
-    }
-
 }

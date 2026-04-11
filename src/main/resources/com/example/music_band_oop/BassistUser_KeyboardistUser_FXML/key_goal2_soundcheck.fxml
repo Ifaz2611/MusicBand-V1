@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="536.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.KeyGoal2UploadController">
+
+    <children>
+        <!-- Title -->
+        <Label layoutX="40.0" layoutY="26.0" text="Upload Demo / Session File" textFill="#ab4f4f">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- File Selection -->
+        <Label layoutX="40.0" layoutY="75.0" text="Audio / MIDI File:" textFill="#ab4f4f" />
+        <Button layoutX="170.0" layoutY="71.0" onAction="#chooseFileBtn" text="Browse..." textFill="#ab4f4f" />
+        <Label fx:id="fileNameLabel" layoutX="242.0" layoutY="75.0" text="No file chosen" />
+        <Label layoutX="40.0" layoutY="105.0" text="(Allowed: mp3, wav, midi, max 50MB)" textFill="#00000082" />
+
+        <!-- Recording Title -->
+        <Label layoutX="396.0" layoutY="75.0" text="Recording Title:" textFill="#ab4f4f" />
+        <TextField fx:id="titleTextField" layoutX="396.0" layoutY="101.0" prefWidth="350.0" promptText="e.g., Synth demo for 'Final Countdown'" />
+
+        <!-- Description / Notes -->
+        <Label layoutX="40.0" layoutY="139.0" text="Description / Notes:" textFill="#ab4f4f" />
+        <TextArea fx:id="descriptionTextArea" layoutX="40.0" layoutY="159.0" prefHeight="100.0" prefWidth="706.0" promptText="Describe the recording – practice session, new riff, cover, original composition, rehearsal reference..." />
+
+        <!-- Related Event (optional) -->
+        <Label layoutX="42.0" layoutY="279.0" text="Related Event (optional):" textFill="#ab4f4f" />
+        <ComboBox fx:id="eventComboBox" layoutX="182.0" layoutY="275.0" prefWidth="250.0" promptText="Select event if applicable" />
+
+        <!-- Recording Type (extra) -->
+        <Label layoutX="42.0" layoutY="329.0" text="Recording Type:" textFill="#ab4f4f" />
+        <ComboBox fx:id="typeComboBox" layoutX="180.0" layoutY="325.0" prefHeight="25.0" prefWidth="250.0" promptText="Select type">
+            <!-- items will be added in controller -->
+        </ComboBox>
+
+        <!-- Separator -->
+        <Separator layoutX="46.0" layoutY="388.0" prefHeight="2.0" prefWidth="706.0" />
+
+        <!-- Upload Button -->
+        <Button layoutX="465.0" layoutY="275.0" onAction="#uploadBtn" prefHeight="75.0" prefWidth="281.0" text="Upload File" textFill="#ab4f4f" />
+
+        <!-- Status / Message Area -->
+        <Label layoutX="44.0" layoutY="412.0" text="Status: Pending Review" textFill="#000000b9" />
+        <Label fx:id="messageLabel" layoutX="42.0" layoutY="471.0" prefHeight="30.0" prefWidth="706.0" text="" />
+
+        <!-- Notifications info -->
+        <Label layoutX="44.0" layoutY="445.0" text="After upload: Band Manager and Sound Engineer will be notified." textFill="#0000009a" />
+    </children>
+</AnchorPane>

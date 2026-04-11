@@ -1,130 +1,98 @@
 package com.example.music_band_oop.Controller.FXMLControllerForUser1;
 
 import com.example.music_band_oop.Controller.mainuser.IssueLog;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.example.music_band_oop.Controller.nonuser.AppendableObjectOutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
-public class SE_Goal4_ViewController implements Initializable {
+public class SE_Goal4_ViewController{
 
     @FXML private ComboBox<String> ActionComboBox;
     @FXML private ComboBox<String> ProblemTypeComboBox;
     @FXML private TextField AffectedChannelTextField;
     @FXML private TableView<IssueLog> logTableView;
-    @FXML private TableColumn<IssueLog, String> timestampCol;
     @FXML private TableColumn<IssueLog, String> channelCol;
     @FXML private TableColumn<IssueLog, String> problemCol;
     @FXML private TableColumn<IssueLog, String> actionCol;
-    @FXML private TableColumn<IssueLog, String> statusCol;
 
-    private ObservableList<IssueLog> logList = FXCollections.observableArrayList();
+    private ArrayList<IssueLog> logList = new ArrayList<>();
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void initialize() {
+        ProblemTypeComboBox.getItems().addAll("Feedback", "Noise", "Dead mic", "Distortion");
+        ActionComboBox.getItems().addAll("Adjust gain/EQ", "Replace cable", "Swap mic", "Mute frequency");
 
-        ProblemTypeComboBox.setItems(FXCollections.observableArrayList("Feedback", "Noise", "Dead mic", "Distortion"));
-
-        ActionComboBox.setItems(FXCollections.observableArrayList("Adjust gain/EQ", "Replace cable", "Swap mic", "Mute frequency"));
-
-        timestampCol.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         channelCol.setCellValueFactory(new PropertyValueFactory<>("channel"));
         problemCol.setCellValueFactory(new PropertyValueFactory<>("problem"));
         actionCol.setCellValueFactory(new PropertyValueFactory<>("action"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        logTableView.setItems(logList);
     }
 
-    private String getChannel() {
-        return AffectedChannelTextField.getText().trim();
-    }
-    private boolean isChannelEmpty() {
-        if (getChannel().isEmpty()) {
-            showAlert("Missing", "Enter channel first.");
-            return true;
-        }
-        return false;
-    }
-    @FXML
-    public void detectProblemOnAction(ActionEvent event) {
-        String channel = getChannel();
-        String problem = ProblemTypeComboBox.getValue();
-
-        if (channel.isEmpty() || problem == null) {
-            showAlert("Missing Data", "Enter channel and select problem.");
-            return;
-        }
-
-        showAlert("Detected", problem + " on " + channel);
-    }
-    @FXML
-    public void adjustSettingsOnAction(ActionEvent event) {
-        if (isChannelEmpty()) return;
-        showAlert("Adjusted", "Settings adjusted for " + getChannel());
-    }
-
-    @FXML
-    public void replaceEquipmentOnAction(ActionEvent event) {
-        if (isChannelEmpty()) return;
-        showAlert("Replaced", "Equipment replaced on " + getChannel());
-    }
-
-    @FXML
-    public void verifyResolutionOnAction(ActionEvent event) {
-        if (isChannelEmpty()) return;
-        showAlert("Verified", "Problem resolved on " + getChannel());
-    }
     @FXML
     public void saveLogbuttonOnAction(ActionEvent event) {
-        String channel = getChannel();
+        String channel = AffectedChannelTextField.getText();
         String problem = ProblemTypeComboBox.getValue();
 
         if (channel.isEmpty() || problem == null) {
-            showAlert("Missing", "Cannot save log – need channel and problem.");
             return;
         }
 
         String action = ActionComboBox.getValue() != null ? ActionComboBox.getValue() : "none";
-
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
-        logList.add(new IssueLog(timestamp, channel, problem, action, "Resolved"));
+        logList.add(new IssueLog("", channel, problem, action, "Resolved"));
+        logTableView.getItems().clear();
+        logTableView.getItems().addAll(logList);
         AffectedChannelTextField.clear();
         ProblemTypeComboBox.getSelectionModel().clearSelection();
         ActionComboBox.getSelectionModel().clearSelection();
 
-        showAlert("Saved", "Issue log saved.");
-    }
-    @FXML
-    public void DashboardButtonOnAction(ActionEvent event) {
+
+        /// File write --------------
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sound Engineer Dashboard");
+            File file = new File("AudioIssuesLog.bin");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            if (file.exists()){
+                fos = new FileOutputStream(file, true);
+
+                oos = new AppendableObjectOutputStream(fos);
+                System.out.println("appendable");
+            }
+            else {
+                fos = new FileOutputStream(file);
+                System.out.println("new");
+                oos = new ObjectOutputStream(fos);
+            }
+            oos.writeObject(logList);
+            oos.close();
+            System.out.println("Object saved");
         } catch (Exception e) {
-            showAlert("Error", "Failed to load dashboard.");
+            System.out.println("Not saved");;
         }
+
     }
 
-    private void showAlert(String title, String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(msg);
-        alert.showAndWait();
+    @FXML
+    public void DashboardButtonOnAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/music_band_oop/DashboardOfUsers/SoundEngineerDashbroad.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load());
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.setScene(dashboardScene);
+            currentStage.setTitle("Sound Engineer Dashboard");
+            currentStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="542.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller.SetlistController">
+
+    <children>
+        <!-- Title -->
+        <Label fx:id="titleLabel" layoutX="29.0" layoutY="37.0" text="Event Setlist" textFill="#dd2e2e">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+
+        <!-- Filter section -->
+        <Label fx:id="filterLabel" layoutX="455.0" layoutY="94.0" text="Filter by Song Title:" textFill="#ab4f4f" />
+        <TextField fx:id="filterTextField" layoutX="568.0" layoutY="90.0" />
+        <Button layoutX="741.0" layoutY="90.0" onAction="#filterButton" text="Filter" textFill="#ab4f4f" />
+        <Button layoutX="805.0" layoutY="90.0" onAction="#resetFilterButton" text="Reset" textFill="#ab4f4f" />
+
+        <!-- Calculation button -->
+        <Button layoutX="29.0" layoutY="90.0" onAction="#countSongsButton" text="Count Songs" textFill="#ab4f4f" />
+        <Label fx:id="countLabel" layoutX="122.0" layoutY="94.0" text="Total songs: 0" textFill="#ab4f4f" />
+
+        <!-- TableView for setlist -->
+        <TableView fx:id="setlistTableView" layoutX="29.0" layoutY="137.0" prefHeight="291.0" prefWidth="821.0">
+            <columns>
+                <TableColumn fx:id="eventNameColumn" prefWidth="148.0" text="Event Name" />
+                <TableColumn fx:id="songTitleColumn" prefWidth="173.0" text="Song Title" />
+                <TableColumn fx:id="tempoColumn" prefWidth="149.0" text="Tempo (BPM)" />
+                <TableColumn fx:id="keyColumn" prefWidth="144.0" text="Key" />
+                <TableColumn fx:id="notesColumn" prefWidth="206.0" text="Bass Notes" />
+            </columns>
+        </TableView>
+
+        <!-- Message label -->
+        <Label fx:id="messageLabel" layoutX="29.0" layoutY="440.0" prefHeight="46.0" prefWidth="229.0" textFill="#bc3e3e">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+    </children>
+
+</AnchorPane>

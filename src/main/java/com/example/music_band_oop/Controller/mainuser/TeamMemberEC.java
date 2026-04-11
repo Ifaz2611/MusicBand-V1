@@ -1,24 +1,27 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class TeamMemberEC {
-    private String name;
+import java.io.Serializable;
+
+public class TeamMemberEC implements Serializable {
+
+    private String event;
     private String role;
     private boolean arrived;
     private boolean ready;
 
-    public TeamMemberEC(String name, String role, boolean arrived, boolean ready) {
-        this.name = name;
+    public TeamMemberEC(String event, String role, boolean arrived, boolean ready) {
+        this.event = event;
         this.role = role;
         this.arrived = arrived;
         this.ready = ready;
     }
 
-    public String getName() {
-        return name;
+    public String getEvent() {
+        return event;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEvent(String event) {
+        this.event = event;
     }
 
     public String getRole() {
@@ -48,7 +51,7 @@ public class TeamMemberEC {
     @Override
     public String toString() {
         return "TeamMemberEC{" +
-                "name='" + name + '\'' +
+                "event='" + event + '\'' +
                 ", role='" + role + '\'' +
                 ", arrived=" + arrived +
                 ", ready=" + ready +

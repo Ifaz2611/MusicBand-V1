@@ -11,20 +11,18 @@
 
 <AnchorPane prefHeight="578.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal3_ViewController">
     <Label layoutX="35.0" layoutY="100.0" text="Event Name:" />
-    <TextField fx:id="EventTextField" layoutX="107.0" layoutY="98.0" prefWidth="200" promptText="Enter assigned event" />
+    <TextField fx:id="EventTextField" layoutX="107.0" layoutY="98.0" prefWidth="200" />
     <CheckBox fx:id="performerCheck" layoutX="40.0" layoutY="156.0" text="Performer Available" />
     <CheckBox fx:id="equipmentCheck" layoutX="198.0" layoutY="156.0" text="Equipment Ready" />
     <TableView fx:id="deviceTable" layoutX="69.0" layoutY="351.0" prefHeight="150" prefWidth="371.0">
         <columns>
             <TableColumn fx:id="EventNameCol" prefWidth="150" text="Event Name" />
             <TableColumn fx:id="TeststatusCol" prefWidth="120" text="Test Status" />
-            <TableColumn fx:id="NewlevelCol" prefWidth="100" text="Sound Level" />
+            <TableColumn fx:id="SoundLevelCol" prefWidth="100" text="Sound Level" />
         </columns>
     </TableView>
-    <Button fx:id="testBtn" layoutX="391.0" layoutY="131.0" prefWidth="120" text="Test Selected" />
-    <Button fx:id="adjustBtn" layoutX="391.0" layoutY="173.0" prefWidth="120" text="Adjust Level" />
-    <Label layoutX="35.0" layoutY="208.0" text="New Level (0-100):" />
-    <TextField fx:id="NextLevelSoundCheckTextField" layoutX="140.0" layoutY="204.0" prefWidth="80" promptText="0-100" />
+    <Label layoutX="35.0" layoutY="208.0" text="Sound Level (0-100):" />
+    <TextField fx:id="NextLevelSoundCheckTextField" layoutX="149.0" layoutY="204.0" prefWidth="80" />
     <Label fx:id="confirmLabel" layoutX="362.0" layoutY="78.0" prefHeight="41.0" prefWidth="266.0" style="-fx-text-fill: green;" />
    <Label alignment="CENTER" layoutX="43.0" layoutY="30.0" prefHeight="34.0" prefWidth="522.0" style="-fx-background-color: cyan;" text="Sound Check Dashboard">
       <font>

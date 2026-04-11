@@ -20,7 +20,7 @@
     <TextField fx:id="BandNameTextField" layoutX="150.0" layoutY="236.0" prefWidth="200" />
     <TextField fx:id="AudienceSizeTextField" layoutX="150.0" layoutY="276.0" prefWidth="200" />
     <Button layoutX="115.0" layoutY="337.0" onAction="#VerifyButtonOnAction" text="Verify Availability" />
-    <Label fx:id="messageLabel" layoutX="483.0" layoutY="117.0" prefHeight="48.0" prefWidth="200.0" textFill="red" />
+    <Label fx:id="messageLabel" layoutX="483.0" layoutY="117.0" prefHeight="48.0" prefWidth="200.0" />
     <TableView fx:id="EventTableView" layoutX="20.0" layoutY="400.0" prefHeight="150" prefWidth="661.0">
         <columns>
             <TableColumn fx:id="EventNameCol" prefWidth="137.0" text="Event Name" />

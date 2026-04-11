@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="529.0" prefWidth="971.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <!-- Title -->
+        <Label layoutX="291.0" layoutY="90.0" text="Welcome Fahmida" textFill="#d34141">
+            <font>
+                <Font name="Arial Black" size="38.0" />
+            </font>
+        </Label>
+
+        <!-- Subtitle -->
+        <Label layoutX="350.0" layoutY="160.0" text="Use the menu on the left to:">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+
+        <!-- List Items (Aligned Properly) -->
+        <Label layoutX="360.0" layoutY="210.0" text="• Schedule Rehearsal" textFill="#d75d5d">
+            <font><Font size="14" /></font>
+        </Label>
+
+        <Label layoutX="360.0" layoutY="235.0" text="• Check Sound" textFill="#d75d5d">
+            <font><Font size="14" /></font>
+        </Label>
+
+        <Label layoutX="360.0" layoutY="260.0" text="• Song Arangement" textFill="#d75d5d">
+            <font><Font size="14" /></font>
+        </Label>
+
+        <Label layoutX="360.0" layoutY="285.0" text="• Sound setup" textFill="#d75d5d">
+            <font><Font size="14" /></font>
+        </Label>
+
+        <Label layoutX="360.0" layoutY="310.0" text="• Upload recording" textFill="#d75d5d">
+            <font><Font size="14" /></font>
+        </Label>
+
+        <Label layoutX="360.0" layoutY="335.0" text="• Leave Request" textFill="#d75d5d">
+            <font><Font size="14" /></font>
+        </Label>
+      <Line endX="280.0" endY="-1.0" layoutX="394.0" layoutY="148.0" startX="-100.0" stroke="#5c54547a" />
+
+    </children>
+</AnchorPane>

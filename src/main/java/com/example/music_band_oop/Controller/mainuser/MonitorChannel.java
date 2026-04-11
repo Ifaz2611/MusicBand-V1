@@ -1,6 +1,8 @@
 package com.example.music_band_oop.Controller.mainuser;
 
-public class MonitorChannel {
+import java.io.Serializable;
+
+public class MonitorChannel implements Serializable {
     private String performerName;
     private double currentLevel;
 
