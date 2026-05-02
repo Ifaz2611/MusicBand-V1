@@ -18,6 +18,5 @@ module com.example.music_band_oop {
     opens com.example.music_band_oop.Controller.mainuser to javafx.base, javafx.fxml;
     exports com.example.music_band_oop.Controller.mainuser;
 
-    opens com.example.music_band_oop.Controller.BassistUser_KeyboardistUser_Controller to javafx.fxml, javafx.base;
 
 }

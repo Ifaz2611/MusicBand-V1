@@ -10,16 +10,16 @@ import javafx.fxml.FXMLLoader;
 
 public class loginController {
 
-    @FXML private Button SignInButtonOnAction;
     @FXML private TextField UserIdTextField;
-    @FXML private TextField UserPasswordTextField;
     @FXML private ComboBox<String> UserTypeComboBox;
-
+    @FXML private PasswordField userPasswordField;
+    @FXML private Label labelHeadeing;
 
     @FXML
     public void initialize() {
         UserTypeComboBox.getItems().addAll(
-                "Sound Engineer", "Event Coordinator", "Bassist", "Keyboardist","Lead Guitarist", "Drummer");
+                "Sound Engineer", "Event Coordinator"
+        );
     }
 
     @FXML
@@ -27,17 +27,33 @@ public class loginController {
         try {
             String userId = UserIdTextField.getText();
             String userType = UserTypeComboBox.getValue();
-            String userPass = UserPasswordTextField.getText();
-            if (userId.isEmpty()) {
-                showAlert("Error", "Please enter User ID", AlertType.ERROR);
+            String userPass = userPasswordField.getText();
+
+            // ✅ USER ID VALIDATION (must be 4 or 7 digits)
+            if (userId == null || !userId.matches("\\d{4}|\\d{7}")) {
+                showAlert("Error", "User ID must be 4 or 7 digits", AlertType.ERROR);
                 return;
             }
-            if (userType.isEmpty()) {
+
+            // ✅ USER TYPE VALIDATION
+            if (userType == null) {
                 showAlert("Error", "Please select User Type", AlertType.ERROR);
                 return;
             }
-            if (userPass.isEmpty()) {
-                showAlert("Error", "Please select User Password", AlertType.ERROR);
+
+//            // ✅ PASSWORD VALIDATION
+//            if (!isValidPassword(userPass)) {
+//                showAlert("Error",
+//                        "Password must be at least 6 characters and include:\n" +
+//                                "- One uppercase letter\n" +
+//                                "- One number",
+//                        AlertType.ERROR);
+//                return;
+//            }
+
+            // ✅ ROLE-BASED PASSWORD CHECK
+            if (!checkLogin(userId, userType, userPass)) {
+                showAlert("Login Failed", "Invalid credentials", AlertType.ERROR);
                 return;
             }
 
@@ -45,19 +61,16 @@ public class loginController {
 
             if (fxmlFile == null) {
                 showAlert("Not Implemented",
-                        "The dashboard for '" + userType + "' is not yet available.\n" +
-                                "Please check back later or select a different role.",
+                        "Dashboard for " + userType + " not available",
                         AlertType.WARNING);
                 return;
             }
 
-            System.out.println("Looking for: " + fxmlFile);
-            System.out.println("Resource URL: " + getClass().getResource(fxmlFile));
+            // ✅ FIX: get stage correctly
+            Stage stage = (Stage) UserIdTextField.getScene().getWindow();
 
-            Stage stage = (Stage) SignInButtonOnAction.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.show();
 
         } catch (Exception e) {
@@ -66,6 +79,25 @@ public class loginController {
         }
     }
 
+//    // 🔐 PASSWORD RULE
+//    private boolean isValidPassword(String password) {
+//        return password != null &&
+//                password.matches("^(?=.*[A-Z])(?=.*\\d).{6,}$");
+//    }
+
+    // 🔐 SIMPLE LOGIN LOGIC (you can replace with DB later)
+    private boolean checkLogin(String userId, String userType, String password) {
+
+        // Example credentials
+        if (userType.equals("Sound Engineer")) {
+            return userId.equals("1111") && password.equals("1111");
+        }
+        else if (userType.equals("Event Coordinator")) {
+            return userId.equals("2222") && password.equals("2222");
+        }
+
+        return false;
+    }
 
     private String getDashboardFileForUserType(String userType) {
         switch (userType) {
@@ -73,13 +105,7 @@ public class loginController {
                 return "DashboardOfUsers/EventCoordinatorDashbroad.fxml";
             case "Sound Engineer":
                 return "DashboardOfUsers/SoundEngineerDashbroad.fxml";
-            case "Bassist":
-                return "BassistUser_KeyboardistUser_FXML/bassist_dashboard.fxml";
-
-            case "Keyboardist":
-                return "BassistUser_KeyboardistUser_FXML/keyboardist_dashboard.fxml";
-
-                default:
+            default:
                 return null;
         }
     }
