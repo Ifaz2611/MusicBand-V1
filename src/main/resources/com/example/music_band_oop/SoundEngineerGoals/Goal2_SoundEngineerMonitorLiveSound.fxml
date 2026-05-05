@@ -14,23 +14,24 @@
       <font>
          <Font name="System Italic" size="20.0" />
       </font></Label>
-    <TableView fx:id="channelTable" layoutX="14.0" layoutY="136.0" prefHeight="200" prefWidth="350">
+    <TableView fx:id="channelTable" layoutX="46.0" layoutY="220.0" prefHeight="200" prefWidth="350">
         <columns>
             <TableColumn fx:id="ChannelColumn" prefWidth="100" text="Channel" />
             <TableColumn fx:id="LevelColumn" prefWidth="100" text="Level (dB)" />
             <TableColumn fx:id="StatusCloumn" prefWidth="150" text="Status" />
         </columns>
     </TableView>
-    <Label layoutX="477.0" layoutY="119.0" text="Detected Issues:" />
-    <Label layoutX="40.0" layoutY="359.0" text="Adjust Channel:" />
-    <ComboBox fx:id="AdjustChannelCombo" layoutX="40.0" layoutY="387.0" prefWidth="120" />
-    <Label layoutX="202.0" layoutY="359.0" text="New Level (dB):" />
-    <TextField fx:id="levelTextField" layoutX="203.0" layoutY="387.0" prefWidth="80" />
-    <Button fx:id="applyBtn" layoutX="119.0" layoutY="438.0" onAction="#HandleApplyAdjustmentButtonOnAction" text="Apply Adjustment" />
-    <Button fx:id="saveLogsBtn" layoutX="140.0" layoutY="492.0" onAction="#HandleSaveLogsButtonOnAction" text="Save Logs" />
+    <Label layoutX="477.0" layoutY="154.0" text="Detected Issues:" />
+    <Label layoutX="40.0" layoutY="124.0" text="Adjust Channel:" />
+    <ComboBox fx:id="AdjustChannelCombo" layoutX="40.0" layoutY="152.0" prefWidth="120" />
+    <Label layoutX="202.0" layoutY="124.0" text="New Level (dB):" />
+    <TextField fx:id="levelTextField" layoutX="203.0" layoutY="152.0" prefWidth="80" />
+    <Button fx:id="applyBtn" layoutX="409.0" layoutY="307.0" onAction="#HandleApplyAdjustmentButtonOnAction" text="Apply Adjustment" />
+    <Button fx:id="saveLogsBtn" layoutX="430.0" layoutY="373.0" onAction="#HandleSaveLogsButtonOnAction" text="Save Logs" />
     <Label fx:id="statusLabel" layoutX="477.0" layoutY="162.0" prefHeight="39.0" prefWidth="132.0" style="-fx-text-fill: gray;" />
    <Button layoutX="553.0" layoutY="505.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
-   <Label layoutX="314.0" layoutY="359.0" text="Status" />
-   <ComboBox fx:id="StatusComboBox" layoutX="314.0" layoutY="387.0" prefHeight="25.0" prefWidth="101.0" />
+   <Label layoutX="314.0" layoutY="124.0" text="Status" />
+   <ComboBox fx:id="StatusComboBox" layoutX="314.0" layoutY="152.0" prefHeight="25.0" prefWidth="101.0" />
+   <Button layoutX="40.0" layoutY="446.0" mnemonicParsing="false" onAction="#HandleLoadLogsButtonOnAction" text="Load data" />
 
 </AnchorPane>
