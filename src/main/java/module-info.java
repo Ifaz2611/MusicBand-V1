@@ -2,6 +2,9 @@ module com.example.music_band_oop {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.logging;
+    requires java.prefs;
+    requires java.desktop;
 
     opens com.example.music_band_oop to javafx.fxml;
     exports com.example.music_band_oop;
