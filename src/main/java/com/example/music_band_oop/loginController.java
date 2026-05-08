@@ -217,7 +217,7 @@ public class loginController {
 
             stage.setScene(new Scene(root));
             stage.setTitle(userType + " Dashboard");
-            stage.setMaximized(true);
+//            stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {

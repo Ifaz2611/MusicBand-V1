@@ -1,25 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.DropShadow?>
 
-<AnchorPane prefHeight="579.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.SoundEngineerDashbroadController">
-   <children>
-      <Label fx:id="SoundEngineerDashboardFxId" alignment="CENTER" layoutX="47.0" layoutY="43.0" prefHeight="45.0" prefWidth="617.0" style="-fx-background-color: cyan;" text="Sound Engineer Dashboard">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="116.0" layoutY="147.0" mnemonicParsing="false" onAction="#soundSetupButtonOnAction" prefHeight="31.0" prefWidth="91.0" text="Sound Setup" />
-      <Button layoutX="315.0" layoutY="147.0" mnemonicParsing="false" onAction="#liveMonitoringButtonOnAction" prefHeight="31.0" prefWidth="108.0" text="Live Monitoring" />
-      <Button layoutX="519.0" layoutY="147.0" mnemonicParsing="false" onAction="#soundCheckButtonOnAction" prefHeight="31.0" prefWidth="91.0" text="Sound Check" />
-      <Button layoutX="112.0" layoutY="274.0" mnemonicParsing="false" onAction="#audioProblemButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Audio Problem" />
-      <Button layoutX="327.0" layoutY="274.0" mnemonicParsing="false" onAction="#postShowButtonOnAction" prefHeight="31.0" prefWidth="81.0" text="Post-Show" />
-      <Button layoutX="519.0" layoutY="274.0" mnemonicParsing="false" onAction="#maintenanceButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Maintenance" />
-      <Button layoutX="114.0" layoutY="375.0" mnemonicParsing="false" onAction="#monitorControlButtonOnAction" prefHeight="31.0" prefWidth="120.0" text="Monitor Control" />
-      <Button layoutX="518.0" layoutY="375.0" mnemonicParsing="false" onAction="#recordingFeedbackButtonOnAction" prefHeight="31.0" prefWidth="101.0" text="Recording" />
-      <Button layoutX="565.0" layoutY="492.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: black;" text="Logout" textFill="WHITE" />
-   </children>
+<AnchorPane prefHeight="750.0" prefWidth="1000.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #0d1b2a, #1b263b, #415a77);"
+            xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.music_band_oop.Controller.SoundEngineerDashbroadController">
+
+    <!-- Main Container -->
+    <VBox alignment="CENTER" layoutX="150.0" layoutY="40.0" prefWidth="700.0" spacing="0.0">
+
+        <!-- Header Card -->
+        <VBox alignment="CENTER" spacing="8.0"
+              style="-fx-background-color: #e0e1dd; -fx-background-radius: 12 12 0 0; -fx-padding: 30 40 20 40;">
+            <effect>
+                <DropShadow color="#00000044" radius="20" spread="0.08"/>
+            </effect>
+            <Label text="Sound Engineer" textFill="#0d1b2a">
+                <font><Font name="System Bold" size="14.0"/></font>
+            </Label>
+            <Label fx:id="SoundEngineerDashboardFxId" text="Dashboard" textFill="#0d1b2a">
+                <font><Font name="System Bold" size="28.0"/></font>
+            </Label>
+            <Separator prefWidth="620.0" style="-fx-padding: 6 0 0 0;"/>
+            <Label text="Manage sound systems, live monitoring, and audio quality control."
+                   textFill="#415a77" wrapText="true" alignment="CENTER">
+                <font><Font size="12.0"/></font>
+            </Label>
+        </VBox>
+
+        <!-- Dashboard Grid Card -->
+        <VBox spacing="20.0"
+              style="-fx-background-color: #e0e1dd; -fx-background-radius: 0 0 12 12; -fx-padding: 30 40 35 40;">
+            <effect>
+                <DropShadow color="#00000044" radius="20" spread="0.08"/>
+            </effect>
+
+            <!-- Row 1: Pre-Show Setup -->
+            <HBox spacing="16.0" alignment="CENTER">
+                <Button onAction="#soundSetupButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #0d1b2a; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Sound Setup" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+                <Button onAction="#soundCheckButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #1b263b; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Sound Check" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+                <Button onAction="#liveMonitoringButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #415a77; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Live Monitoring" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+            </HBox>
+
+            <!-- Row 2: Live Operations -->
+            <HBox spacing="16.0" alignment="CENTER">
+                <Button onAction="#monitorControlButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #1b263b; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Monitor Control" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+                <Button onAction="#audioProblemButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #c62828; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Audio Problem" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+                <Button onAction="#recordingFeedbackButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #415a77; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Recording" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+            </HBox>
+
+            <!-- Row 3: Post-Show & Maintenance -->
+            <HBox spacing="16.0" alignment="CENTER">
+                <Button onAction="#postShowButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #415a77; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Post-Show" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+                <Button onAction="#maintenanceButtonOnAction" prefWidth="200.0" prefHeight="90.0"
+                        style="-fx-background-color: #778da9; -fx-text-fill: #0d1b2a; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;"
+                        text="Maintenance" wrapText="true">
+                    <font><Font size="14.0"/></font>
+                </Button>
+                <Region prefWidth="200.0" prefHeight="90.0"/>
+            </HBox>
+
+            <!-- Status Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0"
+                  style="-fx-background-color: #f5f5f5; -fx-background-radius: 6; -fx-padding: 10 15;">
+                <Label text="System Status:" textFill="#555555">
+                    <font><Font name="System Bold" size="11.0"/></font>
+                </Label>
+                <Label text="Audio systems online" textFill="#2e7d32">
+                    <font><Font size="11.0"/></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Session Active" textFill="#415a77">
+                    <font><Font size="11.0"/></font>
+                </Label>
+            </HBox>
+        </VBox>
+
+        <!-- Logout Section -->
+        <HBox alignment="CENTER_RIGHT" prefWidth="700.0">
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+            <Button onAction="#logoutButtonOnAction" prefWidth="140.0" prefHeight="40.0"
+                    style="-fx-background-color: #c62828; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+                    text="← Logout">
+                <font><Font size="13.0"/></font>
+            </Button>
+        </HBox>
+
+        <!-- Footer -->
+        <Label text="© 2026 Music Band OOP System | Sound Engineer Module v2.1" textFill="#e0e1dd88">
+            <font><Font size="11.0"/></font>
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </Label>
+    </VBox>
 </AnchorPane>
