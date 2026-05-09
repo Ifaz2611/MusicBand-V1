@@ -52,7 +52,7 @@ public class loginController {
     @FXML
     public void initialize() {
 
-        UserTypeComboBox.getItems().addAll("Sound Engineer", "Event Coordinator");
+        UserTypeComboBox.getItems().addAll("Sound Engineer", "Event Coordinator", "Lead Guitarist" , "Drummer" , "Bassist" , "Keyboardist" , "Lead Vocalist / Frontman" , "Backing Vocalist" , "DJ / Electronic Setup Tech" );
 
         // Restore saved login
         String savedId = prefs.get("remembered_user_id", "");
