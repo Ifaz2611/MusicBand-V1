@@ -1,34 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.DropShadow?>
 
-<AnchorPane prefHeight="674.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal4_ViewController">
-    <Label layoutX="20.0" layoutY="145.0" text="Affected Channel:" />
-    <TextField fx:id="AffectedChannelTextField" layoutX="150.0" layoutY="141.0" prefWidth="150" />
-    <Label layoutX="20.0" layoutY="185.0" text="Problem Type:" />
-    <ComboBox fx:id="ProblemTypeComboBox" layoutX="150.0" layoutY="181.0" prefWidth="150" />
-    <Label layoutX="20.0" layoutY="225.0" text="Action Taken:" />
-    <ComboBox fx:id="ActionComboBox" layoutX="150.0" layoutY="221.0" prefWidth="150" />
-    <Button layoutX="376.0" layoutY="181.0" onAction="#saveLogbuttonOnAction" text="Save Issue Log" />
-    <Label layoutX="533.0" layoutY="129.0" prefHeight="32.0" prefWidth="132.0" />
-    <TableView fx:id="logTableView" layoutX="148.0" layoutY="317.0" prefHeight="200" prefWidth="404.0">
-        <columns>
-            <TableColumn fx:id="channelCol" prefWidth="100" text="Channel" />
-            <TableColumn fx:id="problemCol" prefWidth="120" text="Problem" />
-            <TableColumn fx:id="actionCol" prefWidth="180" text="Action" />
-        </columns>
-    </TableView>
-   <Label alignment="CENTER" layoutX="96.0" layoutY="38.0" prefHeight="64.0" prefWidth="481.0" style="-fx-background-color: cyan;" text="Fix Audio Issue Dashboard">
-      <font>
-         <Font name="System Bold Italic" size="24.0" />
-      </font>
-   </Label>
-   <Button layoutX="597.0" layoutY="619.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="Dashboard" />
+<AnchorPane prefHeight="800.0" prefWidth="1100.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #0d1b2a, #1b263b, #415a77);"
+            xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal4_ViewController">
+
+    <VBox alignment="CENTER" layoutX="50.0" layoutY="25.0" prefWidth="1000.0" spacing="0.0">
+
+        <!-- Header Card -->
+        <VBox alignment="CENTER" spacing="6.0"
+              style="-fx-background-color: #e0e1dd; -fx-background-radius: 12 12 0 0; -fx-padding: 25 40 15 40;">
+            <effect>
+                <DropShadow color="#00000044" radius="20" spread="0.08"/>
+            </effect>
+            <Label text="Sound Engineer" textFill="#415a77">
+                <font><Font name="System Bold" size="13.0"/></font>
+            </Label>
+            <Label text="Audio Issue Resolution Dashboard" textFill="#0d1b2a">
+                <font><Font name="System Bold Italic" size="26.0"/></font>
+            </Label>
+            <Separator prefWidth="920.0" style="-fx-padding: 4 0 0 0;"/>
+        </VBox>
+
+        <!-- Content Card -->
+        <VBox spacing="18.0"
+              style="-fx-background-color: #e0e1dd; -fx-background-radius: 0 0 12 12; -fx-padding: 25 40 30 40;">
+            <effect>
+                <DropShadow color="#00000044" radius="20" spread="0.08"/>
+            </effect>
+
+            <!-- Status Banner -->
+            <Label fx:id="statusLabel" alignment="CENTER" prefWidth="920.0" wrapText="true"
+                   visible="false" managed="false"
+                   style="-fx-padding: 12; -fx-background-radius: 6; -fx-font-weight: bold;"/>
+
+            <!-- Form Section -->
+            <HBox spacing="35.0" alignment="TOP_CENTER">
+
+                <!-- Left: Issue Details -->
+                <VBox spacing="12.0" prefWidth="440.0">
+                    <Label text="Issue Details" textFill="#0d1b2a">
+                        <font><Font name="System Bold" size="15.0"/></font>
+                    </Label>
+                    <Separator prefWidth="440.0"/>
+
+                    <GridPane vgap="10.0" hgap="10.0">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="130.0" prefWidth="140.0"/>
+                            <ColumnConstraints minWidth="260.0" prefWidth="290.0"/>
+                        </columnConstraints>
+
+                        <Label text="Affected Channel:*" textFill="#1b263b" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                            <font><Font name="System Bold" size="12.0"/></font>
+                        </Label>
+                        <TextField fx:id="AffectedChannelTextField" promptText="e.g., Channel 3, Main L, Drum OH"
+                                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="Problem Type:*" textFill="#1b263b" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                            <font><Font name="System Bold" size="12.0"/></font>
+                        </Label>
+                        <ComboBox fx:id="ProblemTypeComboBox" promptText="Select problem type"
+                                  prefWidth="290.0" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <Label text="Severity:*" textFill="#1b263b" GridPane.rowIndex="2" GridPane.columnIndex="0">
+                            <font><Font name="System Bold" size="12.0"/></font>
+                        </Label>
+                        <ComboBox fx:id="SeverityComboBox" promptText="Select severity"
+                                  prefWidth="290.0" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <Label text="Status:*" textFill="#1b263b" GridPane.rowIndex="3" GridPane.columnIndex="0">
+                            <font><Font name="System Bold" size="12.0"/></font>
+                        </Label>
+                        <ComboBox fx:id="StatusComboBox" promptText="Select status"
+                                  prefWidth="290.0" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    </GridPane>
+                </VBox>
+
+                <!-- Right: Resolution -->
+                <VBox spacing="12.0" prefWidth="440.0">
+                    <Label text="Resolution" textFill="#0d1b2a">
+                        <font><Font name="System Bold" size="15.0"/></font>
+                    </Label>
+                    <Separator prefWidth="440.0"/>
+
+                    <GridPane vgap="10.0" hgap="10.0">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="130.0" prefWidth="140.0"/>
+                            <ColumnConstraints minWidth="260.0" prefWidth="290.0"/>
+                        </columnConstraints>
+
+                        <Label text="Action Taken:*" textFill="#1b263b" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                            <font><Font name="System Bold" size="12.0"/></font>
+                        </Label>
+                        <ComboBox fx:id="ActionComboBox" promptText="Select action taken"
+                                  prefWidth="290.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="Technical Notes:" textFill="#1b263b" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.valignment="TOP">
+                            <font><Font name="System Bold" size="12.0"/></font>
+                        </Label>
+                        <TextArea fx:id="notesTextArea" promptText="Describe the issue and resolution steps..."
+                                  prefHeight="90.0" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    </GridPane>
+                </VBox>
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="12.0" alignment="CENTER" style="-fx-padding: 5 0 0 0;">
+                <Button onAction="#saveLogbuttonOnAction" prefHeight="42.0" prefWidth="160.0"
+                        style="-fx-background-color: linear-gradient(to right, #0d1b2a, #415a77); -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+                        text="Save Issue Log">
+                    <font><Font size="13.0"/></font>
+                </Button>
+                <Button onAction="#handleUpdate" prefHeight="42.0" prefWidth="120.0"
+                        style="-fx-background-color: #ef6c00; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+                        text="Update">
+                    <font><Font size="13.0"/></font>
+                </Button>
+                <Button onAction="#handleClear" prefHeight="42.0" prefWidth="120.0"
+                        style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+                        text="Clear">
+                    <font><Font size="13.0"/></font>
+                </Button>
+                <Button onAction="#handleDelete" prefHeight="42.0" prefWidth="140.0"
+                        style="-fx-background-color: #c62828; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+                        text="Delete Selected">
+                    <font><Font size="13.0"/></font>
+                </Button>
+            </HBox>
+
+            <!-- Search & Table -->
+            <VBox spacing="8.0">
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <Label text="Issue Log Records" textFill="#0d1b2a">
+                        <font><Font name="System Bold" size="15.0"/></font>
+                    </Label>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="searchField" promptText="Search by channel or problem..." prefWidth="220.0"/>
+                    <Button onAction="#handleSearch" text="Search" prefWidth="70.0"/>
+                    <Button onAction="#handleResetSearch" text="Reset" prefWidth="70.0"/>
+                </HBox>
+                <Separator prefWidth="920.0"/>
+
+                <TableView fx:id="logTableView" prefHeight="220.0" prefWidth="920.0">
+                    <columns>
+                        <TableColumn fx:id="timeCol" prefWidth="120.0" text="Timestamp"/>
+                        <TableColumn fx:id="channelCol" prefWidth="100.0" text="Channel"/>
+                        <TableColumn fx:id="problemCol" prefWidth="120.0" text="Problem"/>
+                        <TableColumn fx:id="severityCol" prefWidth="80.0" text="Severity"/>
+                        <TableColumn fx:id="actionCol" prefWidth="130.0" text="Action"/>
+                        <TableColumn fx:id="statusCol" prefWidth="90.0" text="Status"/>
+                        <TableColumn fx:id="notesCol" prefWidth="200.0" text="Notes"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No audio issues logged. Report an issue using the form above."/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+
+            <!-- Status Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0"
+                  style="-fx-background-color: #f5f5f5; -fx-background-radius: 6; -fx-padding: 10 15;">
+                <Label text="Total Issues:" textFill="#555555">
+                    <font><Font name="System Bold" size="11.0"/></font>
+                </Label>
+                <Label fx:id="recordCountLabel" text="0" textFill="#0d1b2a">
+                    <font><Font name="System Bold" size="11.0"/></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Audio Issue Module v2.1 | Ready" textFill="#415a77">
+                    <font><Font size="11.0"/></font>
+                </Label>
+            </HBox>
+        </VBox>
+
+        <!-- Footer Navigation -->
+        <HBox alignment="CENTER_RIGHT" prefWidth="1000.0">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+            <Button onAction="#DashboardButtonOnAction" prefHeight="38.0" prefWidth="160.0"
+                    style="-fx-background-color: #1b263b; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
+                    text="← Back to Dashboard">
+                <font><Font size="12.0"/></font>
+            </Button>
+        </HBox>
+
+        <Label text="© 2026 Music Band OOP System | Audio Issue Resolution Module" textFill="#e0e1dd88">
+            <font><Font size="11.0"/></font>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+    </VBox>
 </AnchorPane>

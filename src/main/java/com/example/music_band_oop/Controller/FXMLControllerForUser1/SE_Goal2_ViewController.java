@@ -19,7 +19,6 @@ public class SE_Goal2_ViewController {
     @FXML private TableView<ChannelData> channelTable;
     @FXML private TableColumn<ChannelData, String> ChannelColumn;
     @FXML private TableColumn<ChannelData, Number> LevelColumn;
-    @FXML private TableColumn<ChannelData, String> StatusCloumn;
     @FXML private ComboBox<String> AdjustChannelCombo;
     @FXML private ComboBox<String> StatusComboBox;
     @FXML private TextField levelTextField;
@@ -32,12 +31,14 @@ public class SE_Goal2_ViewController {
     private Button saveLogsBtn;
     @FXML
     private Button applyBtn;
+    @FXML
+    private TableColumn StatusColumn;
 
     @FXML
     public void initialize() {
         ChannelColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         LevelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
-        StatusCloumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         AdjustChannelCombo.getItems().addAll("Kick", "Snare", "Vocal", "Guitar");
         StatusComboBox.getItems().addAll("Verified", "Unverified");
@@ -128,5 +129,9 @@ public class SE_Goal2_ViewController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void handleClear(ActionEvent actionEvent) {
     }
 }

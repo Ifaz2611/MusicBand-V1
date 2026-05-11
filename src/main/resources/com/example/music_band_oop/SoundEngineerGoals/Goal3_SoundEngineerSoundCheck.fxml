@@ -16,6 +16,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,149 +27,206 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal3_ViewController">
+<AnchorPane prefHeight="816.0" prefWidth="987.0" style="-fx-background-color: linear-gradient(to bottom right, #0d1b2a, #1b263b, #415a77);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal3_ViewController">
 
-    <!-- Header Banner -->
-    <Label alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to right, #006064, #00acc1); -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);">
-        <font>
-            <Font name="System Bold" size="26.0" />
-        </font>
-        <text>Sound Check Management System</text>
-    </Label>
+    <!-- Main Container Card -->
+    <VBox alignment="CENTER" layoutX="50.0" layoutY="25.0" prefWidth="900.0" spacing="0.0">
 
-    <!-- Main Split Layout -->
-    <SplitPane dividerPositions="0.38" layoutX="20.0" layoutY="75.0" prefHeight="620.0" prefWidth="960.0">
-
-        <!-- LEFT PANE: Input Form -->
-        <AnchorPane minHeight="0.0" minWidth="350.0" prefHeight="160.0" prefWidth="350.0">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
-
-            <Label layoutX="10.0" layoutY="5.0" text="Sound Check Details" textFill="#006064">
-                <font><Font name="System Bold" size="16.0" /></font>
+        <!-- Header Card -->
+        <VBox alignment="CENTER" spacing="6.0" style="-fx-background-color: #e0e1dd; -fx-background-radius: 12 12 0 0; -fx-padding: 20 30 15 30;">
+            <effect>
+                <DropShadow color="#00000044" radius="20" spread="0.08" />
+            </effect>
+            <Label text="Sound Engineer" textFill="#415a77">
+                <font><Font name="System Bold" size="13.0" /></font>
             </Label>
+            <Label text="Sound Check Management System" textFill="#0d1b2a">
+                <font><Font name="System Bold Italic" size="24.0" /></font>
+            </Label>
+            <Separator prefWidth="840.0" style="-fx-padding: 4 0 0 0;" />
+        </VBox>
 
-            <GridPane hgap="10.0" layoutX="10.0" layoutY="35.0" prefWidth="330.0" vgap="8.0">
-                <columnConstraints>
-                    <ColumnConstraints minWidth="110.0" prefWidth="120.0" />
-                    <ColumnConstraints minWidth="180.0" prefWidth="200.0" />
-                </columnConstraints>
+        <!-- Content Card with SplitPane -->
+        <VBox spacing="15.0" style="-fx-background-color: #e0e1dd; -fx-background-radius: 0 0 12 12; -fx-padding: 20 25 25 25;">
+            <effect>
+                <DropShadow color="#00000044" radius="20" spread="0.08" />
+            </effect>
 
-                <!-- Row 0: Event Name -->
-                <Label text="Event Name:*" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="EventTextField" promptText="e.g., Rock Night 2026" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <!-- SplitPane Container -->
+            <SplitPane dividerPositions="0.38" prefHeight="520.0" prefWidth="850.0" style="-fx-background-color: transparent; -fx-background-radius: 8;">
 
-                <!-- Row 1: Date -->
-                <Label text="Event Date:*" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <DatePicker fx:id="eventDatePicker" prefWidth="200.0" promptText="YYYY-MM-DD" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <!-- LEFT PANE: Input Form -->
+                <AnchorPane minHeight="0.0" minWidth="300.0" prefWidth="300.0" style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                    </padding>
 
-                <!-- Row 2: Venue -->
-                <Label text="Venue:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <ComboBox fx:id="venueComboBox" editable="true" prefWidth="200.0" promptText="Select or type venue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label layoutX="5.0" layoutY="5.0" text="Sound Check Details" textFill="#0d1b2a">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                    <Separator layoutX="5.0" layoutY="28.0" prefWidth="285.0" />
 
-                <!-- Row 3: Engineer -->
-                <Label text="Sound Engineer:*" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField fx:id="engineerTextField" promptText="Engineer in charge" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <GridPane hgap="8.0" layoutX="5.0" layoutY="40.0" prefWidth="285.0" vgap="6.0">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="100.0" prefWidth="110.0" />
+                            <ColumnConstraints minWidth="160.0" prefWidth="170.0" />
+                        </columnConstraints>
 
-                <!-- Row 4: Sound Level Slider -->
-                <Label text="Sound Level:*" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <Slider fx:id="soundLevelSlider" blockIncrement="1.0" majorTickUnit="20.0" max="100.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" value="50.0" />
-                    <Label fx:id="sliderValueLabel" text="Current: 50 dB" textFill="#555555" />
-                </VBox>
+                        <Label text="Event Name:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <TextField fx:id="EventTextField" promptText="e.g., Rock Night 2026" style="-fx-background-radius: 4; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <!-- Row 5: Status -->
-                <Label text="Overall Status:*" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                <ComboBox fx:id="statusComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Event Date:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <DatePicker fx:id="eventDatePicker" prefWidth="170.0" promptText="YYYY-MM-DD" style="-fx-background-radius: 4; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <!-- Row 6: Pre-checks -->
-                <Label text="Pre-Checks:*" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                    <CheckBox fx:id="performerCheck" text="Performer Available" />
-                    <CheckBox fx:id="equipmentCheck" text="Equipment Ready" />
-                    <CheckBox fx:id="backupCheck" text="Backup Systems Checked" />
-                </VBox>
+                        <Label text="Venue:" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <ComboBox fx:id="venueComboBox" editable="true" prefWidth="170.0" promptText="Select or type" style="-fx-background-radius: 4; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <!-- Row 7: Notes -->
-                <Label text="Technical Notes:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                <TextArea fx:id="notesTextArea" prefHeight="70.0" promptText="Mic positions, special requirements..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
-            </GridPane>
+                        <Label text="Sound Engineer:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <TextField fx:id="engineerTextField" promptText="Engineer in charge" style="-fx-background-radius: 4; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-            <!-- Form Action Buttons -->
-            <HBox layoutX="10.0" layoutY="460.0" spacing="8.0">
-                <Button fx:id="confirmButton" onAction="#ConfirmSoundCheckButtonOnAction" prefWidth="130.0" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-weight: bold;" text="Confirm / Add" />
-                <Button onAction="#handleUpdate" prefWidth="90.0" style="-fx-background-color: #ef6c00; -fx-text-fill: white;" text="Update" />
-                <Button onAction="#handleClearForm" prefWidth="80.0" style="-fx-background-color: #757575; -fx-text-fill: white;" text="Clear" />
-            </HBox>
+                        <Label text="Sound Level:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <VBox spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <Slider fx:id="soundLevelSlider" blockIncrement="1.0" majorTickUnit="20.0" max="100.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" style="-fx-control-inner-background: #ffffff;" value="50.0" />
+                            <Label fx:id="sliderValueLabel" text="Current: 50 dB" textFill="#555555">
+                                <font><Font size="10.0" /></font>
+                            </Label>
+                        </VBox>
 
-            <!-- Feedback Label -->
-            <Label fx:id="confirmLabel" layoutX="10.0" layoutY="500.0" prefHeight="60.0" prefWidth="330.0" style="-fx-border-color: #cccccc; -fx-border-radius: 4; -fx-padding: 8; -fx-background-color: #f5f5f5;" wrapText="true" />
-        </AnchorPane>
+                        <Label text="Overall Status:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <ComboBox fx:id="statusComboBox" prefWidth="170.0" style="-fx-background-radius: 4; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-        <!-- RIGHT PANE: Table, Search, Stats -->
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="580.0">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
+                        <Label text="Pre-Checks:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <VBox spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <CheckBox fx:id="performerCheck" style="-fx-text-fill: #1b263b;" text="Performer Available" />
+                            <CheckBox fx:id="equipmentCheck" style="-fx-text-fill: #1b263b;" text="Equipment Ready" />
+                            <CheckBox fx:id="backupCheck" style="-fx-text-fill: #1b263b;" text="Backup Systems Checked" />
+                        </VBox>
 
-            <!-- Search Bar -->
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="5.0" spacing="8.0">
-                <TextField fx:id="searchField" prefWidth="220.0" promptText="Search by event, venue, or engineer..." />
-                <Button onAction="#handleSearch" text="Search" />
-                <Button onAction="#handleResetSearch" text="Reset" />
+                        <Label text="Technical Notes:" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <TextArea fx:id="notesTextArea" prefHeight="60.0" promptText="Mic positions, special requirements..." style="-fx-background-radius: 4; -fx-border-radius: 4;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <rowConstraints>
+                            <RowConstraints /><RowConstraints /><RowConstraints /><RowConstraints />
+                            <RowConstraints /><RowConstraints /><RowConstraints /><RowConstraints />
+                        </rowConstraints>
+                    </GridPane>
+
+                    <!-- Form Action Buttons -->
+                    <HBox layoutX="5.0" layoutY="385.0" spacing="6.0">
+                        <Button fx:id="confirmButton" onAction="#ConfirmSoundCheckButtonOnAction" prefHeight="36.0" prefWidth="115.0" style="-fx-background-color: linear-gradient(to right, #0d1b2a, #415a77); -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Confirm / Add">
+                            <font><Font size="11.0" /></font>
+                        </Button>
+                        <Button onAction="#handleUpdate" prefHeight="36.0" prefWidth="80.0" style="-fx-background-color: #ef6c00; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Update">
+                            <font><Font size="11.0" /></font>
+                        </Button>
+                        <Button onAction="#handleClearForm" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Clear">
+                            <font><Font size="11.0" /></font>
+                        </Button>
+                    </HBox>
+
+                    <!-- Feedback Label -->
+                    <Label fx:id="confirmLabel" layoutX="5.0" layoutY="430.0" prefHeight="50.0" prefWidth="285.0" style="-fx-border-color: #cccccc; -fx-border-radius: 4; -fx-padding: 6; -fx-background-color: #f5f5f5; -fx-background-radius: 4;" wrapText="true">
+                        <font><Font size="10.0" /></font>
+                    </Label>
+                </AnchorPane>
+
+                <!-- RIGHT PANE: Table, Search, Stats -->
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="520.0" style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                    </padding>
+
+                    <!-- Search Bar -->
+                    <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="5.0" spacing="6.0">
+                        <TextField fx:id="searchField" prefWidth="180.0" promptText="Search by event, venue..." style="-fx-background-radius: 4; -fx-border-radius: 4;" />
+                        <Button onAction="#handleSearch" prefWidth="60.0" style="-fx-background-color: linear-gradient(to right, #0d1b2a, #415a77); -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Search">
+                            <font><Font size="10.0" /></font>
+                        </Button>
+                        <Button onAction="#handleResetSearch" prefWidth="60.0" style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Reset">
+                            <font><Font size="10.0" /></font>
+                        </Button>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleLoadSample" prefWidth="110.0" style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Load Sample">
+                            <font><Font size="10.0" /></font>
+                        </Button>
+                    </HBox>
+
+                    <!-- Data Table -->
+                    <TableView fx:id="deviceTable" layoutX="5.0" layoutY="42.0" prefHeight="240.0" prefWidth="510.0" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #cccccc;">
+                        <columns>
+                            <TableColumn fx:id="EventNameCol" prefWidth="100.0" text="Event Name" />
+                            <TableColumn fx:id="eventDateCol" prefWidth="75.0" text="Date" />
+                            <TableColumn fx:id="venueCol" prefWidth="75.0" text="Venue" />
+                            <TableColumn fx:id="TeststatusCol" prefWidth="75.0" text="Status" />
+                            <TableColumn fx:id="SoundLevelCol" prefWidth="65.0" text="Level" />
+                            <TableColumn fx:id="engineerCol" prefWidth="95.0" text="Engineer" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No sound checks recorded. Add one using the form." textFill="#666666" />
+                        </placeholder>
+                    </TableView>
+
+                    <!-- Table Action Buttons -->
+                    <HBox layoutX="5.0" layoutY="290.0" spacing="8.0">
+                        <Button onAction="#handleDeleteSelected" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #c62828; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Delete Selected">
+                            <font><Font size="10.0" /></font>
+                        </Button>
+                        <Button onAction="#handleExportCSV" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #0d1b2a, #415a77); -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Export CSV">
+                            <font><Font size="10.0" /></font>
+                        </Button>
+                    </HBox>
+
+                    <!-- Statistics Chart -->
+                    <TitledPane animated="false" collapsible="false" layoutX="5.0" layoutY="330.0" prefHeight="175.0" prefWidth="510.0" style="-fx-background-color: transparent; -fx-text-fill: #0d1b2a; -fx-font-weight: bold;" text="Sound Level Analytics">
+                        <font><Font name="System Bold" size="12.0" /></font>
+                        <BarChart fx:id="soundLevelChart" legendVisible="false" prefHeight="145.0" prefWidth="490.0" style="-fx-background-color: #ffffff; -fx-background-radius: 4; -fx-padding: 5;">
+                            <xAxis>
+                                <CategoryAxis label="Events" tickLabelFill="#1b263b" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="dB Level" lowerBound="0" tickLabelFill="#1b263b" upperBound="100" />
+                            </yAxis>
+                        </BarChart>
+                    </TitledPane>
+                </AnchorPane>
+            </SplitPane>
+
+            <!-- Footer / Status Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 6; -fx-padding: 8 12;">
+                <Label fx:id="statusBarLabel" text="System Ready" textFill="#0d1b2a">
+                    <font><Font name="System Bold" size="10.0" /></font>
+                </Label>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#handleLoadSample" style="-fx-background-color: #5c6bc0; -fx-text-fill: white;" text="Load Sample Data" />
+                <Label text="Sound Check Module v2.0 | Ready" textFill="#415a77">
+                    <font><Font size="10.0" /></font>
+                </Label>
+                <Button onAction="#DashboardButtonOnAction" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #1b263b; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="← Back to Dashboard">
+                    <font><Font size="10.0" /></font>
+                </Button>
             </HBox>
 
-            <!-- Data Table -->
-            <TableView fx:id="deviceTable" layoutX="10.0" layoutY="40.0" prefHeight="280.0" prefWidth="560.0">
-                <columns>
-                    <TableColumn fx:id="EventNameCol" prefWidth="110.0" text="Event Name" />
-                    <TableColumn fx:id="eventDateCol" prefWidth="85.0" text="Date" />
-                    <TableColumn fx:id="venueCol" prefWidth="85.0" text="Venue" />
-                    <TableColumn fx:id="TeststatusCol" prefWidth="85.0" text="Status" />
-                    <TableColumn fx:id="SoundLevelCol" prefWidth="70.0" text="Level" />
-                    <TableColumn fx:id="engineerCol" prefWidth="100.0" text="Engineer" />
-                </columns>
-                <placeholder>
-                    <Label text="No sound checks recorded. Add one using the form." />
-                </placeholder>
-            </TableView>
-
-            <!-- Table Action Buttons -->
-            <HBox layoutX="10.0" layoutY="328.0" spacing="10.0">
-                <Button onAction="#handleDeleteSelected" style="-fx-background-color: #c62828; -fx-text-fill: white;" text="Delete Selected" />
-                <Button onAction="#handleExportCSV" text="Export to CSV" />
-            </HBox>
-
-            <!-- Statistics Chart -->
-            <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="370.0" prefHeight="230.0" prefWidth="560.0" text="Sound Level Analytics">
-                <BarChart fx:id="soundLevelChart" legendVisible="false" prefHeight="200.0" prefWidth="540.0">
-                    <xAxis>
-                        <CategoryAxis label="Events" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis label="dB Level" lowerBound="0" upperBound="100" />
-                    </yAxis>
-                </BarChart>
-            </TitledPane>
-        </AnchorPane>
-    </SplitPane>
-
-    <!-- Footer / Status Bar -->
-    <AnchorPane layoutX="0.0" layoutY="705.0" prefHeight="45.0" prefWidth="1000.0" style="-fx-background-color: #eceff1; -fx-border-color: #cfd8dc; -fx-border-width: 1 0 0 0;">
-        <Label fx:id="statusBarLabel" layoutX="20.0" layoutY="12.0" prefWidth="600.0" text="System Ready" textFill="#37474f" />
-        <Button layoutX="859.0" layoutY="8.0" mnemonicParsing="false" onAction="#DashboardButtonOnAction" text="← Back to Dashboard" />
-    </AnchorPane>
+            <!-- Copyright -->
+            <Label alignment="CENTER" prefWidth="850.0" text="© 2026 Music Band OOP System | Sound Check Management" textFill="#e0e1dd88">
+                <font><Font size="9.0" /></font>
+                <VBox.margin>
+                    <Insets top="8.0" />
+                </VBox.margin>
+            </Label>
+        </VBox>
+    </VBox>
 </AnchorPane>
