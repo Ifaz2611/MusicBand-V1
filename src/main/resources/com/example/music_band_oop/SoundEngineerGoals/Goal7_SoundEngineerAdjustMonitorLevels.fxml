@@ -1,275 +1,273 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+        <?import javafx.geometry.Insets?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.effect.DropShadow?>
+        <?import javafx.scene.layout.*?>
+        <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="984.0" prefWidth="1132.0" style="-fx-background-color: linear-gradient(to bottom right, #0d1b2a, #1b263b, #415a77);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal7_ViewController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #0d1b2a, #1b263b, #415a77);"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.music_band_oop.Controller.FXMLControllerForUser1.SE_Goal7_ViewController">
 
-    <VBox alignment="CENTER" layoutX="50.0" layoutY="20.0" prefWidth="1050.0" spacing="0.0">
+    <!-- MAIN SCROLLPANE -->
+    <ScrollPane fitToWidth="true"
+                fitToHeight="true"
+                pannable="true"
+                prefHeight="720.0"
+                prefWidth="1280.0"
+                style="-fx-background: transparent; -fx-background-color: transparent;">
 
-        <!-- Header Card -->
-        <VBox alignment="CENTER" spacing="6.0" style="-fx-background-color: #e0e1dd; -fx-background-radius: 12 12 0 0; -fx-padding: 25 40 15 40;">
-            <effect>
-                <DropShadow color="#00000044" radius="20" spread="0.08" />
-            </effect>
-            <Label text="Sound Engineer" textFill="#415a77">
-                <font><Font name="System Bold" size="13.0" /></font>
-            </Label>
-            <Label text="Monitor Control Dashboard" textFill="#0d1b2a">
-                <font><Font name="System Bold Italic" size="26.0" /></font>
-            </Label>
-            <Separator prefWidth="970.0" style="-fx-padding: 4 0 0 0;" />
-            <Label alignment="CENTER" text="Manage stage monitor mixes, levels, panning, and performer routing." textFill="#415a77" wrapText="true">
-                <font><Font size="12.0" /></font>
-            </Label>
-        </VBox>
+        <content>
 
-        <!-- Content Card -->
-        <VBox spacing="18.0" style="-fx-background-color: #e0e1dd; -fx-background-radius: 0 0 12 12; -fx-padding: 25 40 30 40;">
-            <effect>
-                <DropShadow color="#00000044" radius="20" spread="0.08" />
-            </effect>
+            <VBox alignment="TOP_CENTER"
+                  spacing="15.0"
+                  style="-fx-padding: 20;">
 
-            <!-- Status Banner -->
-            <Label fx:id="feedbackLabel" alignment="CENTER" managed="false" prefWidth="970.0" style="-fx-padding: 12; -fx-background-radius: 6; -fx-font-weight: bold;" visible="false" wrapText="true" />
+                <!-- MAIN CARD -->
+                <VBox maxWidth="1100.0"
+                      spacing="18.0"
+                      style="-fx-background-color: #e0e1dd;
+                             -fx-background-radius: 12;
+                             -fx-padding: 25;">
 
-            <!-- Form Section -->
-            <HBox alignment="TOP_CENTER" spacing="30.0">
+                    <effect>
+                        <DropShadow color="#00000044"
+                                    radius="20"
+                                    spread="0.08"/>
+                    </effect>
 
-                <!-- Left: Channel & Performer -->
-                <VBox prefWidth="460.0" spacing="12.0">
-                    <Label text="Channel &amp; Performer" textFill="#0d1b2a">
-                        <font><Font name="System Bold" size="15.0" /></font>
-                    </Label>
-                    <Separator prefWidth="460.0" />
+                    <!-- HEADER -->
+                    <VBox alignment="CENTER" spacing="6">
 
-                    <GridPane hgap="10.0" vgap="10.0">
-                        <columnConstraints>
-                            <ColumnConstraints minWidth="130.0" prefWidth="140.0" />
-                            <ColumnConstraints minWidth="280.0" prefWidth="310.0" />
-                        </columnConstraints>
-
-                        <Label text="Channel Name:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                            <font><Font name="System Bold" size="12.0" /></font>
+                        <Label text="Sound Engineer"
+                               textFill="#415a77">
+                            <font>
+                                <Font name="System Bold" size="13"/>
+                            </font>
                         </Label>
-                        <TextField fx:id="MonitorChannelTextField" promptText="e.g., Monitor 1, Drum Wedge, Side Fill" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                        <Label text="Performer Name:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <font><Font name="System Bold" size="12.0" /></font>
+                        <Label text="Monitor Control Dashboard"
+                               textFill="#0d1b2a">
+                            <font>
+                                <Font name="System Bold Italic" size="24"/>
+                            </font>
                         </Label>
-                        <TextField fx:id="PerformerTextField" promptText="e.g., Lead Vocal, Drummer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                        <Label text="Role/Instrument:*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                            <font><Font name="System Bold" size="12.0" /></font>
-                        </Label>
-                        <ComboBox fx:id="RoleComboBox" prefWidth="310.0" promptText="Select role" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Separator maxWidth="1000"/>
 
-                        <Label text="Input Source:" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                            <font><Font name="System Bold" size="12.0" /></font>
-                        </Label>
-                        <ComboBox fx:id="InputSourceComboBox" editable="true" prefWidth="310.0" promptText="e.g., Aux 1, Group 3, Matrix A" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <rowConstraints>
-                     <RowConstraints />
-                     <RowConstraints />
-                     <RowConstraints />
-                     <RowConstraints />
-                  </rowConstraints>
-                    </GridPane>
+                        <Label text="Manage stage monitor mixes, levels, panning, and performer routing."
+                               wrapText="true"
+                               textAlignment="CENTER"
+                               textFill="#415a77"/>
+                    </VBox>
+
+                    <!-- STATUS -->
+                    <Label fx:id="feedbackLabel"
+                           visible="false"
+                           managed="false"
+                           wrapText="true"
+                           maxWidth="1000"/>
+
+                    <!-- FORM SECTION -->
+                    <HBox spacing="20">
+
+                        <!-- LEFT SIDE -->
+                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+
+                            <Label text="Channel & Performer">
+                                <font>
+                                    <Font name="System Bold" size="15"/>
+                                </font>
+                            </Label>
+
+                            <GridPane hgap="10" vgap="10">
+
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="35"/>
+                                    <ColumnConstraints percentWidth="65"/>
+                                </columnConstraints>
+
+                                <Label text="Channel Name:*"
+                                       GridPane.rowIndex="0"/>
+
+                                <TextField fx:id="MonitorChannelTextField"
+                                           GridPane.columnIndex="1"
+                                           GridPane.rowIndex="0"/>
+
+                                <Label text="Performer Name:*"
+                                       GridPane.rowIndex="1"/>
+
+                                <TextField fx:id="PerformerTextField"
+                                           GridPane.columnIndex="1"
+                                           GridPane.rowIndex="1"/>
+
+                                <Label text="Role:*"
+                                       GridPane.rowIndex="2"/>
+
+                                <ComboBox fx:id="RoleComboBox"
+                                          maxWidth="Infinity"
+                                          GridPane.columnIndex="1"
+                                          GridPane.rowIndex="2"/>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- RIGHT SIDE -->
+                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+
+                            <Label text="Level & Routing">
+                                <font>
+                                    <Font name="System Bold" size="15"/>
+                                </font>
+                            </Label>
+
+                            <GridPane hgap="10" vgap="10">
+
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="35"/>
+                                    <ColumnConstraints percentWidth="65"/>
+                                </columnConstraints>
+
+                                <Label text="Current Level:"
+                                       GridPane.rowIndex="0"/>
+
+                                <Slider fx:id="CurrentLevelSlider"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="0"/>
+
+                                <Label text="Target Level:"
+                                       GridPane.rowIndex="1"/>
+
+                                <Slider fx:id="TargetLevelSlider"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="1"/>
+
+                                <Label text="Pan:"
+                                       GridPane.rowIndex="2"/>
+
+                                <Slider fx:id="PanSlider"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="2"/>
+                            </GridPane>
+                        </VBox>
+                    </HBox>
+
+                    <!-- NOTES -->
+                    <VBox spacing="8">
+
+                        <Label text="Engineer Notes:"/>
+
+                        <TextArea fx:id="notesTextArea"
+                                  prefRowCount="3"
+                                  wrapText="true"/>
+                    </VBox>
+
+                    <!-- BUTTONS -->
+                    <FlowPane hgap="10"
+                              vgap="10"
+                              alignment="CENTER">
+
+                        <Button text="Add Channel"
+                                prefWidth="140"
+                                onAction="#AddToTheTableButtonOnAction"/>
+
+                        <Button text="Update"
+                                prefWidth="120"
+                                onAction="#handleUpdate"/>
+
+                        <Button text="Clear"
+                                prefWidth="120"
+                                onAction="#handleClear"/>
+
+                        <Button text="Delete"
+                                prefWidth="120"
+                                onAction="#handleDelete"/>
+
+                        <Button text="Save Log"
+                                prefWidth="140"
+                                onAction="#SaveLogButtonOnAction"/>
+                    </FlowPane>
+
+                    <!-- SEARCH -->
+                    <HBox spacing="10"
+                          alignment="CENTER_LEFT">
+
+                        <Label text="Monitor Mix Channels"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <TextField fx:id="searchField"
+                                   prefWidth="220"
+                                   promptText="Search..."/>
+
+                        <Button text="Search"
+                                onAction="#handleSearch"/>
+
+                        <Button text="Reset"
+                                onAction="#handleResetSearch"/>
+                    </HBox>
+
+                    <!-- TABLE -->
+                    <TableView fx:id="MonitorTableView"
+                               prefHeight="300"
+                               columnResizePolicy="CONSTRAINED_RESIZE_POLICY">
+
+                        <columns>
+
+                            <TableColumn fx:id="TimeCol"
+                                         text="Timestamp"/>
+
+                            <TableColumn fx:id="MonitorChannelCol"
+                                         text="Channel"/>
+
+                            <TableColumn fx:id="PerformerCol"
+                                         text="Performer"/>
+
+                            <TableColumn fx:id="RoleCol"
+                                         text="Role"/>
+
+                            <TableColumn fx:id="CurrentLevelCol"
+                                         text="Level"/>
+
+                            <TableColumn fx:id="TargetLevelCol"
+                                         text="Target"/>
+
+                            <TableColumn fx:id="PanCol"
+                                         text="Pan"/>
+
+                            <TableColumn fx:id="MuteCol"
+                                         text="Mute"/>
+
+                            <TableColumn fx:id="SoloCol"
+                                         text="Solo"/>
+
+                            <TableColumn fx:id="StatusCol"
+                                         text="Status"/>
+                        </columns>
+                    </TableView>
+
+                    <!-- FOOTER -->
+                    <HBox alignment="CENTER_RIGHT">
+
+                        <Button text="← Back to Dashboard"
+                                prefWidth="180"
+                                prefHeight="40"
+                                onAction="#DashboardButtonOnAction"
+                                style="-fx-background-color: #1b263b;
+                                       -fx-text-fill: white;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 6;"/>
+                    </HBox>
                 </VBox>
 
-                <!-- Right: Level & Routing -->
-                <VBox prefWidth="460.0" spacing="12.0">
-                    <Label text="Level &amp; Routing" textFill="#0d1b2a">
-                        <font><Font name="System Bold" size="15.0" /></font>
-                    </Label>
-                    <Separator prefWidth="460.0" />
-
-                    <GridPane hgap="10.0" vgap="10.0">
-                        <columnConstraints>
-                            <ColumnConstraints minWidth="130.0" prefWidth="150.0" />
-                            <ColumnConstraints minWidth="270.0" prefWidth="300.0" />
-                        </columnConstraints>
-
-                        <Label text="Current Level (dB):*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                            <font><Font name="System Bold" size="12.0" /></font>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                            <Slider fx:id="CurrentLevelSlider" blockIncrement="1.0" majorTickUnit="20.0" max="12.0" min="-60.0" minorTickCount="4" prefWidth="220.0" showTickLabels="true" showTickMarks="true" value="-20.0" />
-                            <Label fx:id="CurrentLevelValueLabel" prefWidth="45.0" text="-20" textFill="#415a77">
-                                <font><Font name="System Bold" size="12.0" /></font>
-                            </Label>
-                        </HBox>
-
-                        <Label text="Target Level (dB):" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <font><Font name="System Bold" size="12.0" /></font>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <Slider fx:id="TargetLevelSlider" blockIncrement="1.0" majorTickUnit="20.0" max="12.0" min="-60.0" minorTickCount="4" prefWidth="220.0" showTickLabels="true" showTickMarks="true" value="-20.0" />
-                            <Label fx:id="TargetLevelValueLabel" prefWidth="45.0" text="-20" textFill="#415a77">
-                                <font><Font name="System Bold" size="12.0" /></font>
-                            </Label>
-                        </HBox>
-
-                        <Label text="Pan (L/R):*" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                            <font><Font name="System Bold" size="12.0" /></font>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <Label text="L" textFill="#555555" />
-                            <Slider fx:id="PanSlider" blockIncrement="1.0" majorTickUnit="50.0" max="100.0" min="-100.0" minorTickCount="4" prefWidth="200.0" showTickLabels="true" showTickMarks="true" value="0.0" />
-                            <Label text="R" textFill="#555555" />
-                            <Label fx:id="PanValueLabel" prefWidth="35.0" text="C" textFill="#415a77">
-                                <font><Font name="System Bold" size="12.0" /></font>
-                            </Label>
-                        </HBox>
-
-                        <Label text="Controls:" textFill="#1b263b" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                            <font><Font name="System Bold" size="12.0" /></font>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <CheckBox fx:id="MuteCheckBox" text="Mute" />
-                            <CheckBox fx:id="SoloCheckBox" text="Solo" />
-                        </HBox>
-                  <rowConstraints>
-                     <RowConstraints />
-                     <RowConstraints />
-                     <RowConstraints />
-                     <RowConstraints />
-                  </rowConstraints>
-                    </GridPane>
-                </VBox>
-            </HBox>
-
-            <!-- Notes Row -->
-            <HBox alignment="TOP_LEFT" spacing="10.0">
-                <Label prefWidth="140.0" text="Engineer Notes:" textFill="#1b263b">
-                    <font><Font name="System Bold" size="12.0" /></font>
-                </Label>
-                <TextArea fx:id="notesTextArea" prefHeight="60.0" prefWidth="830.0" promptText="Feedback requests, EQ adjustments, routing notes..." wrapText="true" />
-            </HBox>
-
-            <!-- Action Buttons -->
-            <HBox alignment="CENTER" spacing="12.0" style="-fx-padding: 5 0 0 0;">
-                <Button onAction="#AddToTheTableButtonOnAction" prefHeight="42.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right, #0d1b2a, #415a77); -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Add Channel">
-                    <font><Font size="13.0" /></font>
-                </Button>
-                <Button onAction="#handleUpdate" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #ef6c00; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Update">
-                    <font><Font size="13.0" /></font>
-                </Button>
-                <Button onAction="#handleClear" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Clear">
-                    <font><Font size="13.0" /></font>
-                </Button>
-                <Button onAction="#handleDelete" prefHeight="42.0" prefWidth="140.0" style="-fx-background-color: #c62828; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Delete Selected">
-                    <font><Font size="13.0" /></font>
-                </Button>
-                <Button onAction="#SaveLogButtonOnAction" prefHeight="42.0" prefWidth="140.0" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Save Log">
-                    <font><Font size="13.0" /></font>
-                </Button>
-            </HBox>
-
-            <!-- Search & Table -->
-            <VBox spacing="8.0">
-                <HBox alignment="CENTER_LEFT" spacing="10.0">
-                    <Label text="Monitor Mix Channels" textFill="#0d1b2a">
-                        <font><Font name="System Bold" size="15.0" /></font>
-                    </Label>
-                    <Region HBox.hgrow="ALWAYS" />
-                    <TextField fx:id="searchField" prefWidth="240.0" promptText="Search channel, performer, or role..." />
-                    <Button onAction="#handleSearch" prefWidth="70.0" text="Search" />
-                    <Button onAction="#handleResetSearch" prefWidth="70.0" text="Reset" />
-                </HBox>
-                <Separator prefWidth="970.0" />
-
-                <TableView fx:id="MonitorTableView" prefHeight="240.0" prefWidth="970.0">
-                    <columns>
-                        <TableColumn fx:id="TimeCol" prefWidth="110.0" text="Timestamp" />
-                        <TableColumn fx:id="MonitorChannelCol" prefWidth="120.0" text="Channel" />
-                        <TableColumn fx:id="PerformerCol" prefWidth="110.0" text="Performer" />
-                        <TableColumn fx:id="RoleCol" prefWidth="100.0" text="Role" />
-                        <TableColumn fx:id="CurrentLevelCol" prefWidth="80.0" text="Level dB" />
-                        <TableColumn fx:id="TargetLevelCol" prefWidth="80.0" text="Target dB" />
-                        <TableColumn fx:id="PanCol" prefWidth="60.0" text="Pan" />
-                        <TableColumn fx:id="MuteCol" prefWidth="60.0" text="Mute" />
-                        <TableColumn fx:id="SoloCol" prefWidth="50.0" text="Solo" />
-                        <TableColumn fx:id="StatusCol" prefWidth="90.0" text="Status" />
-                        <TableColumn fx:id="NotesCol" prefWidth="160.0" text="Notes" />
-                    </columns>
-                    <placeholder>
-                        <Label text="No monitor channels configured. Add a channel using the form above." />
-                    </placeholder>
-                </TableView>
+                <!-- COPYRIGHT -->
+                <Label text="© 2026 Music Band OOP System"
+                       textFill="#e0e1dd88"/>
             </VBox>
-
-            <!-- Stats Bar -->
-            <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 6; -fx-padding: 10 15;">
-                <Label text="Total Channels:" textFill="#555555">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Label fx:id="recordCountLabel" text="0" textFill="#0d1b2a">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="16.0" />
-                <Label text="Active:" textFill="#555555">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Label fx:id="activeCountLabel" text="0" textFill="#2e7d32">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="16.0" />
-                <Label text="Muted:" textFill="#555555">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Label fx:id="mutedCountLabel" text="0" textFill="#c62828">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="16.0" />
-                <Label text="Solo:" textFill="#555555">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Label fx:id="soloCountLabel" text="0" textFill="#1565c0">
-                    <font><Font name="System Bold" size="11.0" /></font>
-                </Label>
-                <Region HBox.hgrow="ALWAYS" />
-                <Label text="Monitor Control Module v2.1 | Ready" textFill="#415a77">
-                    <font><Font size="11.0" /></font>
-                </Label>
-            </HBox>
-   
-           <!-- Footer Navigation -->
-           <HBox alignment="CENTER_RIGHT" prefWidth="1050.0">
-               <VBox.margin>
-                   <Insets top="15.0" />
-               </VBox.margin>
-               <Button onAction="#DashboardButtonOnAction" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: #1b263b; -fx-text-fill: #e0e1dd; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="← Back to Dashboard">
-                   <font>
-                  <Font size="12.0" />
-               </font>
-               </Button>
-           </HBox>
-        </VBox>
-
-        <Label text="© 2026 Music Band OOP System | Monitor Control Module" textFill="#e0e1dd88">
-            <font><Font size="11.0" /></font>
-            <VBox.margin>
-                <Insets top="10.0" />
-            </VBox.margin>
-        </Label>
-    </VBox>
+        </content>
+    </ScrollPane>
 </AnchorPane>
+
